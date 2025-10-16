@@ -4,7 +4,7 @@ Handles paper search, metadata extraction, and citation tracking.
 """
 
 import logging
-from typing import Any, TYPE_CHECKING
+from typing import Any, Callable, TYPE_CHECKING
 
 from bs4 import BeautifulSoup
 
@@ -36,7 +36,11 @@ class IEEESearchService:
 		logger.info(f'🔍 IEEE Search Service initialized with base URL: {self.base_url}')
 
 	async def search(
-		self, query: str, max_results: int = 10, browser_session: 'BrowserSession | None' = None
+		self,
+		query: str,
+		max_results: int = 10,
+		browser_session: 'BrowserSession | None' = None,
+		progress_callback: Callable[[str, int, int], None] | None = None,
 	) -> list[dict[str, Any]]:
 		"""
 		Search IEEE Xplore for papers matching the query.
@@ -45,11 +49,16 @@ class IEEESearchService:
 			query: Search keywords
 			max_results: Maximum number of results to return
 			browser_session: Browser session for HTML access
+			progress_callback: Optional callback function(status: str, current: int, total: int)
 
 		Returns:
 			List of paper dictionaries with metadata
 		"""
 		logger.info(f'📚 Searching IEEE Xplore for: "{query}" (max {max_results} results)')
+
+		# Report initial progress
+		if progress_callback:
+			progress_callback(f'Searching IEEE Xplore for "{query}"', 0, max_results)
 
 		if browser_session is None:
 			# Fake implementation for backward compatibility
@@ -109,6 +118,11 @@ class IEEESearchService:
 			results.append({'title': title, 'authors': authors, 'url': url})
 
 		logger.info(f'✅ Found {len(results)} papers')
+
+		# Report completion
+		if progress_callback:
+			progress_callback(f'Found {len(results)} papers', len(results), max_results)
+
 		return results
 
 	async def extract_citations(

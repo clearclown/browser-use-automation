@@ -168,3 +168,29 @@ class TestCitationExtraction:
 		method_citation = next((c for c in citations if c.section == 'Methodology'), None)
 		assert method_citation is not None
 		assert 'attention mechanisms' in method_citation.text
+
+
+class TestProgressTracking:
+	"""Test progress tracking and status reporting."""
+
+	async def test_search_with_progress_callback(self, browser_session: BrowserSession, ieee_base_url):
+		"""Test that search operations report progress via callback."""
+		# Arrange
+		service = IEEESearchService(base_url=ieee_base_url)
+		progress_updates = []
+
+		def progress_callback(status: str, current: int, total: int):
+			progress_updates.append({'status': status, 'current': current, 'total': total})
+
+		# Act
+		results = await service.search(
+			query='machine learning', max_results=2, browser_session=browser_session, progress_callback=progress_callback
+		)
+
+		# Assert
+		assert len(results) == 2
+		assert len(progress_updates) > 0
+
+		# Check that progress was reported
+		assert any('Searching' in update['status'] for update in progress_updates)
+		assert any(update['total'] == 2 for update in progress_updates)
