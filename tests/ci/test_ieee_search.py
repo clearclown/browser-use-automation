@@ -44,6 +44,40 @@ def ieee_mock_server():
 		content_type='text/html',
 	)
 
+	# Mock paper detail page for citation extraction
+	paper_detail_html = """
+	<!DOCTYPE html>
+	<html>
+	<head><title>Deep Learning for Network Traffic Classification - IEEE Xplore</title></head>
+	<body>
+		<div class="document">
+			<h1>Deep Learning for Network Traffic Classification</h1>
+			<div class="authors">John Smith, Jane Doe</div>
+			<div class="abstract-text">
+				<h2>Abstract</h2>
+				<p>This paper presents a novel approach to network traffic classification using deep learning.
+				Our method achieves 95% accuracy on benchmark datasets.</p>
+			</div>
+			<div class="document-main">
+				<h2>I. Introduction</h2>
+				<p>Network security is a critical concern in modern systems.
+				Machine learning techniques have shown promise in detecting anomalies.</p>
+
+				<h2>II. Methodology</h2>
+				<p>We propose a convolutional neural network architecture specifically designed
+				for analyzing network traffic patterns. The key innovation is the use of
+				attention mechanisms to focus on critical packet features.</p>
+			</div>
+		</div>
+	</body>
+	</html>
+	"""
+
+	server.expect_request('/document/12345').respond_with_data(
+		paper_detail_html,
+		content_type='text/html',
+	)
+
 	yield server
 	server.stop()
 
@@ -102,3 +136,35 @@ class TestIEEESearchBasicFunctionality:
 		assert results[1]['title'] == 'Machine Learning in Cybersecurity'
 		assert results[1]['authors'] == ['Alice Johnson']
 		assert '/document/67890' in results[1]['url']
+
+
+class TestCitationExtraction:
+	"""Test citation and excerpt extraction from papers."""
+
+	async def test_extract_citations_from_paper(self, browser_session: BrowserSession, ieee_base_url):
+		"""Test extracting citations/excerpts from a paper with section tracking."""
+		# Arrange
+		service = IEEESearchService(base_url=ieee_base_url)
+		paper_url = f'{ieee_base_url}/document/12345'
+
+		# Act
+		citations = await service.extract_citations(
+			paper_url=paper_url,
+			sections=['Abstract', 'Introduction', 'Methodology'],
+			browser_session=browser_session,
+		)
+
+		# Assert
+		assert len(citations) >= 2
+
+		# Check abstract citation
+		abstract_citation = next((c for c in citations if c.section == 'Abstract'), None)
+		assert abstract_citation is not None
+		assert 'novel approach' in abstract_citation.text
+		assert abstract_citation.paper_url == paper_url
+		assert abstract_citation.paper_title == 'Deep Learning for Network Traffic Classification'
+
+		# Check methodology citation
+		method_citation = next((c for c in citations if c.section == 'Methodology'), None)
+		assert method_citation is not None
+		assert 'attention mechanisms' in method_citation.text
