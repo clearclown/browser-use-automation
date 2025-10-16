@@ -35,7 +35,16 @@ class IEEEChatInterface:
 		"""Initialize browser session."""
 		if self.browser_session is None:
 			logger.info('🌐 Starting browser session...')
-			profile = BrowserProfile(headless=True, disable_security=False)
+			# IEEE blocks headless browsers, use headless=False
+			import os
+			headless = os.getenv('HEADLESS', 'false').lower() == 'true'
+			profile = BrowserProfile(
+				headless=headless,
+				disable_security=False,
+				extra_chromium_args=[
+					'--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+				]
+			)
 			self.browser_session = BrowserSession(browser_profile=profile)
 			await self.browser_session.start()
 			logger.info('✅ Browser ready')

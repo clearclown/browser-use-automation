@@ -5,10 +5,13 @@
 ## 特徴
 
 ✅ **IEEE Xplore自動検索** - キーワードで論文を自動検索
-✅ **メタデータ抽出** - タイトル、著者、URLを自動抽出
+✅ **メタデータ抽出** - タイトル、著者、URL、DOIを自動抽出
+✅ **引用・抜粋記録** - 論文の引用をセクション名・ページ番号付きで保存
+✅ **進捗状況表示** - リアルタイムで検索進捗を可視化
+✅ **対話的インターフェース** - チャット形式で検索・引用抽出を操作
 ✅ **マルチLLM対応** - Claude、OpenAI、DeepSeek、Google、Grokから選択可能
 ✅ **コンテナ化** - Podman/Dockerで簡単にデプロイ
-✅ **JSON出力** - 検索結果をJSON形式で保存
+✅ **JSON出力** - 検索結果と引用をJSON形式で保存
 
 ## セットアップ
 
@@ -79,7 +82,31 @@ uv run python examples/ieee_paper_search.py
 SEARCH_QUERY="deep learning security" uv run python examples/ieee_paper_search.py
 ```
 
+### 対話的インターフェース（チャット形式）
+
+```bash
+# 対話的に検索・引用抽出を実行
+uv run python examples/ieee_chat_interface.py
+
+# 使用可能なコマンド:
+#   search <query> [max_results]  - 論文検索
+#   extract <paper_number> [sections] - 引用抽出
+#   list - 検索結果一覧
+#   citations - 収集した引用一覧
+#   save [filename] - JSONファイルに保存
+#   quit - 終了
+```
+
+### 全機能デモ
+
+```bash
+# 検索・引用・進捗表示の全機能デモ
+uv run python examples/ieee_comprehensive_example.py
+```
+
 ### Pythonコードでの使用
+
+#### 基本的な検索
 
 ```python
 import asyncio
@@ -108,11 +135,60 @@ async def search_papers():
         print(f"Title: {paper['title']}")
         print(f"Authors: {', '.join(paper['authors'])}")
         print(f"URL: {paper['url']}")
-        print()
 
     await browser_session.kill()
 
 asyncio.run(search_papers())
+```
+
+#### 進捗表示付き検索
+
+```python
+async def search_with_progress():
+    # 進捗コールバック関数
+    def progress(status: str, current: int, total: int):
+        print(f"Progress: {status} [{current}/{total}]")
+
+    ieee_service = IEEESearchService()
+    browser_session = BrowserSession(browser_profile=BrowserProfile(headless=True))
+    await browser_session.start()
+
+    # 進捗表示付き検索
+    results = await ieee_service.search(
+        query="deep learning",
+        max_results=5,
+        browser_session=browser_session,
+        progress_callback=progress  # 進捗コールバックを渡す
+    )
+
+    await browser_session.kill()
+```
+
+#### 引用・抜粋の抽出
+
+```python
+async def extract_citations():
+    ieee_service = IEEESearchService()
+    browser_session = BrowserSession(browser_profile=BrowserProfile(headless=True))
+    await browser_session.start()
+
+    # 論文から引用を抽出
+    citations = await ieee_service.extract_citations(
+        paper_url="https://ieeexplore.ieee.org/document/12345",
+        sections=["Abstract", "Introduction", "Methodology"],
+        browser_session=browser_session
+    )
+
+    # 引用の表示
+    for citation in citations:
+        print(f"Section: {citation.section}")
+        print(f"Text: {citation.text}")
+        print(f"Paper: {citation.paper_title}")
+        print(f"URL: {citation.paper_url}")
+        print(f"Authors: {', '.join(citation.authors)}")
+        print()
+
+    await browser_session.kill()
 ```
 
 ## 検索結果の保存
@@ -165,10 +241,21 @@ uv run pytest -xvs tests/ci/
 
 ### アーキテクチャ
 
-- `browser_use/integrations/ieee_search/service.py` - 検索サービス本体
+**コアモジュール:**
+- `browser_use/integrations/ieee_search/service.py` - 検索・引用抽出サービス本体
+- `browser_use/integrations/ieee_search/views.py` - データモデル（Citation, PaperMetadata, SearchProgress）
 - `browser_use/integrations/ieee_search/llm_config.py` - LLM設定ヘルパー
-- `tests/ci/test_ieee_search.py` - TDDテスト
-- `examples/ieee_paper_search.py` - 使用例
+
+**テスト:**
+- `tests/ci/test_ieee_search.py` - TDDテスト（4テストケース、全てPass）
+  - `TestIEEESearchBasicFunctionality` - 基本検索
+  - `TestCitationExtraction` - 引用抽出
+  - `TestProgressTracking` - 進捗追跡
+
+**使用例:**
+- `examples/ieee_paper_search.py` - 基本的な論文検索
+- `examples/ieee_chat_interface.py` - 対話的インターフェース
+- `examples/ieee_comprehensive_example.py` - 全機能デモ
 
 ### TDD開発プロセス
 

@@ -61,14 +61,7 @@ class IEEESearchService:
 			progress_callback(f'Searching IEEE Xplore for "{query}"', 0, max_results)
 
 		if browser_session is None:
-			# Fake implementation for backward compatibility
-			return [
-				{
-					'title': 'Deep Learning for Network Traffic Classification',
-					'authors': ['John Smith', 'Jane Doe'],
-					'url': f'{self.base_url}/document/12345',
-				}
-			]
+			raise ValueError('browser_session is required for IEEE search')
 
 		# Navigate to search page
 		from browser_use.browser.events import NavigateToUrlEvent
@@ -78,6 +71,10 @@ class IEEESearchService:
 
 		nav_event = browser_session.event_bus.dispatch(NavigateToUrlEvent(url=search_url))
 		await nav_event
+
+		# Wait for JavaScript to load content (IEEE is a SPA)
+		import asyncio
+		await asyncio.sleep(5)
 
 		# Get page HTML using CDP
 		cdp_session = await browser_session.get_or_create_cdp_session()
@@ -91,29 +88,39 @@ class IEEESearchService:
 		soup = BeautifulSoup(html_content, 'html.parser')
 		results = []
 
-		# Extract paper information
-		result_items = soup.find_all('div', class_='result-item')
-		for item in result_items[:max_results]:
-			# Extract title and URL
-			title_elem = item.find('h2')
-			if title_elem:
-				link = title_elem.find('a')
-				if link:
-					title = link.get_text(strip=True)
-					url = f"{self.base_url}{link.get('href', '')}"
-				else:
-					title = title_elem.get_text(strip=True)
-					url = ''
-			else:
+		# Extract paper information - IEEE uses custom elements like <xpl-results-item>
+		# Each result is in a div with class "List-results-items"
+		result_containers = soup.find_all('div', class_='List-results-items')
+
+		for container in result_containers[:max_results]:
+			# Find the title link - it's in <h3><a href="/document/ID/">
+			title_elem = container.find('h3')
+			if not title_elem:
 				continue
 
-			# Extract authors
-			author_elem = item.find('div', class_='author')
+			link = title_elem.find('a')
+			if not link:
+				continue
+
+			# Get text with separator to preserve spaces
+			title = link.get_text(separator=' ', strip=True)
+
+			href = link.get('href', '')
+			if href.startswith('/'):
+				url = f'{self.base_url}{href}'
+			else:
+				url = href
+
+			# Extract authors - they're in <xpl-authors-name-list> custom element
 			authors = []
-			if author_elem:
-				author_text = author_elem.get_text(strip=True)
-				# Split by comma
-				authors = [a.strip() for a in author_text.split(',') if a.strip()]
+			author_list = container.find('xpl-authors-name-list')
+			if author_list:
+				# Find all author links within the author list
+				author_links = author_list.find_all('a')
+				for author_link in author_links:
+					author_name = author_link.get_text(strip=True)
+					if author_name and author_name != ';':
+						authors.append(author_name)
 
 			results.append({'title': title, 'authors': authors, 'url': url})
 
@@ -150,6 +157,10 @@ class IEEESearchService:
 		nav_event = browser_session.event_bus.dispatch(NavigateToUrlEvent(url=paper_url))
 		await nav_event
 
+		# Wait for JavaScript to load content (IEEE is a SPA)
+		import asyncio
+		await asyncio.sleep(5)
+
 		# Get page HTML using CDP
 		cdp_session = await browser_session.get_or_create_cdp_session()
 		doc_result = await cdp_session.cdp_client.send.DOM.getDocument(session_id=cdp_session.session_id)
@@ -163,31 +174,56 @@ class IEEESearchService:
 		citations = []
 
 		# Extract paper metadata
-		title_elem = soup.find('h1')
-		paper_title = title_elem.get_text(strip=True) if title_elem else 'Unknown'
+		# Title might be in different locations - try various selectors
+		title_elem = soup.find('h1', class_='document-title')
+		if not title_elem:
+			title_elem = soup.find('h1')
+		paper_title = title_elem.get_text(separator=' ', strip=True) if title_elem else 'Unknown'
 
-		authors_elem = soup.find('div', class_='authors')
+		# Authors on detail page are in <xpl-authors-name-list> custom element
 		authors = []
-		if authors_elem:
+		author_list = soup.find('xpl-authors-name-list')
+		if author_list:
+			author_links = author_list.find_all('a')
+			for author_link in author_links:
+				author_name = author_link.get_text(strip=True)
+				if author_name and author_name not in [';', ',']:
+					authors.append(author_name)
+		elif soup.find('div', class_='authors'):
+			# Fallback for older format
+			authors_elem = soup.find('div', class_='authors')
 			author_text = authors_elem.get_text(strip=True)
 			authors = [a.strip() for a in author_text.split(',') if a.strip()]
 
-		# Extract abstract
-		abstract_elem = soup.find('div', class_='abstract-text')
-		if abstract_elem and (sections is None or 'Abstract' in sections):
-			abstract_text = abstract_elem.get_text(strip=True)
-			# Remove "Abstract" header
-			abstract_text = abstract_text.replace('Abstract', '', 1).strip()
-			if abstract_text:
-				citations.append(
-					Citation(
-						text=abstract_text,
-						paper_title=paper_title,
-						paper_url=paper_url,
-						section='Abstract',
-						authors=authors,
+		# Extract abstract - IEEE uses class="abstract-text" for desktop
+		# and "abstract-mobile-div" for mobile
+		abstract_container = soup.find('div', class_='abstract-text')
+		if not abstract_container:
+			# Try mobile version
+			abstract_container = soup.find('div', class_='abstract-mobile-div')
+
+		if abstract_container and (sections is None or 'Abstract' in sections):
+			# Find the div with xplmathjax attribute (contains actual text)
+			abstract_div = abstract_container.find('div', attrs={'xplmathjax': ''})
+			if not abstract_div:
+				# Try span for mobile
+				abstract_div = abstract_container.find('span', attrs={'xplmathjax': ''})
+
+			if abstract_div:
+				abstract_text = abstract_div.get_text(separator=' ', strip=True)
+				# Remove common suffixes like "<>" or trailing dots
+				abstract_text = abstract_text.replace('<>', '').strip()
+
+				if abstract_text and len(abstract_text) > 20:  # Minimum length check
+					citations.append(
+						Citation(
+							text=abstract_text,
+							paper_title=paper_title,
+							paper_url=paper_url,
+							section='Abstract',
+							authors=authors,
+						)
 					)
-				)
 
 		# Extract sections from main document
 		main_doc = soup.find('div', class_='document-main')

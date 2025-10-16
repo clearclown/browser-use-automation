@@ -14,7 +14,6 @@ from dotenv import load_dotenv
 from browser_use.browser import BrowserSession
 from browser_use.browser.profile import BrowserProfile
 from browser_use.integrations.ieee_search import IEEESearchService
-from browser_use.integrations.ieee_search.llm_config import get_llm_from_env
 
 # Load environment variables from .env file
 load_dotenv()
@@ -36,17 +35,17 @@ async def search_ieee_papers(query: str, max_results: int = 5):
 	"""
 	logger.info(f'🔍 Starting IEEE paper search for: "{query}"')
 
-	# Initialize LLM from environment
-	try:
-		llm = get_llm_from_env()
-		logger.info(f'✅ LLM initialized: {llm.__class__.__name__}')
-	except ValueError as e:
-		logger.error(f'❌ Failed to initialize LLM: {e}')
-		logger.info('💡 Make sure to set LLM_PROVIDER and corresponding API key in .env file')
-		return
-
 	# Create browser session
-	profile = BrowserProfile(headless=True, disable_security=False)
+	# Note: IEEE blocks headless browsers, so use headless=False
+	# Set HEADLESS=true environment variable to force headless mode
+	headless = os.getenv('HEADLESS', 'false').lower() == 'true'
+	profile = BrowserProfile(
+		headless=headless,
+		disable_security=False,
+		extra_chromium_args=[
+			'--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+		]
+	)
 	browser_session = BrowserSession(browser_profile=profile)
 
 	try:
