@@ -1,0 +1,67 @@
+{
+  "query": "columnar database OLAP real-time",
+  "results": [
+    {
+      "title": "Accelerating Joins and Aggregations on the Oracle In-Memory Database",
+      "authors": [
+        "Shasank Chavan",
+        "Albert Hopeman",
+        "Sangho Lee",
+        "Dennis Lui",
+        "Ajit Mylavarapu",
+        "Ekrem Soylemez"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8509384/"
+    },
+    {
+      "title": "SCMAT: A Mechanism Presuming SCMs to Efficiently Enable Both OLAP and OLTP",
+      "authors": [
+        "Takamitsu Shioi",
+        "Kenji Hatano",
+        "Haruo Yokota"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8029340/"
+    },
+    {
+      "title": "Fault-tolerant real-time analytics with distributed Oracle Database In-memory",
+      "authors": [
+        "Niloy Mukherjee",
+        "Shasank Chavan",
+        "Maria Colgan",
+        "Mike Gleeson",
+        "Xiaoming He",
+        "Allison Holloway",
+        "Jesse Kamp",
+        "Kartik Kulkarni",
+        "Tirthankar Lahiri",
+        "Juan Loaiza",
+        "Neil Macnaughton",
+        "Atrayee Mullick",
+        "Sujatha Muthulingam",
+        "Vivekanandhan Raja",
+        "Raunak Rungta"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7498333/"
+    },
+    {
+      "title": "Benchmarking HOAP for Scalable Document Data Management: A First Step",
+      "authors": [
+        "Yifan Tian",
+        "Michael Carey",
+        "Ian Maxon"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9377937/"
+    },
+    {
+      "title": "Janus: A Hybrid Scalable Multi-Representation Cloud Datastore",
+      "authors": [
+        "Vaibhav Arora",
+        "Faisal Nawab",
+        "Divyakant Agrawal",
+        "Amr El Abbadi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8110657/"
+    }
+  ],
+  "count": 5
+}

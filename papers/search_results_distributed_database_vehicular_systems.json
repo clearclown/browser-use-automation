@@ -1,0 +1,95 @@
+{
+  "query": "distributed database vehicular systems",
+  "results": [
+    {
+      "title": "Communication in distributed database system in the VANET environment",
+      "authors": [
+        "Ján Janech",
+        "Štefan Toth"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6644100/"
+    },
+    {
+      "title": "More efficient location tracking in PCS systems using a novel distributed database system",
+      "authors": [
+        "Cheng-Ming Weng",
+        "Pei-Wei Huang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1015327/"
+    },
+    {
+      "title": "Localized Data Transfer System by Vehicles and Cellular Base Station in Local Area",
+      "authors": [
+        "Hiroshi Miyata",
+        "Kazutami Arimoto"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9473632/"
+    },
+    {
+      "title": "A dynamic data information management algorithm for multi- database system under WAN",
+      "authors": [
+        "Xu Hong",
+        "Zhang Yi",
+        "Hu Jianming",
+        "Song Jingyan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1505160/"
+    },
+    {
+      "title": "Highway Emergency Response System Based on GIS-T",
+      "authors": [
+        "Han-tao Zhao",
+        "Hong-yan Mao"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/5169576/"
+    },
+    {
+      "title": "Design and Implementation of a Vehicular Cloud Real Time System (VCRTS) Using a Fault-Tolerant Approach",
+      "authors": [
+        "Luther Bell",
+        "Puya Ghazizadeh",
+        "Samy El-Tawab",
+        "Aida Ghazizadeh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9483722/"
+    },
+    {
+      "title": "Distributed Storage and Analysis of Massive Urban Road Traffic Flow Data Based on Hadoop",
+      "authors": [
+        "Liujiang Zhu",
+        "Yun Li"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7396611/"
+    },
+    {
+      "title": "Database -centered architecture for traffic incident detection, management, and analysis",
+      "authors": [
+        "S. Bhonsle",
+        "M. Trivedi",
+        "A. Gupta"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/881040/"
+    },
+    {
+      "title": "Terminal aided k-location tracking with distributed HLR database for mobility management",
+      "authors": [
+        "Hao Guan",
+        "Zhi Tao Du",
+        "Cheng Shu Li"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/851685/"
+    },
+    {
+      "title": "A Distributed System for Reducing Uploaded Data Redundancy in Vehicular Networks",
+      "authors": [
+        "Zezhi Wang",
+        "Yajie Zhao",
+        "Lewis Tseng",
+        "Takamasa Higuchi",
+        "Onur Altintas"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8730671/"
+    }
+  ],
+  "count": 10
+}

@@ -1,0 +1,105 @@
+{
+  "query": "V2X cooperative intersection management",
+  "results": [
+    {
+      "title": "Cooperative Intersection Management : A Survey",
+      "authors": [
+        "Lei Chen",
+        "Cristofer Englund"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7244203/"
+    },
+    {
+      "title": "Exploring Shared Perception and Control in Cooperative Vehicle- Intersection Systems: A Review",
+      "authors": [
+        "Elham Yazdani Bejarbaneh",
+        "Haiping Du",
+        "Fazel Naghdy"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10623524/"
+    },
+    {
+      "title": "Toward 6G- V2X : Edge-Assisted Platoon Coordination for Cooperative Intersection Control",
+      "authors": [
+        "Jozef Juraško",
+        "Lukáš Lovás",
+        "Rastislav Bencel",
+        "Peter Trúchly"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11194002/"
+    },
+    {
+      "title": "Game Theoretic Application to Intersection Management : A Literature Review",
+      "authors": [
+        "Ziye Qin",
+        "Ang Ji",
+        "Zhanbo Sun",
+        "Guoyuan Wu",
+        "Peng Hao",
+        "Xishun Liao"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10477532/"
+    },
+    {
+      "title": "Hybrid cooperative intersection management for connected automated vehicles and pedestrians",
+      "authors": [],
+      "url": "https://ieeexplore.ieee.org/document/10184172/"
+    },
+    {
+      "title": "AROW: V2X -Based Automated Right-of-Way Algorithm for Cooperative Intersection Management",
+      "authors": [
+        "Ghayoor Shah",
+        "Danyang Tian",
+        "Ehsan Moradi-Pari",
+        "Yaser P. Fallah"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10504747/"
+    },
+    {
+      "title": "Safe Cooperative Intersection of Autonomous and Connected Robots: Trajectory and Schedule Optimization",
+      "authors": [
+        "Wendan Du",
+        "Abdeljalil Abbas-Turki",
+        "Abder Koukam",
+        "Kang-Hyun Jo"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9920759/"
+    },
+    {
+      "title": "Collision-Aware Communication for Intersection Management of Automated Vehicles",
+      "authors": [
+        "Erik Steinmetz",
+        "Robert Hult",
+        "Zhenhua Zou",
+        "Ragne Emardson",
+        "Fredrik Brännström",
+        "Paolo Falcone",
+        "Henk Wymeersch"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8542751/"
+    },
+    {
+      "title": "A Coordination Algorithm for Signalized Multi- Intersection to Maximize Green Wave Band in V2X Network",
+      "authors": [
+        "Yanjun Shi",
+        "Jiajian Li",
+        "Qiaomei Han",
+        "Lingling Lv"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9264154/"
+    },
+    {
+      "title": "Leveraging Multiagent Learning for Automated Vehicles Scheduling at Nonsignalized Intersections",
+      "authors": [
+        "Yunting Xu",
+        "Haibo Zhou",
+        "Ting Ma",
+        "Jiwei Zhao",
+        "Bo Qian",
+        "Xuemin Shen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9336022/"
+    }
+  ],
+  "count": 10
+}

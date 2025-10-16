@@ -1,0 +1,110 @@
+{
+  "query": "time-series database IoT vehicle sensor",
+  "results": [
+    {
+      "title": "Performance Impact of Parallel Access of Time Series in the Context of Relational, NoSQL and NewSQL Database Management Systems",
+      "authors": [
+        "Sebastian Pritz",
+        "Martina Zeinzinger",
+        "Christoph Praschl",
+        "Oliver Krauss",
+        "Martin Harrer"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10253446/"
+    },
+    {
+      "title": "A Framework to Support Collection, Processing and Analysis of Smart Vehicles Data",
+      "authors": [
+        "Mariana Azevedo",
+        "Thais Medeiros",
+        "Morsinaldo Medeiros",
+        "Carlos M. D. Viegas",
+        "Marianne Silva",
+        "Ivanovitch Silva",
+        "Daniel G. Costa"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10539569/"
+    },
+    {
+      "title": "IoT Based Real-Time Water Quality Monitoring and Visualization System Using an Autonomous Surface Vehicle",
+      "authors": [
+        "Wondimagegn T Beshah",
+        "Jane Moorhead",
+        "Padmanava Dash",
+        "Robert J. Moorhead",
+        "James Herman",
+        "M. S. Sankar",
+        "Daniel Chesser",
+        "Wes Lowe",
+        "Jessica Simmerman",
+        "Gray Turnage"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9705673/"
+    },
+    {
+      "title": "Predictive Modeling with Vehicle Sensor Data and IoT for Injury Prevention",
+      "authors": [
+        "Christopher Yang",
+        "Ou Liang",
+        "Santiago Ontanon",
+        "Weimao Ke",
+        "Helen Loeb",
+        "Charlie Klauer"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8537845/"
+    },
+    {
+      "title": "A Framework for Efficient Communication in IoT Applications in the Automotive Industry with OBD-II Edge",
+      "authors": [
+        "Morsinaldo Medeiros",
+        "Mariana Azevedo",
+        "Miguel Amaral",
+        "Carlos M. D. Viegas",
+        "Marianne Silva",
+        "Ivanovitch Silva",
+        "Daniel G. Costa"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10389839/"
+    },
+    {
+      "title": "A Lightweight, Mobility-Aware, Geospatial & Temporal Data Store for Multi-UAV Systems",
+      "authors": [
+        "Shashwat Jaiswal",
+        "Suman Raj",
+        "Subhajit Sidhanta",
+        "Yogesh Simmhan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10181164/"
+    },
+    {
+      "title": "Highly Reliable IoT Data Management Platform Using Blockchain and Transaction Data Analysis",
+      "authors": [
+        "Yuki Hasegawa",
+        "Hiroshi Yamamoto"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9042994/"
+    },
+    {
+      "title": "Towards a Digital Twin for a Drinking Water Source in Norway",
+      "authors": [
+        "Russell Primeau",
+        "Razak Seidu",
+        "Guoyuan Li"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10665254/"
+    },
+    {
+      "title": "A common data architecture for energy data analytics",
+      "authors": [
+        "Mayank Malik",
+        "Michaelangelo Tabone",
+        "David P. Chassin",
+        "Emre Can Kara",
+        "Ramanathan V. Guha",
+        "Sila Kiliccote"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8340736/"
+    }
+  ],
+  "count": 9
+}

@@ -1,0 +1,94 @@
+{
+  "query": "analytical database big data streaming",
+  "results": [
+    {
+      "title": "Advanced Health Information Technology Analytic Framework and Application to Hazard Detection",
+      "authors": [
+        "Mohit Kumar",
+        "Sangkeun Lee",
+        "Byung Hoon Park",
+        "James Blum",
+        "Merry Ward",
+        "Jonathan R. Nebeker"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9442793/"
+    },
+    {
+      "title": "An Effective and Scalable Data Modeling for Enterprise Big Data Platform",
+      "authors": [
+        "Jayesh Patel"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9005614/"
+    },
+    {
+      "title": "Open Source Big Data Analytics Frameworks Written in Scala",
+      "authors": [
+        "John A. Miller",
+        "Casey Bowman",
+        "Vishnu Gowda Harish",
+        "Shannon Quinn"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7584967/"
+    },
+    {
+      "title": "Knowledge Based Retrieval Scheme from Big Data for Aviation Industry",
+      "authors": [
+        "Anju Singh",
+        "Akhil Kaushik"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7546229/"
+    },
+    {
+      "title": "Big Data Augmentation with Data Warehouse: A Survey",
+      "authors": [
+        "Umar Aftab",
+        "Ghazanfar Farooq Siddiqui"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8622182/"
+    },
+    {
+      "title": "Big Data Augmentation with Data Warehouse: A Survey",
+      "authors": [
+        "Umar Aftab",
+        "Ghazanfar Farooq Siddiqui"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8622206/"
+    },
+    {
+      "title": "An Open-framework Big Data Analytic Platform Applied to Timeseries Sensor Data",
+      "authors": [
+        "Michael Balestrieri",
+        "Joshua Capuzzi",
+        "Kyle Chang",
+        "Hamed Valizadehhaghi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10556121/"
+    },
+    {
+      "title": "Conceptual Predictive Modeling in a Competitive Framework Using Big Data Technology",
+      "authors": [
+        "Jeong-Sig Kim",
+        "Eung-Sung Kim",
+        "Jin-Hong Kim"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7433711/"
+    },
+    {
+      "title": "Real-Time Processing of Big Data Streams : Lifecycle, Tools, Tasks, and Challenges",
+      "authors": [
+        "Fatih Gürcan",
+        "Muhammet Berigel"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8567061/"
+    },
+    {
+      "title": "A Scalable Heterogeneous Big Data Framework for e-Learning Systems",
+      "authors": [
+        "David Otoo-Arthur",
+        "Terence L. van Zyl"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9183863/"
+    }
+  ],
+  "count": 10
+}

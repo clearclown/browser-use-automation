@@ -1,0 +1,42 @@
+{
+  "query": "FCFS scheduling autonomous vehicles intersection",
+  "results": [
+    {
+      "title": "Graph based Conflict-Free Scheduling of Autonomous Vehicles at Unsignalized Intersections",
+      "authors": [
+        "Shraddha Dulera",
+        "Ramnarayan Yadav",
+        "Manish Chaturvedi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10885772/"
+    },
+    {
+      "title": "Mixed-Traffic Intersection Management Utilizing Connected and Autonomous Vehicles as Traffic Regulators",
+      "authors": [
+        "Pin-Chun Chen",
+        "Xiangguo Liu",
+        "Chung-Wei Lin",
+        "Chao Huang",
+        "Qi Zhu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10044851/"
+    },
+    {
+      "title": "Color the Conflict: Enabling Simultaneous Traversal in AIM Using Graph Coloring",
+      "authors": [
+        "Shraddha Dulera",
+        "RAM Narayan Yadav"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11184723/"
+    },
+    {
+      "title": "Ticket-Based Traffic Flow Control at Intersections for Internet of Vehicles",
+      "authors": [
+        "Li Li",
+        "Jiafeng Zhu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8039056/"
+    }
+  ],
+  "count": 4
+}
