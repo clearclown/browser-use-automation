@@ -75,12 +75,17 @@ docker-compose up -d
 ### 基本的な使い方
 
 ```bash
-# 論文検索の実行
-uv run python examples/ieee_paper_search.py
+# 論文検索の実行（ブラウザが表示されます）
+DISPLAY=:0 uv run python examples/ieee_paper_search.py
 
 # カスタムクエリで検索
-SEARCH_QUERY="deep learning security" uv run python examples/ieee_paper_search.py
+SEARCH_QUERY="deep learning security" DISPLAY=:0 uv run python examples/ieee_paper_search.py
+
+# ヘッドレスモードで実行（IEEE Xploreがブロックする可能性あり）
+HEADLESS=true uv run python examples/ieee_paper_search.py
 ```
+
+**注意**: IEEE Xploreはヘッドレスブラウザをブロックするため、デフォルトではブラウザウィンドウが表示されます。`DISPLAY=:0` を指定してください。
 
 ### 対話的インターフェース（チャット形式）
 
@@ -268,6 +273,23 @@ uv run pytest -xvs tests/ci/
 
 ## トラブルシューティング
 
+### IEEE Xploreアクセスがブロックされる
+
+**症状**: "Request Rejected" エラーが表示される
+
+**原因**: IEEE Xploreがヘッドレスブラウザを検出してブロックしています。
+
+**解決方法**:
+1. デフォルト設定（headless=False）を使用する:
+   ```bash
+   DISPLAY=:0 uv run python examples/ieee_paper_search.py
+   ```
+2. Xサーバーが起動していることを確認:
+   ```bash
+   # Linuxの場合
+   echo $DISPLAY  # :0 などが表示されるはず
+   ```
+
 ### Chromiumが見つからない
 
 ```bash
@@ -278,14 +300,13 @@ sudo apt install chromium chromium-driver
 sudo dnf install chromium
 ```
 
-### APIキーエラー
+### 検索結果が0件
 
-`.env`ファイルが正しく設定されているか確認:
+**原因**: HTMLパースのタイミング問題の可能性
 
-```bash
-# .envファイルの確認
-cat .env | grep API_KEY
-```
+**解決方法**:
+- `service.py` の待機時間を増やす（現在5秒）
+- ブラウザウィンドウを確認してページが完全に読み込まれているか確認
 
 ## ライセンス
 
