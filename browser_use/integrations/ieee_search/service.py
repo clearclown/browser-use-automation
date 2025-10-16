@@ -4,9 +4,14 @@ Handles paper search, metadata extraction, and citation tracking.
 """
 
 import logging
+import re
+import tempfile
+from pathlib import Path
 from typing import Any, Callable, TYPE_CHECKING
 
+import requests
 from bs4 import BeautifulSoup
+from pypdf import PdfReader
 
 from browser_use.integrations.ieee_search.views import Citation
 
@@ -133,7 +138,11 @@ class IEEESearchService:
 		return results
 
 	async def extract_citations(
-		self, paper_url: str, sections: list[str] | None = None, browser_session: 'BrowserSession | None' = None
+		self,
+		paper_url: str,
+		sections: list[str] | None = None,
+		browser_session: 'BrowserSession | None' = None,
+		use_pdf: bool = True,
 	) -> list[Citation]:
 		"""
 		Extract citations/excerpts from a paper with source tracking.
@@ -142,6 +151,7 @@ class IEEESearchService:
 			paper_url: URL of the paper to extract from
 			sections: List of section names to extract (e.g., ['Abstract', 'Introduction'])
 			browser_session: Browser session for HTML access
+			use_pdf: If True, download and extract from PDF for full text (default: True)
 
 		Returns:
 			List of Citation objects with text, section, and metadata
@@ -273,5 +283,223 @@ class IEEESearchService:
 						)
 					)
 
+		# Try PDF extraction if enabled and no sections found from HTML
+		if use_pdf and len(citations) < 2:  # HTML usually only has abstract
+			logger.info('📥 HTML extraction limited, trying PDF extraction...')
+
+			# Find PDF link from the page
+			# IEEE PDF links are like: /stamp/stamp.jsp?tp=&arnumber=XXXXX
+			pdf_links = soup.find_all('a', href=re.compile(r'/stamp/stamp\.jsp'))
+			if pdf_links:
+				pdf_link = pdf_links[0].get('href')
+				if not pdf_link.startswith('http'):
+					pdf_url = f'{self.base_url}{pdf_link}'
+				else:
+					pdf_url = pdf_link
+
+				logger.info(f'📄 Found PDF link: {pdf_url}')
+
+				# Download and extract from PDF
+				pdf_citations = await self.download_and_extract_pdf(
+					pdf_url, paper_title, authors, sections, browser_session
+				)
+
+				# Merge PDF citations with HTML citations
+				# Prefer PDF sections over HTML abstract if available
+				if pdf_citations:
+					# Remove abstract from HTML citations if we have PDF sections
+					citations = [c for c in citations if c.section != 'Abstract' or not pdf_citations]
+					citations.extend(pdf_citations)
+
 		logger.info(f'✅ Extracted {len(citations)} citations from {len(sections or [])} sections')
 		return citations
+
+	async def download_and_extract_pdf(
+		self,
+		pdf_url: str,
+		paper_title: str,
+		authors: list[str],
+		sections: list[str] | None = None,
+		browser_session: 'BrowserSession | None' = None,
+	) -> list[Citation]:
+		"""
+		Download PDF and extract text from specific sections.
+
+		Args:
+			pdf_url: URL of the PDF file
+			paper_title: Title of the paper
+			authors: List of author names
+			sections: List of section names to extract (e.g., ['Introduction', 'Methodology'])
+			browser_session: Browser session for downloading (to avoid bot detection)
+
+		Returns:
+			List of Citation objects with text from PDF
+		"""
+		logger.info(f'📥 Downloading PDF from: {pdf_url}')
+
+		try:
+			if browser_session:
+				# Use browser session to download PDF (avoids bot detection)
+				from browser_use.browser.events import NavigateToUrlEvent
+				import asyncio
+
+				# Navigate to PDF URL (this will trigger download)
+				nav_event = browser_session.event_bus.dispatch(NavigateToUrlEvent(url=pdf_url))
+				await nav_event
+
+				# Wait for potential download to start
+				await asyncio.sleep(3)
+
+				# Check if download happened
+				# For now, we'll try direct download with proper headers as fallback
+				logger.warning('⚠️ Browser-based PDF download not yet implemented, trying direct download...')
+
+			# Fallback to direct download with proper headers
+			headers = {
+				'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+				'Referer': pdf_url.replace('/stamp/', '/document/'),
+			}
+			response = requests.get(pdf_url, headers=headers, timeout=30)
+			response.raise_for_status()
+
+			# Check if we got a PDF (not HTML error page)
+			content_type = response.headers.get('content-type', '')
+			if 'pdf' not in content_type.lower() and not response.content.startswith(b'%PDF'):
+				logger.warning(f'⚠️ Downloaded content is not PDF (content-type: {content_type})')
+				logger.info('💡 This paper may require IEEE subscription or institutional access')
+				return []
+
+			# Save to temporary file
+			with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
+				tmp_file.write(response.content)
+				pdf_path = Path(tmp_file.name)
+
+			logger.info(f'✅ Downloaded PDF ({len(response.content)} bytes)')
+
+			# Extract text from PDF
+			citations = self._extract_text_from_pdf(pdf_path, pdf_url, paper_title, authors, sections)
+
+			# Clean up temporary file
+			pdf_path.unlink()
+
+			return citations
+
+		except Exception as e:
+			logger.error(f'❌ Failed to download/parse PDF: {e}')
+			logger.info('💡 Note: Some IEEE papers require subscription or institutional access')
+			return []
+
+	def _extract_text_from_pdf(
+		self, pdf_path: Path, paper_url: str, paper_title: str, authors: list[str], sections: list[str] | None
+	) -> list[Citation]:
+		"""
+		Extract text from PDF file and split by sections.
+
+		Args:
+			pdf_path: Path to PDF file
+			paper_url: URL of the paper
+			paper_title: Title of the paper
+			authors: List of author names
+			sections: List of section names to extract
+
+		Returns:
+			List of Citation objects with extracted text
+		"""
+		logger.info(f'📄 Parsing PDF: {pdf_path}')
+
+		try:
+			reader = PdfReader(pdf_path)
+			citations = []
+
+			# Extract full text from all pages
+			full_text = ''
+			page_texts = []
+
+			for i, page in enumerate(reader.pages, 1):
+				page_text = page.extract_text()
+				page_texts.append((i, page_text))
+				full_text += f'\n{page_text}'
+
+			logger.info(f'📊 Extracted text from {len(reader.pages)} pages')
+
+			# Try to split text by sections
+			# Common section headers in IEEE papers
+			section_patterns = [
+				r'^(I+\.?\s+)?INTRODUCTION\s*$',
+				r'^(I+\.?\s+)?ABSTRACT\s*$',
+				r'^(I+\.?\s+)?RELATED\s+WORK\s*$',
+				r'^(I+\.?\s+)?METHODOLOGY\s*$',
+				r'^(I+\.?\s+)?METHOD\s*$',
+				r'^(I+\.?\s+)?EXPERIMENTS?\s*$',
+				r'^(I+\.?\s+)?RESULTS?\s*$',
+				r'^(I+\.?\s+)?DISCUSSION\s*$',
+				r'^(I+\.?\s+)?CONCLUSION\s*$',
+				r'^(I+\.?\s+)?REFERENCES?\s*$',
+			]
+
+			# Split text into lines and find section headers
+			lines = full_text.split('\n')
+			current_section = None
+			section_content = {}
+
+			for line in lines:
+				line_upper = line.strip().upper()
+
+				# Check if line matches any section pattern
+				matched_section = None
+				for pattern in section_patterns:
+					if re.match(pattern, line_upper, re.IGNORECASE):
+						# Extract clean section name
+						if 'INTRODUCTION' in line_upper:
+							matched_section = 'Introduction'
+						elif 'ABSTRACT' in line_upper:
+							matched_section = 'Abstract'
+						elif 'RELATED' in line_upper:
+							matched_section = 'Related Work'
+						elif 'METHOD' in line_upper:
+							matched_section = 'Methodology'
+						elif 'EXPERIMENT' in line_upper:
+							matched_section = 'Experiments'
+						elif 'RESULT' in line_upper:
+							matched_section = 'Results'
+						elif 'DISCUSSION' in line_upper:
+							matched_section = 'Discussion'
+						elif 'CONCLUSION' in line_upper:
+							matched_section = 'Conclusion'
+						elif 'REFERENCE' in line_upper:
+							matched_section = 'References'
+						break
+
+				if matched_section:
+					current_section = matched_section
+					if current_section not in section_content:
+						section_content[current_section] = []
+					logger.info(f'  📌 Found section: {current_section}')
+				elif current_section and line.strip():
+					# Add line to current section
+					section_content[current_section].append(line)
+
+			# Create citations from extracted sections
+			for section_name, content_lines in section_content.items():
+				# Check if this section is requested
+				if sections is None or section_name in sections:
+					section_text = ' '.join(content_lines).strip()
+
+					# Skip if too short or if it's the references section
+					if len(section_text) > 50 and section_name != 'References':
+						citations.append(
+							Citation(
+								text=section_text,
+								paper_title=paper_title,
+								paper_url=paper_url,
+								section=section_name,
+								authors=authors,
+							)
+						)
+
+			logger.info(f'✅ Extracted {len(citations)} sections from PDF')
+			return citations
+
+		except Exception as e:
+			logger.error(f'❌ Failed to parse PDF: {e}', exc_info=True)
+			return []
