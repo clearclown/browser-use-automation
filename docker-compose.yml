@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  ieee-search:
+    build:
+      context: .
+      dockerfile: Containerfile
+    container_name: ieee-paper-search
+    environment:
+      # LLM Provider Selection (claude, openai, deepseek)
+      - LLM_PROVIDER=${LLM_PROVIDER:-claude}
+      # API Keys (set in .env file)
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      # Browser configuration
+      - CHROME_BIN=/usr/bin/chromium
+      - CHROME_PATH=/usr/bin/chromium
+      - DISPLAY=:99
+    volumes:
+      - ./examples:/app/examples
+      - ./papers:/app/papers  # Store downloaded papers and citations
+    working_dir: /app
+    # Keep container running for interactive use
+    stdin_open: true
+    tty: true
+    # Network access for IEEE Xplore
+    network_mode: bridge
