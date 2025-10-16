@@ -1,0 +1,47 @@
+[
+  {
+    "text": "In the reservation-based intersection management system proposed in [1], vehicles can travel across the intersection efficiently and collision-free under a constraint that the vehicles travel at a speed within a predefined speed range. As an extension from that work, we propose a scheme wherein collision can still be avoided among vehicles in the intersection when any of the vehicle fails to follow the speed requirement and travels at a slower speed than the allowed minimum speed in the intersection. As a solution to this problem, all cars in the intersection are instructed to stop and we show how to determine the values of the scheduling input parameters to be used to allow the vehicles to stop safely.",
+    "section": "Abstract",
+    "paper_title": "Reservation-based Autonomous Intersection Management Considering Vehicle Failures in the Intersection",
+    "paper_url": "https://ieeexplore.ieee.org/document/9016469/",
+    "authors": [],
+    "category": "AIM基礎 - FCFSベース予約システム",
+    "priority": "★★★★★"
+  },
+  {
+    "text": "In the rapidly evolving digital landscape, optimizing user engagement on e-commerce platforms is crucial for success. This paper presents a hybrid analytics system integrating real-time and offline analysis to enhance the functionality and user experience of a hypothetical furniture website. Utilizing Apache Kafka for data streaming, Apache Flink for real-time processing, and MongoDB for offline storage, the system analyzes user interactions and preferences. Machine learning models, including Random Forest and XGBoost, are employed for predictive analytics, with differential privacy ensuring data security. The system also incorporates Explainable AI for transparency. Realtime visual analytics via Elasticsearch and Kibana empower stakeholders with actionable insights, fostering strategic decision making and improved customer satisfaction. This work demonstrates the transformative potential of combining real-time data processing with in-depth offline analysis in the e-commerce sector.",
+    "section": "Abstract",
+    "paper_title": "Real-Time and Offline Analytics for E-Commerce: A Hybrid Approach Using Apache Kafka, Apache Flink, and Machine Learning",
+    "paper_url": "https://ieeexplore.ieee.org/document/11134195/",
+    "authors": [],
+    "category": "HTLL - Kafka+Flink統合",
+    "priority": "★★★★★"
+  },
+  {
+    "text": "With the rapid development of the automotive industry and the explosive growth of data, how to efficiently process and analyze automotive-related data to gain insights into automotive product trends has become an important issue. This paper presents an automotive brand analysis system based on feature engineering and the Apache Kafka + Flink stream data processing framework. Firstly, vehicle production and sales data, media data, and vehicle sensor data are collected to form a collection of multi-source heterogeneous data; secondly, through data cleansing, feature extraction, and feature transformation, feature engineering is constructed to create a standard, uniform, and norm-compliant data collection; then, based on the advantages and characteristics of Apache Kafka and Apache Flink, a stream data processing framework of Apache Kafka Flink is constructed, which can collect real-time data and efficiently process and transmit time-series data. Finally, by comparing traditional systems and single system architectures, it is concluded that the comprehensive performance of the system architecture presented in this paper is superior. The research aims to provide an efficient and precise automotive brand analysis solution for automotive enterprises and related research institutions.",
+    "section": "Abstract",
+    "paper_title": "Automobile Brand Analysis System Based on Feature Engineering and Apache Kafka+Flink Stream Data Processing Framework",
+    "paper_url": "https://ieeexplore.ieee.org/document/11138357/",
+    "authors": [],
+    "category": "HTLL - 車両データ処理",
+    "priority": "★★★★★"
+  },
+  {
+    "text": "Real-time data pipeline optimization plays a critical role in the efficiency and reliability of autonomous control systems, particularly in dynamic environments that demand low latency and high throughput. This paper explores the latest advancements in optimizing real-time data pipelines, focusing on the integration of sensor data, computational models, and decision-making algorithms used in autonomous systems. The discussion includes challenges related to data collection, preprocessing, and transmission, as well as techniques for enhancing the scalability, fault tolerance, and real-time capabilities of data pipelines. Furthermore, the paper reviews key optimization strategies, such as stream processing, distributed computing, and edge processing, and assesses their applicability to real-time decision-making in autonomous control systems. By analyzing recent research and practical applications, this paper aims to provide insights into the future development of efficient data pipelines that support the autonomous systems of tomorrow.",
+    "section": "Abstract",
+    "paper_title": "Real-Time Data Pipeline Optimization for Autonomous Control Systems",
+    "paper_url": "https://ieeexplore.ieee.org/document/11077491/",
+    "authors": [],
+    "category": "HTLL - 自律制御パイプライン",
+    "priority": "★★★★★"
+  },
+  {
+    "text": "The relatively high rate of traffic accidents in Iraq shows the necessity of working on the driver's actions monitoring through the use of vehicle flow data to improve the road safety. Based on this situation, many tools and technologies such as sensors, cameras, and data management can be utilized to monitor traffic conditions and provide real-time information to drivers and transportation authorities. The primary challenges are collecting, processing, analyzing, and visualizing the huge volume of data produced by vehicles and devices. To address these challenges, we proposed and implemented a big data framework for monitoring the data flows generated by vehicles in the city environment. Among the various data generated by vehicles, our framework monitors the latitude and longitude values of the global positioning system (GPS) and speed. The framework's architecture is scalable and fault-tolerant which makes it suitable for handling large-scale data flows generated by many connected vehicles. The results show that it allows for increased throughput, high availability, and fault tolerance and provides full-text search. This framework has been implemented using several big data platforms and tools such as Apache Kafka and Elasticsearch. In addition, the framework's services have been packaged in the container-based virtualization environment to support the reusability and portability of the framework.",
+    "section": "Abstract",
+    "paper_title": "Big Data Framework for Monitoring Real-Time Vehicular Traffic Flow",
+    "paper_url": "https://ieeexplore.ieee.org/document/10347303/",
+    "authors": [],
+    "category": "ビッグデータ - 車両交通フロー",
+    "priority": "★★★★★"
+  }
+]
