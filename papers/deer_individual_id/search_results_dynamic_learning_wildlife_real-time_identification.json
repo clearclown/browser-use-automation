@@ -1,0 +1,68 @@
+{
+  "query": "dynamic learning wildlife real-time identification",
+  "results": [
+    {
+      "title": "Proactive Wildlife Monitoring: Leveraging LoRa Technology to Prevent Human-Bear Conflicts in Romania",
+      "authors": [
+        "Cosmin Rus",
+        "Monica Leba"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11022779/"
+    },
+    {
+      "title": "Mobile Menagerie: Evaluating and Implementing CNNs for Real-Time Animal Species Recognition on Smart Devices",
+      "authors": [
+        "Jeevan Um",
+        "Mahesh N D",
+        "R C Ravindranath",
+        "Shridhar B. Devamane",
+        "Lakshmikantha G C",
+        "Subhash Kamble"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10898865/"
+    },
+    {
+      "title": "Emergency Traffic Prioritization System with Priority-based Dynamic Route Optimization and IoT-Enabled Dynamic Signal Control",
+      "authors": [
+        "N Sasikala",
+        "Shreyas Sridhar",
+        "Shreyas H Reddy",
+        "Sanju John",
+        "S Shrinikethan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11166819/"
+    },
+    {
+      "title": "Object Detection using Unmanned Aerial Vehicles: Challenges and Opportunities",
+      "authors": [
+        "P Chandini",
+        "Ramakanth Damodaram",
+        "M Sambasivudu",
+        "Lakshmi B",
+        "Duggirala Syam Kumar",
+        "G Siva Prasad"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10760441/"
+    },
+    {
+      "title": "Developing a Model for Bird Vocalization Recognition and Population Estimation in Forest Ecosystems",
+      "authors": [
+        "Kartik Yadav",
+        "Suyash Dabral",
+        "Satvik Vats",
+        "Vikrant Sharma",
+        "Vinay Kukreja"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10489318/"
+    },
+    {
+      "title": "A Deep Assessment of Thermal Image-Base Object Detection for a Wide Range of Applications",
+      "authors": [
+        "Kamaleswari Pandurangan",
+        "Krishnaraj Nagappan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10531492/"
+    }
+  ],
+  "count": 6
+}

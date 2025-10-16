@@ -1,0 +1,207 @@
+{
+  "query": "adaptive deep learning animal recognition",
+  "results": [
+    {
+      "title": "Composite Deep Learning Model with Augmented Features for Accurate Animal Sound Detection and Classification",
+      "authors": [
+        "Dilip Singh Sisodia",
+        "Mihir Kumar Singh",
+        "Ishaan Singhal"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10708541/"
+    },
+    {
+      "title": "Non-Invasive Muzzle Matching for Cattle Identification Using Deep Learning",
+      "authors": [
+        "Arun Sanjel",
+        "Bikram Khanal",
+        "Pablo Rivas",
+        "Greg Speegle"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10487432/"
+    },
+    {
+      "title": "Classification of Animal Species Using a Deep Neural Network-Based Feature Extraction Method",
+      "authors": [
+        "Mohammed Ibrahim",
+        "Khamis Al-Kubaise",
+        "Ali Alkapti",
+        "Abdullah AlMusa",
+        "Osama Abdelaziz",
+        "Somaya Al-maadeed",
+        "Kishor Kumar Sadasivuni"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10822939/"
+    },
+    {
+      "title": "Wild Animal Recognition using Deep Learning Models",
+      "authors": [
+        "E M Roopa Devi",
+        "V Sedhumadhavan",
+        "V K Sudharsan",
+        "M Rakesh",
+        "D Surendhar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10725145/"
+    },
+    {
+      "title": "Research on Pest Target Detection in Smart Kitchen Based on Deep Learning",
+      "authors": [
+        "Xiaohu Chen",
+        "Kaiyi Gao",
+        "Ziyang Li",
+        "Lu Zhang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10335384/"
+    },
+    {
+      "title": "Advancing Underwater Vision: A Survey of Deep Learning Models for Underwater Object Recognition and Tracking",
+      "authors": [
+        "Mahmoud Elmezain",
+        "Lyes Saad Saoud",
+        "Atif Sultan",
+        "Mohamed Heshmat",
+        "Lakmal Seneviratne",
+        "Irfan Hussain"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10852283/"
+    },
+    {
+      "title": "Enhanced YOLOv5 Model for Real-Time Fish Species Recognition on Jetson Orin Nano",
+      "authors": [
+        "Hsin-Chun Tsai",
+        "Zhi-Wen Jiang",
+        "Jhing-Fa Wang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10936930/"
+    },
+    {
+      "title": "First-Spike-Based Visual Categorization Using Reward-Modulated STDP",
+      "authors": [
+        "Milad Mozafari",
+        "Saeed Reza Kheradpisheh",
+        "Timothée Masquelier",
+        "Abbas Nowzari-Dalini",
+        "Mohammad Ganjtabesh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8356226/"
+    },
+    {
+      "title": "Improving Livestock Monitoring: Multi-Classifier Approach for Cattle Behavior Recognition",
+      "authors": [
+        "Iuliana Marin",
+        "Diana Alexandra Ciungan",
+        "Roxana Elena Vasiliu",
+        "Dănuț-Nicolae Enea"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11193930/"
+    },
+    {
+      "title": "AW-HRNet: A Spatially-Aware and Context-Enhanced Network for Few-Shot Animal Keypoint Detection",
+      "authors": [
+        "Ling Yang",
+        "Yiming Chen",
+        "Shengyu Wen",
+        "Yingli Liu",
+        "Tao Shen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11108430/"
+    },
+    {
+      "title": "Random Interval Attendance Management System (RIAMS): A Novel Multimodal Approach for Post-COVID Virtual Learning",
+      "authors": [
+        "S. M. Anzar",
+        "N. P. Subheesh",
+        "Alavikunhu Panthakkan",
+        "Shanid Malayil",
+        "Hussain Al Ahmad"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9464290/"
+    },
+    {
+      "title": "Adaptive Feature Selection and Image Classification Using Manifold Learning Techniques",
+      "authors": [
+        "Amna Ashraf",
+        "Nazri Mohd Nawi",
+        "Muhammad Aamir"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10272610/"
+    },
+    {
+      "title": "Adaptive SVM+: Learning with Privileged Information for Domain Adaptation",
+      "authors": [
+        "Nikolaos Sarafianos",
+        "Michalis Vrigkas",
+        "Ioannis A. Kakadiaris"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8265521/"
+    },
+    {
+      "title": "High Adversarial Robustness Network: Adaptive Positional Encoding and Parallel Attention for Obstacle Recognition in Autonomous Driving",
+      "authors": [
+        "Ming He",
+        "Yunjie Bai",
+        "Hanqi Liu",
+        "Aimin Yang",
+        "Liya Wang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11200004/"
+    },
+    {
+      "title": "Dual-Stream Interaction Network for Assessing Image Technique and Aesthetic Quality",
+      "authors": [
+        "Tong Wei",
+        "Hangwei Chen",
+        "Qiuping Jiang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10778251/"
+    },
+    {
+      "title": "A Climate Adaptation Device-Free Sensing Approach for Target Recognition in Foliage Environments",
+      "authors": [
+        "Yi Zhong",
+        "Tianqi Bi",
+        "Ju Wang",
+        "Jie Zeng",
+        "Yan Huang",
+        "Ting Jiang",
+        "Siliang Wu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9964372/"
+    },
+    {
+      "title": "Data-Driven Meets Navigation: Concepts, Models, and Experimental Validation",
+      "authors": [
+        "I. Klein"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9926294/"
+    },
+    {
+      "title": "An Automatic Detection and Counting Method for Fish Lateral Line Scales of Underwater Fish Based on Improved YOLOv5",
+      "authors": [
+        "Huihui Yu",
+        "Zimao Wang",
+        "Hanxiang Qin",
+        "Yingyi Chen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10360813/"
+    },
+    {
+      "title": "Cortico-Hippocampal Maps and Navigation Strategies in Robots and Rodents",
+      "authors": [],
+      "url": "https://ieeexplore.ieee.org/document/6278221/"
+    },
+    {
+      "title": "Robust Wildlife Detection Using Objectness-Aware Yolo with Attention and Pose Estimation",
+      "authors": [
+        "Mohammed I. Habelalmateen",
+        "Ramachandra. A C",
+        "Rudresh. A N",
+        "B. Suvarnamukhi",
+        "Rajasubha. J"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11168762/"
+    }
+  ],
+  "count": 20
+}

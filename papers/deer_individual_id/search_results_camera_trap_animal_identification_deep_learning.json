@@ -1,0 +1,209 @@
+{
+  "query": "camera trap animal identification deep learning",
+  "results": [
+    {
+      "title": "Automated Recognition of Wild Animal Species in Camera Trap Images Using Deep Learning Models",
+      "authors": [
+        "Rajasekaran Thangaraj",
+        "Sivaramakrishnan Rajendar",
+        "Sanjith M",
+        "Rithick Saran K",
+        "Sudev Sasikumar",
+        "Chandhru L"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10117922/"
+    },
+    {
+      "title": "A Comparison of Different Learning Algorithms for Wildlife Detection and Classification in Animal Conservation Applications",
+      "authors": [
+        "M. Mangaleswaran",
+        "M. Azhagiri"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10073833/"
+    },
+    {
+      "title": "Animal Species Classification Using Fine-Tuned ResNet152V2: A Deep Learning Approach for Biodiversity Conservation",
+      "authors": [
+        "Vishnu Kant",
+        "Nagendar Yamsani"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11011471/"
+    },
+    {
+      "title": "Improving the Accuracy of Animal Species Classification in Camera Trap Images Using Transfer Learning",
+      "authors": [
+        "Moussa Mahamat Boukar",
+        "Assia Aboubakar Mahamat",
+        "Oumar Hassan Djibrine",
+        "Usman Bello Abubakar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10467777/"
+    },
+    {
+      "title": "Deep Learning Object Detection Methods for Ecological Camera Trap Data",
+      "authors": [
+        "Stefan Schneider",
+        "Graham W. Taylor",
+        "Stefan Kremer"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8575770/"
+    },
+    {
+      "title": "Automated Wildlife Identification Using CNNs and Transfer Learning Techniques",
+      "authors": [
+        "S. Vinita Sushila Devi",
+        "V.J. Sowmya"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11134976/"
+    },
+    {
+      "title": "Recognizing Wild Animals from Camera Trap Images Using Deep Learning",
+      "authors": [
+        "Supreet Parida",
+        "Anjana Mishra",
+        "Bibhu Prasad Sahoo",
+        "Suvam Nayak",
+        "Nilamadhab Mishra",
+        "Bhabani Sankar Panda"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10837421/"
+    },
+    {
+      "title": "Hybrid Deep Learning Framework for Automated Classification of Wildlife Camera Trap Images",
+      "authors": [
+        "P Sudeepa",
+        "P D Seema",
+        "Shubham Kumawat",
+        "Mohan Sah",
+        "Rahul C Choudhary"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10724732/"
+    },
+    {
+      "title": "Animal Images Classification with MobileNetV2",
+      "authors": [
+        "Ahmet Hakan İnce",
+        "Cansu Günhan",
+        "Fatmanur Soydaş"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11101778/"
+    },
+    {
+      "title": "Hybrid ResNet-YOLOv5 Based Deep Learning Framework for Animal Monitoring in Ecosystem",
+      "authors": [
+        "B Srinithi",
+        "K N Pavadharani",
+        "V Sriram",
+        "K Senthilvadivu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11004731/"
+    },
+    {
+      "title": "Deep Learning and Computer Vision Based Warning System for Animal Disruption in Farming Environments",
+      "authors": [
+        "Dhivya Mohanavel",
+        "A Muthu Ishwarya"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10574724/"
+    },
+    {
+      "title": "Identification of Endangered Animal species of Pakistan using Classical and Ensemble Approach",
+      "authors": [
+        "Roshan Kumar",
+        "Sania Bhatti",
+        "Sadaquat Ali Ruk",
+        "Nazia Pathan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9873801/"
+    },
+    {
+      "title": "High-Accuracy Animal Species Classification Using Transfer Learning with ResNet50 on Wildlife Camera Trap Images for Enhanced Conservation Efforts",
+      "authors": [
+        "Divya Nimma",
+        "Varalakshmi Dandu",
+        "Ankur Singh Bisht",
+        "Vuda Sreenivasa Rao",
+        "P. Santosh Kumar",
+        "S Muthuperumal"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10960173/"
+    },
+    {
+      "title": "A Contemporary CNN Implanted Deep Learning Framework for Crop Protection from Animal Intrusion in Farming Environment",
+      "authors": [
+        "A.Rehash Rushmi Pavitra",
+        "K. Panimalar",
+        "D. Rajalakshmi",
+        "A. Chinnasamy"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10533193/"
+    },
+    {
+      "title": "Wild Animal Detection System",
+      "authors": [
+        "Prema Arokia Mary G",
+        "Nithesh P S",
+        "Nanthini V",
+        "Thebiksha G V"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10199701/"
+    },
+    {
+      "title": "Highway Collision Avoidance by Detection of Animal ’s Images",
+      "authors": [
+        "Mahima R",
+        "Meenu M",
+        "Manjari K",
+        "Rovenal S",
+        "Keerthana Sri S",
+        "Sruthi M. P"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10053391/"
+    },
+    {
+      "title": "A Hybrid Approach for Understanding Animal Behavior Using Deep Learning Techniques",
+      "authors": [
+        "Vaishnavi S",
+        "VibhavKrishnan KS",
+        "Manimegalai R",
+        "Shruti CS",
+        "Kavitha M"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10987942/"
+    },
+    {
+      "title": "Early Disease Detection in Wildlife by Analysing Behavior and Weather Conditions Using Image Processing and Deep Learning",
+      "authors": [
+        "Premanand P. Ghadekar",
+        "Yash Pramod Gaikwad",
+        "Ajinkya Ghansham Ghusarkar",
+        "Girish Anil Nikam",
+        "Sourabh Bholanath Shintre",
+        "Atharva Rajesh Thokal"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10497217/"
+    },
+    {
+      "title": "Animal Detection and Classification to Prevent Human- Animal Conflict Using YOLOv8",
+      "authors": [
+        "V. Gomathi",
+        "I. Harini",
+        "S. Badmabharathi",
+        "K. Kaarthiga",
+        "M. Dhanushkumar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10882585/"
+    },
+    {
+      "title": "An IoT based Monitoring System to Detect Animal in the Railway Track using Deep Learning Neural Network",
+      "authors": [
+        "A. Ranjith",
+        "S. P. Vijayaragavan",
+        "Nirmalrani V",
+        "N. Muthukumaran"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9885303/"
+    }
+  ],
+  "count": 20
+}

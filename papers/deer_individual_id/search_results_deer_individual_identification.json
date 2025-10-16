@@ -1,0 +1,35 @@
+{
+  "query": "deer individual identification",
+  "results": [
+    {
+      "title": "Memory Efficient Video Collection and Extraction Technique for Augmented Triplet Network's Dataset",
+      "authors": [
+        "Yojiro Harie",
+        "Sangam Babu Neupane",
+        "Bishnu Prasad Gautam"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9894892/"
+    },
+    {
+      "title": "3D Internet of Things Accurately Localizes RFID Devices Using RSSI for Optimal Routing",
+      "authors": [
+        "Manpreet Singh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10245968/"
+    },
+    {
+      "title": "A Web-enabled Virtual Disassembly Manager (web-VDM) for electronic product/process designers, disassembly line managers and operators, and our UML model and tools",
+      "authors": [
+        "P.G. Ranky",
+        "R.J. Caudill",
+        "K. Limaye",
+        "N. Alli",
+        "S. ChamyVelumani",
+        "A. Bhatia",
+        "M. Lonkar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1003241/"
+    }
+  ],
+  "count": 3
+}

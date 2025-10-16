@@ -1,0 +1,104 @@
+{
+  "query": "gait recognition animal identification",
+  "results": [
+    {
+      "title": "Gait Recognition using Double-Window and CNN Classification on Freestyle Walks",
+      "authors": [
+        "Piya Limcharoen",
+        "Nirattaya Khamsemanan",
+        "Cholwich Nattee"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8716193/"
+    },
+    {
+      "title": "Biometric-Based Security System for Smart Riding Clubs",
+      "authors": [
+        "Islem Jarraya",
+        "Fatma Ben Said",
+        "Tarek M. Hamdani",
+        "Bilel Neji",
+        "Taha Beyrouthy",
+        "Adel M. Alimi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9984158/"
+    },
+    {
+      "title": "Proposed Security System for Cities Based on Animal Recognition Using IOT and Clouds",
+      "authors": [
+        "Eman T. Mahdi",
+        "Waleed K. Awad",
+        "Maha M. Rasheed",
+        "Amal T. Mahdi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10469597/"
+    },
+    {
+      "title": "AnimalFormer: Multimodal Vision Framework for Behavior-based Precision Livestock Farming",
+      "authors": [
+        "Ahmed Qazi",
+        "Taha Razzaq",
+        "Asim Iqbal"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10677926/"
+    },
+    {
+      "title": "BiLSTM-based Individual Cattle Identification for Automated Precision Livestock Farming",
+      "authors": [
+        "Yongliang Qiao",
+        "Daobilige Su",
+        "He Kong",
+        "Salah Sukkarieh",
+        "Sabrina Lomax",
+        "Cameron Clark"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9217026/"
+    },
+    {
+      "title": "An appearance based approach for gait identification using infrared imaging",
+      "authors": [
+        "Akshay Kanwar",
+        "Prashant Upadhyay"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6781369/"
+    },
+    {
+      "title": "A control theoretic method for categorizing visual imagery as human motion behaviors",
+      "authors": [
+        "C.J. Cohen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1612821/"
+    },
+    {
+      "title": "Distinguishing Hearts: How Machine Learning identifies People based on their Heartbeat",
+      "authors": [
+        "Christoph Lipps",
+        "Lea Bergkemper",
+        "Hans Dieter Schotten"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9604855/"
+    },
+    {
+      "title": "Intelligent acoustic and vibration recognition /alert systems for security breaching detection, close proximity danger identification , and perimeter protection",
+      "authors": [
+        "Alireza A Dibazar",
+        "Ali Yousefi",
+        "Hyung O Park",
+        "Bing Lu",
+        "Sageev George",
+        "Theodore W Berger"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/5654931/"
+    },
+    {
+      "title": "Virtual Reality Image Dataset vCAT Helps Research on Semantic Segmentation Algorithms",
+      "authors": [
+        "Wenjie Li",
+        "Wenchuan Jia",
+        "Yunxin Fan",
+        "Shugen Ma"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10002818/"
+    }
+  ],
+  "count": 10
+}

@@ -1,0 +1,212 @@
+{
+  "query": "wildlife individual identification deep learning",
+  "results": [
+    {
+      "title": "Hybrid Deep Learning Framework for Automated Classification of Wildlife Camera Trap Images",
+      "authors": [
+        "P Sudeepa",
+        "P D Seema",
+        "Shubham Kumawat",
+        "Mohan Sah",
+        "Rahul C Choudhary"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10724732/"
+    },
+    {
+      "title": "Automated Bird Detection using using Snapshot Ensemble of Deep Learning Models",
+      "authors": [
+        "Fazeelath Jahan Shaik",
+        "Ganesan V"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10467481/"
+    },
+    {
+      "title": "PawPrint: Whose Footprints are These? Identifying Animal Individuals by their Footprints",
+      "authors": [
+        "Inpyo Song",
+        "Hyemin Hwang",
+        "Jangwon Lee"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11084465/"
+    },
+    {
+      "title": "Automated Identification of Individuals in Wildlife Population Using Siamese Neural Networks",
+      "authors": [
+        "Nkosikhona Dlamini",
+        "Terence L van Zyl"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9311574/"
+    },
+    {
+      "title": "Pigmentation-based Visual Learning for Salvelinus fontinalis Individual Re- identification",
+      "authors": [
+        "Zhongliang Zhou",
+        "Nathaniel P. Hitt",
+        "Benjamin H. Letcher",
+        "Weili Shi",
+        "Sheng Li"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10020966/"
+    },
+    {
+      "title": "Wildlife Classification using Convolutional Neural Networks (CNN)",
+      "authors": [
+        "Vijay Mane",
+        "Pranjali Nikude",
+        "Tejas Patil",
+        "Prashik Tambe"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10544702/"
+    },
+    {
+      "title": "Smart Portable Device for Trekking People in Forest",
+      "authors": [
+        "B. Shyamala Gowri",
+        "B. Rajalakshmi",
+        "R V Rohith",
+        "P Roshan",
+        "V Ram Prasath"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10486588/"
+    },
+    {
+      "title": "Automated Recognition of Wild Animal Species in Camera Trap Images Using Deep Learning Models",
+      "authors": [
+        "Rajasekaran Thangaraj",
+        "Sivaramakrishnan Rajendar",
+        "Sanjith M",
+        "Rithick Saran K",
+        "Sudev Sasikumar",
+        "Chandhru L"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10117922/"
+    },
+    {
+      "title": "Research on Re- Identification of Amur Tigers and Bengal Tigers",
+      "authors": [
+        "Yuanze Xia",
+        "Yanling Hu",
+        "Wenjian Liu",
+        "Tengcheng Que"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10649232/"
+    },
+    {
+      "title": "ReDeformTR: Wildlife Re- Identification Based on Light-Weight Deformable Transformer With Multi-Image Feature Fusion",
+      "authors": [
+        "Zitong Li",
+        "Zhengmao Yan",
+        "Weihong Tian",
+        "Detian Zeng",
+        "Yi Liu",
+        "Weimin Li"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10620204/"
+    },
+    {
+      "title": "Individual Leopard Identification Using Black Spot Patterns",
+      "authors": [
+        "Vishmila Mahaliyanaarachchi",
+        "Amal Randeniya",
+        "Ravindu Dheerarathna",
+        "Deepal Samarakoon"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10499779/"
+    },
+    {
+      "title": "Animal Detection and Classification: a Similarity Measure in Realtime Videos",
+      "authors": [
+        "Sudharshan Duth P",
+        "Tharun H P",
+        "Srikanta Swamy N",
+        "Prajwal Nagaraj Bhat",
+        "Archith Suresh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10730999/"
+    },
+    {
+      "title": "Re- Identification of Individual Kākā: An Explainable DINO-Based Model",
+      "authors": [
+        "Paula Maddigan",
+        "Oskar Ehrhardt",
+        "Andrew Lensen",
+        "Rachael C. Shaw"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10794473/"
+    },
+    {
+      "title": "Transformer-based Models for Enhanced Amur Tiger Re- Identification",
+      "authors": [
+        "Xufeng Bai",
+        "Tasmina Islam",
+        "M A Hannan Bin Azhar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10432893/"
+    },
+    {
+      "title": "LSTM-based Vocalization Analysis for Identification and Classification of Avian Acoustics",
+      "authors": [
+        "Marri Umarani",
+        "Senthilkumar Meyyappan",
+        "G. Vallathan",
+        "G. Karthi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10717534/"
+    },
+    {
+      "title": "ReconGait: Giant Panda Gait Recognition Based on Spatio-Temporal Feature Reconstruction",
+      "authors": [
+        "Peng Min",
+        "Han Su",
+        "Mengnan He",
+        "Rong Hou",
+        "Pinjia Que",
+        "Peng Chen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10649970/"
+    },
+    {
+      "title": "Robust Re- identification of Manta Rays from Natural Markings by Learning Pose Invariant Embeddings",
+      "authors": [
+        "Olga Moskvyak",
+        "Frederic Maire",
+        "Feras Dayoub",
+        "Asia O. Armstrong",
+        "Mahsa Baktashmotlagh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9647359/"
+    },
+    {
+      "title": "Revolutionizing Lion Conservation with EfficientNet B7: Real-Time Detection and Health Classification",
+      "authors": [
+        "Sampath Kumar Koradaa",
+        "Syam Virat Gupta Potnuru",
+        "C. Ashok Kumar",
+        "C. Jothi Kumar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10841647/"
+    },
+    {
+      "title": "WildlifeDatasets: An open-source toolkit for animal re- identification",
+      "authors": [
+        "Vojtěch Čermák",
+        "Lukas Picek",
+        "Lukáš Adam",
+        "Kostas Papafitsoros"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10483925/"
+    },
+    {
+      "title": "TemporalSwin-FPN Net: A Novel Pipeline for Metadata-Driven Sequence Classification in Camera Trap Imagery",
+      "authors": [
+        "Sameeruddin Muhammad",
+        "Wei Xiang",
+        "Scott Mann",
+        "Kang Han",
+        "Supriya Nair"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10869574/"
+    }
+  ],
+  "count": 20
+}

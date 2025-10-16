@@ -1,0 +1,149 @@
+{
+  "query": "metric learning animal identification",
+  "results": [
+    {
+      "title": "Hybrid ResNet-YOLOv5 Based Deep Learning Framework for Animal Monitoring in Ecosystem",
+      "authors": [
+        "B Srinithi",
+        "K N Pavadharani",
+        "V Sriram",
+        "K Senthilvadivu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11004731/"
+    },
+    {
+      "title": "Detecting and Recognizing Marine Animals Using Advanced Deep Learning Models",
+      "authors": [
+        "Ch. Prathima",
+        "C Silpa",
+        "A. Charitha",
+        "G. Harshitha",
+        "C Sai Charan",
+        "G R Sailendra"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10612606/"
+    },
+    {
+      "title": "An Image Oriented AI Methodology to Detect Animal Footprints Based on Enhanced Neural Optimization and Classification Scheme",
+      "authors": [
+        "R. Manasa",
+        "A. Balaji",
+        "Maria Rubiston. M",
+        "S. Kavitha",
+        "V. Lavanya",
+        "Ata. Kishore Kumar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10910668/"
+    },
+    {
+      "title": "Self-Supervised Animal Detection, Tracking & Re- Identification",
+      "authors": [
+        "Muhammad Moosa",
+        "Faouzi Alaya Cheikh",
+        "Azeddine Beghdadi",
+        "Mohib Ullah"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10755717/"
+    },
+    {
+      "title": "Metric learning based automatic segmentation of patterned species",
+      "authors": [
+        "Ankita Shukla",
+        "Saket Anand"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7533107/"
+    },
+    {
+      "title": "Deep Learning -Based Acoustic Classification of Animal Species Using Convolutional Neural Networks",
+      "authors": [
+        "Dhivya P",
+        "Abhishek P",
+        "HariHaran M",
+        "Midhun J"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11004914/"
+    },
+    {
+      "title": "Animal Detection and Classification: a Similarity Measure in Realtime Videos",
+      "authors": [
+        "Sudharshan Duth P",
+        "Tharun H P",
+        "Srikanta Swamy N",
+        "Prajwal Nagaraj Bhat",
+        "Archith Suresh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10730999/"
+    },
+    {
+      "title": "Automated Classification of Animal Vocalization into Estrus and Non-Estrus Condition using AI Techniques",
+      "authors": [
+        "Sugandha Sharma",
+        "Anamika Phoga",
+        "Virender Kadyan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10431114/"
+    },
+    {
+      "title": "A Deep Multi-View Learning Approach for Wildlife Animal Detection and Identification",
+      "authors": [
+        "T Yuvaraju",
+        "H K Ravikiran",
+        "J Jayanth",
+        "R Dileep"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10895501/"
+    },
+    {
+      "title": "PawPrint: Whose Footprints are These? Identifying Animal Individuals by their Footprints",
+      "authors": [
+        "Inpyo Song",
+        "Hyemin Hwang",
+        "Jangwon Lee"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11084465/"
+    },
+    {
+      "title": "A review: Cattle Breed and Skin Disease Identification Using Deep Learning",
+      "authors": [
+        "Krishna Tikarya",
+        "Yash Vilas Jain",
+        "Dhiraj Bhise"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10425776/"
+    },
+    {
+      "title": "Improving Bioimpedance-based Tissue Identification with Frequency Response Similarity Metrics",
+      "authors": [
+        "Jacob Search",
+        "Sabino Zani",
+        "Brian P. Mann"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10782337/"
+    },
+    {
+      "title": "Animal Intrusion Detection System using SIFT Features and Transfer Learning with MobileNetV2",
+      "authors": [
+        "E. Chandralekha",
+        "Muzammil Ali A",
+        "Ritesh V",
+        "Muthu Kumar Srinivasan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10426584/"
+    },
+    {
+      "title": "Zonotic Diseases Detection Using Ensemble Machine Learning Algorithms",
+      "authors": [],
+      "url": "https://ieeexplore.ieee.org/document/10953510/"
+    },
+    {
+      "title": "Identification of injured elements in computational models of spinal cord injury using machine learning *",
+      "authors": [
+        "Cesar Jimenez",
+        "Carolyn J. Sparrey",
+        "Mohammad Narimani"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10340243/"
+    }
+  ],
+  "count": 15
+}

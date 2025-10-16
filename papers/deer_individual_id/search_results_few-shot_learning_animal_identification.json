@@ -1,0 +1,26 @@
+{
+  "query": "few-shot learning animal identification",
+  "results": [
+    {
+      "title": "Prototypical Contrastive Network for One-Shot Animal Individual Identification",
+      "authors": [
+        "Yurong Zhang",
+        "Shuai Ma",
+        "Jinrong He",
+        "Yuhang Li",
+        "Hanchi Liu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11090778/"
+    },
+    {
+      "title": "Unique Animal Identification using Deep Transfer Learning For Data Fusion in Siamese Networks",
+      "authors": [
+        "T. L Van Zyl",
+        "M Woolway",
+        "B Engelbrecht"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9190426/"
+    }
+  ],
+  "count": 2
+}

@@ -1,0 +1,51 @@
+{
+  "query": "transformer animal re-identification",
+  "results": [
+    {
+      "title": "Towards Effective Rotation Generalization in UAV Object Re-Identification",
+      "authors": [
+        "Shuoyi Chen",
+        "Mang Ye",
+        "Yan Huang",
+        "Bo Du"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10896735/"
+    },
+    {
+      "title": "ReDeformTR: Wildlife Re-Identification Based on Light-Weight Deformable Transformer With Multi-Image Feature Fusion",
+      "authors": [
+        "Zitong Li",
+        "Zhengmao Yan",
+        "Weihong Tian",
+        "Detian Zeng",
+        "Yi Liu",
+        "Weimin Li"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10620204/"
+    },
+    {
+      "title": "A Challenging Benchmark of Anime Style Recognition",
+      "authors": [
+        "Haotang Li",
+        "Shengtao Guo",
+        "Kailin Lyu",
+        "Xiao Yang",
+        "Tianchen Chen",
+        "Jianqing Zhu",
+        "Huanqiang Zeng"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9857159/"
+    },
+    {
+      "title": "A Multi-scale Cattle Individual Identification Method Based on CMT Module and Attention Mechanism",
+      "authors": [
+        "Yuan Li",
+        "Xiantai Gou",
+        "Hongyu Zuo",
+        "Mengyin Zhang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10695246/"
+    }
+  ],
+  "count": 4
+}

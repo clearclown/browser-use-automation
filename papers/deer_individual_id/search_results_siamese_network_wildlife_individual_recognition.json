@@ -1,0 +1,21 @@
+{
+  "query": "siamese network wildlife individual recognition",
+  "results": [
+    {
+      "title": "Learning Geometric Equivalence between Patterns Using Embedding Neural Networks",
+      "authors": [
+        "Olga Moskvyak",
+        "Frederic Maire"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8227457/"
+    },
+    {
+      "title": "ViT-CatNet: An End-to-End Vision Transformer Architecture for Instance-Level Feline Identification",
+      "authors": [
+        "Kaikun Hu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11103379/"
+    }
+  ],
+  "count": 2
+}
