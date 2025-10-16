@@ -1,0 +1,114 @@
+{
+  "query": "computer vision wildlife monitoring measurement",
+  "results": [
+    {
+      "title": "Object Detection Powered Wildlife Monitoring System",
+      "authors": [
+        "Anandi Arora",
+        "Jyotirmay Singh Jaswal",
+        "C. Lakshmi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11031814/"
+    },
+    {
+      "title": "Enhanced Smart Crop Health Monitoring Using Visual Sensors and Image Processing",
+      "authors": [
+        "Kyle Boatright",
+        "Luis Trejo",
+        "Emma Louise Smith",
+        "Haitham Abu Ghazaleh",
+        "Sotirios Diamantas",
+        "Hennen Cummings"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10883918/"
+    },
+    {
+      "title": "Leveraging Deep Learning Techniques for Marine and Coastal Wildlife Using Instance Segmentation: A Study on Galápagos Sea Lions",
+      "authors": [
+        "Alisson Constantine-Macías",
+        "Alexander Toala-Paz",
+        "Miguel Realpe",
+        "Jenifer Suárez-Moncada",
+        "Diego Páez-Rosas",
+        "Enrique Peláez Jarrín"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10746054/"
+    },
+    {
+      "title": "Clustering Trajectories For Rats Movements Using Unsupervised Learning",
+      "authors": [
+        "Farouk Ayman",
+        "Ayman Atia"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11166694/"
+    },
+    {
+      "title": "7 ElephantBook: Participatory Human-AI Elephant Population Monitoring",
+      "authors": [],
+      "url": "https://ieeexplore.ieee.org/document/10744834/"
+    },
+    {
+      "title": "Wildlife Species Recognition Using Deep Learning",
+      "authors": [
+        "Sergio Salomón",
+        "Santos Bringas",
+        "Rafael Duque",
+        "José L. Montaña",
+        "Avelino J. González"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10394465/"
+    },
+    {
+      "title": "Wingbeat Over Wind Turbines: Autonomous Drones for Acoustic Bat Detection in Operational Wind Farms",
+      "authors": [
+        "Tessa T. Taefi",
+        "Gerald Peklar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10467290/"
+    },
+    {
+      "title": "Control Strategy Based on Vision for Security in Communication Systems",
+      "authors": [
+        "Sunita Bhati",
+        "Anita Bhati",
+        "Bharti Shah",
+        "Divya Pachauri",
+        "N.Noor Alleema",
+        "Mayank Patel"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10486365/"
+    },
+    {
+      "title": "Monitoring Marine Oil Spills with Smart Technologies",
+      "authors": [
+        "P Vasanthan",
+        "R Sumaiya",
+        "V Gopika",
+        "P Mahalakshmi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10894230/"
+    },
+    {
+      "title": "A Comprehensive Analysis and Detection of Wildfire Impact onVegetation and Wildlife and Biomass Emission",
+      "authors": [
+        "Premanand Ghadekar",
+        "Rishi Jain",
+        "Saee Kadam",
+        "Rugved Junghare",
+        "Ishita Jasuja",
+        "Vinayak Wankhade",
+        "Debabrata Swain"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10932422/"
+    },
+    {
+      "title": "Estimating the Diffuse Downwelling Attenuation Coefficient from in Situ Photographs",
+      "authors": [
+        "Derya Akkaynak",
+        "Liraz Levy"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10682259/"
+    }
+  ],
+  "count": 11
+}

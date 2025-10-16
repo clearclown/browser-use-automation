@@ -1,0 +1,167 @@
+{
+  "query": "camera calibration animal monitoring",
+  "results": [
+    {
+      "title": "PTZ camera tuning for real time monitoring of cows in grazing fields",
+      "authors": [
+        "Carlos Muñoz",
+        "Juan Huircan",
+        "Fernando Huenupan",
+        "Pedro Cachaña"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9068964/"
+    },
+    {
+      "title": "3D Imaging System for Visualizing and Monitoring Patients",
+      "authors": [
+        "M. Naganawa",
+        "S. Sawa",
+        "M. Sakata",
+        "Y. Yasumuro",
+        "M. Imura",
+        "Y. Manabe",
+        "K. Chihara"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1617295/"
+    },
+    {
+      "title": "Augmenting Cattle Tracking Efficiency Through Monocular Depth Estimation",
+      "authors": [
+        "Lewis T. Dickson",
+        "Christopher Davison",
+        "Craig Michie",
+        "Ewan McRobert",
+        "Robert Atkinson",
+        "Ivan Andonovic",
+        "Holly Ferguson",
+        "Richard Dewhurst",
+        "Roger Briddock",
+        "Mark Brooking",
+        "Dejan Pavlovic",
+        "Oskar Marko",
+        "Vladimir Crnojević",
+        "Christos Tachtatzis"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11069339/"
+    },
+    {
+      "title": "An Action- Camera Based Stereo System for MicroROV for Monitoring Coralline Algae in the Mediterranean Sea: Preliminary Assessment",
+      "authors": [
+        "Silvio Del Pizzo",
+        "Erica Nocerino",
+        "Salvatore Gaglione",
+        "Alessio Calantropio",
+        "Fabio Menna",
+        "Salvatore Troisi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10765774/"
+    },
+    {
+      "title": "Development of a stereo camera system for monitoring hydrokinetic turbines",
+      "authors": [
+        "James Joslin",
+        "Brian Polagye",
+        "Sandra Parker-Stetter"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6405043/"
+    },
+    {
+      "title": "The stereo vision system for an underwater vehicle",
+      "authors": [
+        "Shojiro Ishibashi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/5278314/"
+    },
+    {
+      "title": "Performance Analysis of an Optoelectronic Localization System for Monitoring Brain Lesioning with Proton Beams",
+      "authors": [
+        "Fadi Shihadeh",
+        "Reinhard Schulte",
+        "Keith Schubert",
+        "Pani Chakrapani"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/4353387/"
+    },
+    {
+      "title": "Slit-Slat Collimator Equipped Gamma Camera for Whole-Mouse SPECT-CT Imaging",
+      "authors": [
+        "Liji Cao",
+        "Jörg Peter"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6194354/"
+    },
+    {
+      "title": "Slit-slat collimator equipped gamma camera for whole-mouse SPECT-CT imaging",
+      "authors": [
+        "Liji Cao",
+        "Jörg Peter"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6153865/"
+    },
+    {
+      "title": "Development of a stereo deepwater Baited Remote Underwater Video System (DeepBRUVS)",
+      "authors": [
+        "Andreas Marouchos",
+        "Matt Sherlock",
+        "Bruce Barker",
+        "Alan Williams"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6003410/"
+    },
+    {
+      "title": "A Lightweight Multi-View 3D Reconstruction Method for Animal Models Using Specular Reflection with a Single Camera",
+      "authors": [
+        "Zhulong Pan",
+        "Xiaogang Wu",
+        "Yue Wu",
+        "Weiqing Guo"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11088849/"
+    },
+    {
+      "title": "Integration, Calibration , and Experimental Verification of a Speed Sensor for Swimming Animals",
+      "authors": [
+        "Joaquin Gabaldon",
+        "Ellen L. Turner",
+        "Matthew Johnson-Roberson",
+        "Kira Barton",
+        "Mark Johnson",
+        "Erik J. Anderson",
+        "K. Alex Shorter"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8629066/"
+    },
+    {
+      "title": "An FIM-Based Long-Term In-Vial Monitoring System for Drosophila Larvae",
+      "authors": [
+        "Dimitri Berh",
+        "Benjamin Risse",
+        "Tim Michels",
+        "Nils Otto",
+        "Xiaoyi Jiang",
+        "Christian Klämbt"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7742314/"
+    },
+    {
+      "title": "Insertable stereoscopic 3D surgical imaging device with pan and tilt",
+      "authors": [
+        "Tie Hu",
+        "Peter K. Allen",
+        "Tejas Nadkarni",
+        "Nancy J. Hogle",
+        "Dennis L. Fowler"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/4762870/"
+    },
+    {
+      "title": "The Estimation of Demersal Fish Densities in Biological Surveys Using Underwater Television Systems",
+      "authors": [
+        "G. Boland",
+        "G. Lewbel"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1160565/"
+    }
+  ],
+  "count": 15
+}

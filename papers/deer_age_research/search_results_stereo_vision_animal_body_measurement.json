@@ -1,0 +1,33 @@
+{
+  "query": "stereo vision animal body measurement",
+  "results": [
+    {
+      "title": "Precise geopositioning of marine mammals using stereo photogrammetry",
+      "authors": [
+        "Jonathan C. Howland",
+        "Nicholas B. W. Macfarlane",
+        "Peter Tyack"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6404859/"
+    },
+    {
+      "title": "Tracking Live Fish From Low-Contrast and Low-Frame-Rate Stereo Videos",
+      "authors": [
+        "Meng-Che Chuang",
+        "Jenq-Neng Hwang",
+        "Kresimir Williams",
+        "Richard Towler"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6898002/"
+    },
+    {
+      "title": "Hand & eye-vergence dual visual servoing to enhance observability and stability",
+      "authors": [
+        "Wei Song",
+        "Mamoru Minami"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/5152695/"
+    }
+  ],
+  "count": 3
+}

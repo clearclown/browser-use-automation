@@ -1,0 +1,33 @@
+{
+  "query": "animal age estimation deep learning",
+  "results": [
+    {
+      "title": "Count Estimation With a Low-Accuracy Machine Learning Model",
+      "authors": [
+        "Yuichi Sei",
+        "Akihiko Ohsuga"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9261389/"
+    },
+    {
+      "title": "Robot Finger Detection and Joints Angles Estimation using DeepLabCut",
+      "authors": [
+        "Alireza Nazari",
+        "Amirreza Moheb Afzali"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10903566/"
+    },
+    {
+      "title": "Genemate: A Real-Time Animation of a 3D Human Model",
+      "authors": [
+        "K.S. Sunil",
+        "A. Harigovind",
+        "Ancel Jomon",
+        "K. Jyothish",
+        "Mark Choorakat"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11042321/"
+    }
+  ],
+  "count": 3
+}

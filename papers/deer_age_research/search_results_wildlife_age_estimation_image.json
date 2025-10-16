@@ -1,0 +1,27 @@
+{
+  "query": "wildlife age estimation image",
+  "results": [
+    {
+      "title": "Age Estimation of Giant Pandas Based on Narrowed Window Ordered Regression",
+      "authors": [
+        "Zihao Zhang",
+        "Han Su",
+        "Rong Hou",
+        "Pengcheng Wu",
+        "Ping Xu",
+        "Peng Chen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10651378/"
+    },
+    {
+      "title": "Multi-temporal analysis of landsat data to determine forest age classes for the mississippi statewide forest inventory~preliminary results",
+      "authors": [
+        "C.A. Collins",
+        "D.W. Wilkinson",
+        "D.L. Evans"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1469830/"
+    }
+  ],
+  "count": 2
+}
