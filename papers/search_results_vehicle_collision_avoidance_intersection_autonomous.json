@@ -1,0 +1,104 @@
+{
+  "query": "vehicle collision avoidance intersection autonomous",
+  "results": [
+    {
+      "title": "Simulation Research on Safety and Anti- collision Strategy of Typical Intersection Based on Hazard Cognition",
+      "authors": [
+        "Shizheng Jia",
+        "Xin Li",
+        "Ying Lyu",
+        "Bingzhao Gao",
+        "Hong Chen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8996899/"
+    },
+    {
+      "title": "An Autonomous Collision Avoidance Algorithm Based on Perception and Maritime Rules",
+      "authors": [
+        "Yunqian He",
+        "Bo Zhang",
+        "Tao Bao",
+        "Xiaochuan Wang",
+        "Shuai Zhang",
+        "Zhengyi Jiang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11102661/"
+    },
+    {
+      "title": "Research on the Behavior Decision of Connected and Autonomous Vehicle at the Unsignalized Intersection",
+      "authors": [
+        "Xiang Pan",
+        "Xingzhi Lin"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9574485/"
+    },
+    {
+      "title": "Reinforcement-Based Collision Avoidance Strategy for Autonomous Vehicles to Multiple Two-Wheelers at Un-Signalized Obstructed Intersections",
+      "authors": [
+        "Delei Zhang",
+        "Liang Qi",
+        "Wenjing Luan",
+        "Ruiping Yang",
+        "Kun Liu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10831019/"
+    },
+    {
+      "title": "Collision Probability Computation for Road Intersections Based on Vehicle to Infrastructure Communication",
+      "authors": [
+        "Mahmoud Shawki",
+        "M. Saeed Darweesh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9331802/"
+    },
+    {
+      "title": "Vehicle collision avoidance algorithm based on state estimation in the roundabout",
+      "authors": [
+        "Lei Wang",
+        "Wei Huang",
+        "Xiaomei Liu",
+        "Yantao Tian"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6391554/"
+    },
+    {
+      "title": "Navigating Unsignalized Intersections : A Predictive Approach for Safe and Cautious Autonomous Driving",
+      "authors": [
+        "Niusha Pourjafari",
+        "Amir Ghafari",
+        "Ali Ghaffari"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10268602/"
+    },
+    {
+      "title": "Reservation-based Autonomous Intersection Management Considering Vehicle Failures in the Intersection",
+      "authors": [
+        "Myungwhan Choi",
+        "Areeya Rubenecia",
+        "Hyo Hyun Choi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9016469/"
+    },
+    {
+      "title": "Vector Field-Based Guidance Method for Collision Avoidance of Unmanned Surface Vehicles",
+      "authors": [
+        "Qing-Da Chen",
+        "Sheng-Wei Huang",
+        "Ming-Hsin Ho",
+        "Feng-Yeang Chung",
+        "Chun-Han Chu",
+        "Chi-Min Liao",
+        "Jenhwa Guo"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10103386/"
+    },
+    {
+      "title": "Control of autonomous vehicles at an unsignalized intersection",
+      "authors": [
+        "F. Belkhouche"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7963138/"
+    }
+  ],
+  "count": 10
+}

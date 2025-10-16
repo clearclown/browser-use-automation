@@ -1,0 +1,94 @@
+{
+  "query": "real-time big data vehicular traffic",
+  "results": [
+    {
+      "title": "A Dynamic Prediction Model of Real-Time Link Travel Time Based on Traffic Big Data",
+      "authors": [
+        "Zhao-Xia Yang",
+        "Ming-Hua Zhu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8669513/"
+    },
+    {
+      "title": "Big Data Framework for Monitoring Real-Time Vehicular Traffic Flow",
+      "authors": [
+        "Nawar A. Sultan",
+        "Rawaa Putros Qasha"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10347303/"
+    },
+    {
+      "title": "Big Data Analytics for Processing Real-time Unstructured Data from CCTV in Traffic Management",
+      "authors": [
+        "Faqih Hamami",
+        "Iqbal Ahmad Dahlan",
+        "Setya Widyawan Prakosa",
+        "Khamal Fauzan Somantri"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9212858/"
+    },
+    {
+      "title": "Dynamic Traffic Optimization Through Cloud-Enabled Big Data Analytics and Machine Learning for Enhanced Urban Mobility",
+      "authors": [
+        "Ettedi Anvesh",
+        "D. Brindha",
+        "Chamarti Hareesh Kumar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11063940/"
+    },
+    {
+      "title": "Traffic Flow Prediction Method Based on Big Data Mining",
+      "authors": [
+        "Yue Hu",
+        "Xiye Lian"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10210856/"
+    },
+    {
+      "title": "A Preliminary Discussion on the Application of Big Data in Urban Residents Travel Guidance",
+      "authors": [
+        "Mao Chen",
+        "Zhong Xugang",
+        "Wang Guansen",
+        "Ma Jianxiao"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7383964/"
+    },
+    {
+      "title": "Dynamic Traffic Optimization through Cloud-Enabled Big Data Analytics and Machine Learning for Enhanced Urban Mobility",
+      "authors": [
+        "Kolli Vineeth",
+        "Kothoju Naresh",
+        "Gangireddy Gari Prabhash Reddy",
+        "R Naresh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10810771/"
+    },
+    {
+      "title": "Efficient Visualization Framework for Real-Time Monitoring Network Traffic of High-Speed Networks",
+      "authors": [
+        "Aws Naser Jaber Al"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9671915/"
+    },
+    {
+      "title": "Research and Design of Traffic Information Processing Based on Hadoop Big Data Architecture",
+      "authors": [
+        "Ruiyuan Niu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10285238/"
+    },
+    {
+      "title": "Dynamic Traffic Optimization Through Cloud-Enabled Big Data Analytics and Machine Learning for Enhanced Urban Mobility",
+      "authors": [
+        "M. Nithin Kishore",
+        "Aarthi B",
+        "R. Prabavathi",
+        "Rohith S.",
+        "Bhavan Karthick R. P"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11019313/"
+    }
+  ],
+  "count": 10
+}

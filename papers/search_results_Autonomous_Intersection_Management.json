@@ -1,0 +1,106 @@
+{
+  "query": "Autonomous Intersection Management",
+  "results": [
+    {
+      "title": "An Algorithmic Approach to 4-way Autonomous Intersection Management",
+      "authors": [
+        "Niranjan Savanur",
+        "Nithin Chandru",
+        "Asha G R",
+        "Kusum Meda Ravi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10502661/"
+    },
+    {
+      "title": "Consensus coordination in the network of Autonomous Intersection Management",
+      "authors": [
+        "Chairit Wuthishuwong",
+        "Ansgar Traechtler"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7049694/"
+    },
+    {
+      "title": "Autonomous Intersection Management : A Heuristic Approach",
+      "authors": [
+        "Aaditya Prakash Chouhan",
+        "Gourinath Banda"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8472800/"
+    },
+    {
+      "title": "Reservation-based Autonomous Intersection Management Considering Vehicle Failures in the Intersection",
+      "authors": [
+        "Myungwhan Choi",
+        "Areeya Rubenecia",
+        "Hyo Hyun Choi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9016469/"
+    },
+    {
+      "title": "Autonomous Intersection Management : A Short Review",
+      "authors": [
+        "Dino Čakija",
+        "Lucas Assirati",
+        "Edouard Ivanjko",
+        "André Luiz Cunha"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8918864/"
+    },
+    {
+      "title": "Vehicle to infrastructure based safe trajectory planning for Autonomous Intersection Management",
+      "authors": [
+        "Chairit Wuthishuwong",
+        "Ansgar Traechtler"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6685541/"
+    },
+    {
+      "title": "Autonomous Intersection Management using Gated Recurrent Units",
+      "authors": [
+        "Ben Thomas",
+        "Sanjana D V",
+        "Sarangi Muraleedas",
+        "Vysakh Vinod Nair",
+        "Nujoom Sageer Karat",
+        "Anup Aprem"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10677081/"
+    },
+    {
+      "title": "A Secure and Dependable Multi-Agent Autonomous Intersection Management (MA-AIM) System Leveraging Blockchain Facilities",
+      "authors": [
+        "Alina Buzachis",
+        "Antonio Celesti",
+        "Antonino Galletta",
+        "Maria Fazio",
+        "Massimo Villari"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8605784/"
+    },
+    {
+      "title": "Comparative Study on Vehicle Dynamics Behavior Using different Types of Controllers in Intersection Management Systems",
+      "authors": [
+        "Mostafa K. Ghaith",
+        "Mohamed M. Rehaan",
+        "N Shouman",
+        "Y Abdalla",
+        "Omar M. Shehata"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9734079/"
+    },
+    {
+      "title": "A Platform for Evaluating Autonomous Intersection Management Policies",
+      "authors": [
+        "Chien-Liang Fok",
+        "Maykel Hanna",
+        "Seth Gee",
+        "Tsz-Chiu Au",
+        "Peter Stone",
+        "Christine Julien",
+        "Sriram Vishwanath"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6197391/"
+    }
+  ],
+  "count": 10
+}

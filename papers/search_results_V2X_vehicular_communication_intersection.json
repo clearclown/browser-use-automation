@@ -1,0 +1,105 @@
+{
+  "query": "V2X vehicular communication intersection",
+  "results": [
+    {
+      "title": "DSRC and LTE-V communication performance evaluation and improvement based on typical V2X application at intersection",
+      "authors": [
+        "Mengkai Shi",
+        "Chang Lu",
+        "Yi Zhang",
+        "Danya Yao"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8242830/"
+    },
+    {
+      "title": "Performance Evaluation of STAR-RIS-Aided-V2V Visible Light Communications at Road Intersections",
+      "authors": [
+        "Aicha Meghraoui",
+        "Mohamed L Tayebi",
+        "Mokhtar Besseghier",
+        "Hossien B. Eldeeb",
+        "Sami Muhaidat"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10783314/"
+    },
+    {
+      "title": "Effectiveness Analysis of Warning Service using V2X Communication Technology at Intersection",
+      "authors": [
+        "Jeong-Woo Lee",
+        "Shin-Kyung Lee",
+        "Hyun Mi Lee",
+        "Jeong Ah Jang",
+        "Hyun Seo Oh"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8539718/"
+    },
+    {
+      "title": "Visible Light and Reconfigurable Intelligent Surfaces for Beyond 5G V2X Communication Networks at Road Intersections",
+      "authors": [
+        "Gurinder Singh",
+        "Anand Srivastava",
+        "Vivek Ashok Bohara"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9772417/"
+    },
+    {
+      "title": "Traffic delay estimation with V2X communication for an isolated intersection",
+      "authors": [
+        "Muntaser A. Salman",
+        "Suat Ozdemir",
+        "Fatih V. Celebi"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8308174/"
+    },
+    {
+      "title": "Enhancing Intersection Safety through ISAC-Enabled Sidelink Communication in Next Generation Vehicular Networks",
+      "authors": [
+        "Wen-Di Shen",
+        "Yan-Chi Lu",
+        "Hung-Yu Wei",
+        "Haibin Zhang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11151905/"
+    },
+    {
+      "title": "5G V2X communication at millimeter wave: rate maps and use cases",
+      "authors": [
+        "W. Zheng",
+        "A. Ali",
+        "N. González-Prelcic",
+        "R. W. Heath",
+        "A. Klautau",
+        "E. Moradi Pari"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9128612/"
+    },
+    {
+      "title": "A network-level connected autonomous driving evaluation platform implementing C- V2X technology",
+      "authors": [
+        "Siyu Fu",
+        "Wei Zhang",
+        "Zhiyuan Jiang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9459566/"
+    },
+    {
+      "title": "Smart Traffic Intersections : Leveraging ISAC and Millimeter-Wave for Advanced Vehicle Platooning",
+      "authors": [
+        "Mohammed Risal Thadathil",
+        "Nasir Saeed"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10922050/"
+    },
+    {
+      "title": "Co-Existence of ITS-G5 and C- V2X at an Urban Road Intersection",
+      "authors": [
+        "Sandaruwan Jayaweera",
+        "Shashika Manosha",
+        "Nandana Rajatheva",
+        "Matti Latva-aho"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9482416/"
+    }
+  ],
+  "count": 10
+}

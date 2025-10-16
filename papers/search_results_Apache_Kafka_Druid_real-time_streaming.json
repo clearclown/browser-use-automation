@@ -1,0 +1,16 @@
+{
+  "query": "Apache Kafka Druid real-time streaming",
+  "results": [
+    {
+      "title": "Research of Seismic Streaming Storage Based on Druid",
+      "authors": [
+        "Bing Gao",
+        "Jie Chen",
+        "Qijie Zou",
+        "Jing Qin"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9781099/"
+    }
+  ],
+  "count": 1
+}

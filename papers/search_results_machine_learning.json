@@ -1,0 +1,28 @@
+{
+  "query": "machine learning",
+  "results": [
+    {
+      "title": "Machine Learning -Enabled Smart Transit: Real-Time Bus Tracking System for Enhanced Urban Mobility",
+      "authors": [
+        "Nadimpalli Madana Kailash Varma",
+        "Md. Irfan Ahmed",
+        "G. Madhusudhan",
+        "G. Rishab Babu",
+        "T. Shalini",
+        "Fatima Unnisa"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11007439/"
+    },
+    {
+      "title": "IEEE Draft Guide for Architectural Framework and Application of Federated Machine Learning",
+      "authors": [],
+      "url": "https://ieeexplore.ieee.org/document/9134988/"
+    },
+    {
+      "title": "IEEE Approved Draft Guide for Architectural Framework and Application of Federated Machine Learning",
+      "authors": [],
+      "url": "https://ieeexplore.ieee.org/document/9154804/"
+    }
+  ],
+  "count": 3
+}

@@ -1,0 +1,22 @@
+{
+  "query": "neural networks",
+  "results": [
+    {
+      "title": "Neural network servo control of a robot manipulator joint in real-time",
+      "authors": [
+        "D.M. Charney",
+        "G.M. Josin"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/170673/"
+    },
+    {
+      "title": "FEN (fuzzy expert network ) learning architecture; generalization of self adjusting fuzzy modeling on event-driven acyclic neural networks using expert networks backpropagation learning",
+      "authors": [
+        "K. Narita",
+        "R.C. Lacher"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/717027/"
+    }
+  ],
+  "count": 2
+}

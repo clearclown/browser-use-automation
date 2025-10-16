@@ -1,0 +1,104 @@
+{
+  "query": "high throughput low latency data processing",
+  "results": [
+    {
+      "title": "SwiftFrame: Developing Low - latency Near Real-time Response Framework",
+      "authors": [
+        "Swargam Saipranith",
+        "Anand Kumar Singh",
+        "Neha Agrawal",
+        "Sruthi Chilumula"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10725017/"
+    },
+    {
+      "title": "100 Gbps Low - Latency Protocol Processing and FPGA Implementation",
+      "authors": [
+        "Liangwei Lei",
+        "Funan Zhu",
+        "Shaowen Lu",
+        "Yaohui Du",
+        "Jiawei Li",
+        "Xia Hou"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10918990/"
+    },
+    {
+      "title": "High throughput low latency LDPC decoding on GPU for SDR systems",
+      "authors": [
+        "Guohui Wang",
+        "Michael Wu",
+        "Bei Yin",
+        "Joseph R. Cavallaro"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6737137/"
+    },
+    {
+      "title": "Real-Time Data Pipeline Optimization for Autonomous Control Systems",
+      "authors": [
+        "Harish Naidu Gaddam",
+        "Manohar Kommi",
+        "Chandra Vamsi Krishna Alla"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11077491/"
+    },
+    {
+      "title": "FPGA Implementation of High - throughput , Low - latency Complex LMS Algorithm",
+      "authors": [
+        "Yongcai Liu",
+        "Songhu Ge",
+        "Jinling Xing",
+        "Zhongpu Cui",
+        "Jin Meng"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9173466/"
+    },
+    {
+      "title": "Low - Latency High - Throughput Decoder of QC-LDPC Codes by Matrix Splitting",
+      "authors": [
+        "Xinyu Zhong",
+        "Shuaicong Gong",
+        "Ming Jiang",
+        "Chunming Zhao"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10827659/"
+    },
+    {
+      "title": "Modular Design of High - Throughput , Low - Latency Sorting Units",
+      "authors": [
+        "Amin Farmahini-Farahani",
+        "Henry J. Duwe III",
+        "Michael J. Schulte",
+        "Katherine Compton"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6205742/"
+    },
+    {
+      "title": "Apache Kafka for Low Latency AI-Enhanced Data Analytics for Fraud Detection System",
+      "authors": [
+        "Vineeth Gogineni"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11035547/"
+    },
+    {
+      "title": "Real-time, low - latency image processing with high throughput on a multi-core SoC",
+      "authors": [
+        "Barath Ramesh",
+        "Alan D. George",
+        "Herman Lam"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7761645/"
+    },
+    {
+      "title": "An Effective Real-Time Comparative Analysis of Lambda and Kappa Architectures",
+      "authors": [
+        "Maryam Maatallah",
+        "Mourad Fariss",
+        "Hakima Asaidi",
+        "Mohamed Bellouki"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11135352/"
+    }
+  ],
+  "count": 10
+}

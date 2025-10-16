@@ -1,0 +1,103 @@
+{
+  "query": "Apache Flink stream processing real-time",
+  "results": [
+    {
+      "title": "Empowering Stateful Computations in Big Data Stream Processing with Apache Flink",
+      "authors": [
+        "P L Kishan Kumar Reddy",
+        "Gurumoorthi Gurulakshmanan",
+        "E. Sivanantham",
+        "Dillibai. R",
+        "T. R. GaneshBabu",
+        "S. Murugan"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11076428/"
+    },
+    {
+      "title": "Real-Time Data Processing Architectures for IoT Applications: A Comprehensive Review",
+      "authors": [
+        "Siddhi Dingorkar",
+        "Shekhar Kalshetti",
+        "Yukta Shah",
+        "Prashant Lahane"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10742815/"
+    },
+    {
+      "title": "Real-Time and Offline Analytics for E-Commerce: A Hybrid Approach Using Apache Kafka, Apache Flink , and Machine Learning",
+      "authors": [
+        "Ambati Kishore Reddy"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11134195/"
+    },
+    {
+      "title": "Automobile Brand Analysis System Based on Feature Engineering and Apache Kafka+ Flink Stream Data Processing Framework",
+      "authors": [
+        "Xuehong Wang",
+        "Jin Lu",
+        "Fan Zhang",
+        "Jing Yang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11138357/"
+    },
+    {
+      "title": "Using Stream Processing for Real-Time Clock Drift Correction in Distributed Data Processing Systems",
+      "authors": [
+        "Roman Moravskyi",
+        "Yevheniya Levus"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10982576/"
+    },
+    {
+      "title": "Cloud-Based Marketing Analytics Using Apache Flink for Real-Time Data Insights",
+      "authors": [
+        "Sanjeeva Polepaka",
+        "Saloni Bansal",
+        "Ramy Riad Al-Fatlawy",
+        "S. Subburam",
+        "Prince Premjit Lakra",
+        "Saibabu Neyyila"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10923360/"
+    },
+    {
+      "title": "The application of big data real-time stream processing technology in earthquake rapid report",
+      "authors": [
+        "Lijun Dou",
+        "Xinya Wang",
+        "Shaopeng Liu",
+        "Liankui Wu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9656449/"
+    },
+    {
+      "title": "Software systems for processing and analysis of big data and event streams",
+      "authors": [
+        "Aleksandra I. Stojnev",
+        "Dragan H. Stojanović"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8246245/"
+    },
+    {
+      "title": "SwiftFrame: Developing Low-latency Near Real-time Response Framework",
+      "authors": [
+        "Swargam Saipranith",
+        "Anand Kumar Singh",
+        "Neha Agrawal",
+        "Sruthi Chilumula"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10725017/"
+    },
+    {
+      "title": "Directed Acyclic Graph-Based Optimization of Apache Flink to Process Streaming Big Data of Industry 4.0",
+      "authors": [
+        "Milton Samadder",
+        "Anup Kumar Barman",
+        "Shiladitya Munshi",
+        "Utpal Madhu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10919261/"
+    }
+  ],
+  "count": 10
+}
