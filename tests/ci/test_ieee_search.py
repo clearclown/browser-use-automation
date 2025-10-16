@@ -74,9 +74,31 @@ class TestIEEESearchBasicFunctionality:
 		query = 'machine learning'
 
 		# Act
-		results = await service.search(query=query, max_results=10)
+		results = await service.search(query=query, max_results=10, browser_session=browser_session)
 
 		# Assert
 		assert results is not None
 		assert len(results) > 0
 		assert results[0]['title'] is not None
+
+	async def test_extract_multiple_papers_from_html(self, browser_session: BrowserSession, ieee_base_url):
+		"""Test extracting multiple papers with full metadata from HTML (triangulation)."""
+		# Arrange
+		service = IEEESearchService(base_url=ieee_base_url)
+		query = 'deep learning'
+
+		# Act
+		results = await service.search(query=query, max_results=10, browser_session=browser_session)
+
+		# Assert - should extract both papers from mock HTML
+		assert len(results) == 2
+
+		# First paper
+		assert results[0]['title'] == 'Deep Learning for Network Traffic Classification'
+		assert results[0]['authors'] == ['John Smith', 'Jane Doe']
+		assert '/document/12345' in results[0]['url']
+
+		# Second paper
+		assert results[1]['title'] == 'Machine Learning in Cybersecurity'
+		assert results[1]['authors'] == ['Alice Johnson']
+		assert '/document/67890' in results[1]['url']
