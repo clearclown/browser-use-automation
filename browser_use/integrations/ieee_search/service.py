@@ -8,6 +8,8 @@ from typing import Any, TYPE_CHECKING
 
 from bs4 import BeautifulSoup
 
+from browser_use.integrations.ieee_search.views import Citation
+
 if TYPE_CHECKING:
 	from browser_use.browser import BrowserSession
 
@@ -108,3 +110,118 @@ class IEEESearchService:
 
 		logger.info(f'✅ Found {len(results)} papers')
 		return results
+
+	async def extract_citations(
+		self, paper_url: str, sections: list[str] | None = None, browser_session: 'BrowserSession | None' = None
+	) -> list[Citation]:
+		"""
+		Extract citations/excerpts from a paper with source tracking.
+
+		Args:
+			paper_url: URL of the paper to extract from
+			sections: List of section names to extract (e.g., ['Abstract', 'Introduction'])
+			browser_session: Browser session for HTML access
+
+		Returns:
+			List of Citation objects with text, section, and metadata
+		"""
+		if browser_session is None:
+			raise ValueError('browser_session is required for citation extraction')
+
+		logger.info(f'📄 Extracting citations from: {paper_url}')
+
+		# Navigate to paper page
+		from browser_use.browser.events import NavigateToUrlEvent
+
+		nav_event = browser_session.event_bus.dispatch(NavigateToUrlEvent(url=paper_url))
+		await nav_event
+
+		# Get page HTML using CDP
+		cdp_session = await browser_session.get_or_create_cdp_session()
+		doc_result = await cdp_session.cdp_client.send.DOM.getDocument(session_id=cdp_session.session_id)
+		html_result = await cdp_session.cdp_client.send.DOM.getOuterHTML(
+			params={'nodeId': doc_result['root']['nodeId']}, session_id=cdp_session.session_id
+		)
+		html_content = html_result['outerHTML']
+
+		# Parse HTML with BeautifulSoup
+		soup = BeautifulSoup(html_content, 'html.parser')
+		citations = []
+
+		# Extract paper metadata
+		title_elem = soup.find('h1')
+		paper_title = title_elem.get_text(strip=True) if title_elem else 'Unknown'
+
+		authors_elem = soup.find('div', class_='authors')
+		authors = []
+		if authors_elem:
+			author_text = authors_elem.get_text(strip=True)
+			authors = [a.strip() for a in author_text.split(',') if a.strip()]
+
+		# Extract abstract
+		abstract_elem = soup.find('div', class_='abstract-text')
+		if abstract_elem and (sections is None or 'Abstract' in sections):
+			abstract_text = abstract_elem.get_text(strip=True)
+			# Remove "Abstract" header
+			abstract_text = abstract_text.replace('Abstract', '', 1).strip()
+			if abstract_text:
+				citations.append(
+					Citation(
+						text=abstract_text,
+						paper_title=paper_title,
+						paper_url=paper_url,
+						section='Abstract',
+						authors=authors,
+					)
+				)
+
+		# Extract sections from main document
+		main_doc = soup.find('div', class_='document-main')
+		if main_doc:
+			# Find all h2 headings (sections)
+			for heading in main_doc.find_all('h2'):
+				section_title = heading.get_text(strip=True)
+
+				# Check if this section is requested
+				if sections is not None:
+					# Match section names (e.g., "I. Introduction" matches "Introduction")
+					matched = False
+					for requested in sections:
+						if requested.lower() in section_title.lower():
+							matched = True
+							break
+					if not matched:
+						continue
+
+				# Extract section content (paragraphs following the heading)
+				section_text = []
+				for sibling in heading.find_next_siblings():
+					if sibling.name == 'h2':
+						break
+					if sibling.name == 'p':
+						section_text.append(sibling.get_text(strip=True))
+
+				if section_text:
+					# Determine clean section name
+					clean_section = section_title
+					if 'Introduction' in section_title:
+						clean_section = 'Introduction'
+					elif 'Methodology' in section_title or 'Method' in section_title:
+						clean_section = 'Methodology'
+					elif 'Conclusion' in section_title:
+						clean_section = 'Conclusion'
+					elif 'Results' in section_title:
+						clean_section = 'Results'
+
+					citations.append(
+						Citation(
+							text=' '.join(section_text),
+							paper_title=paper_title,
+							paper_url=paper_url,
+							section=clean_section,
+							authors=authors,
+						)
+					)
+
+		logger.info(f'✅ Extracted {len(citations)} citations from {len(sections or [])} sections')
+		return citations
