@@ -17,23 +17,48 @@ def ieee_mock_server():
 	server = HTTPServer()
 	server.start()
 
-	# Mock IEEE Xplore search results page
+	# Mock IEEE Xplore search results page (matching real IEEE structure)
 	search_results_html = """
 	<!DOCTYPE html>
 	<html>
 	<head><title>IEEE Xplore Search Results</title></head>
 	<body>
-		<div class="List-results-items">
-			<div class="result-item">
-				<h2><a href="/document/12345">Deep Learning for Network Traffic Classification</a></h2>
-				<div class="author">John Smith, Jane Doe</div>
-				<div class="description">This paper presents a novel approach...</div>
-			</div>
-			<div class="result-item">
-				<h2><a href="/document/67890">Machine Learning in Cybersecurity</a></h2>
-				<div class="author">Alice Johnson</div>
-				<div class="description">We propose a machine learning framework...</div>
-			</div>
+		<div class="List-results-items" id="12345">
+			<xpl-results-item>
+				<div class="hide-mobile">
+					<div class="d-flex result-item">
+						<div class="col result-item-align px-3">
+							<h3 class="text-md-md-lh">
+								<a href="/document/12345">Deep Learning for Network Traffic Classification</a>
+							</h3>
+							<xpl-authors-name-list>
+								<p class="author text-base-md-lh">
+									<span><a href="/author/123">John Smith</a>;</span>
+									<span><a href="/author/456">Jane Doe</a></span>
+								</p>
+							</xpl-authors-name-list>
+						</div>
+					</div>
+				</div>
+			</xpl-results-item>
+		</div>
+		<div class="List-results-items" id="67890">
+			<xpl-results-item>
+				<div class="hide-mobile">
+					<div class="d-flex result-item">
+						<div class="col result-item-align px-3">
+							<h3 class="text-md-md-lh">
+								<a href="/document/67890">Machine Learning in Cybersecurity</a>
+							</h3>
+							<xpl-authors-name-list>
+								<p class="author text-base-md-lh">
+									<span><a href="/author/789">Alice Johnson</a></span>
+								</p>
+							</xpl-authors-name-list>
+						</div>
+					</div>
+				</div>
+			</xpl-results-item>
 		</div>
 	</body>
 	</html>
@@ -44,29 +69,34 @@ def ieee_mock_server():
 		content_type='text/html',
 	)
 
-	# Mock paper detail page for citation extraction
+	# Mock paper detail page for citation extraction (matching real IEEE structure)
 	paper_detail_html = """
 	<!DOCTYPE html>
 	<html>
 	<head><title>Deep Learning for Network Traffic Classification - IEEE Xplore</title></head>
 	<body>
 		<div class="document">
-			<h1>Deep Learning for Network Traffic Classification</h1>
-			<div class="authors">John Smith, Jane Doe</div>
-			<div class="abstract-text">
-				<h2>Abstract</h2>
-				<p>This paper presents a novel approach to network traffic classification using deep learning.
-				Our method achieves 95% accuracy on benchmark datasets.</p>
+			<h1 class="document-title">Deep Learning for Network Traffic Classification</h1>
+			<xpl-authors-name-list>
+				<p class="author">
+					<span><a href="/author/123">John Smith</a>;</span>
+					<span><a href="/author/456">Jane Doe</a></span>
+				</p>
+			</xpl-authors-name-list>
+			<div class="abstract-text row g-0">
+				<div class="col-12">
+					<div class="u-mb-1">
+						<h2>Abstract:</h2>
+						<div xplmathjax="" xplreadinglenshighlight="">This paper presents a novel approach to network traffic classification using deep learning. Our method achieves 95% accuracy on benchmark datasets.</div>
+					</div>
+				</div>
 			</div>
 			<div class="document-main">
 				<h2>I. Introduction</h2>
-				<p>Network security is a critical concern in modern systems.
-				Machine learning techniques have shown promise in detecting anomalies.</p>
+				<p>Network security is a critical concern in modern systems. Machine learning techniques have shown promise in detecting anomalies.</p>
 
 				<h2>II. Methodology</h2>
-				<p>We propose a convolutional neural network architecture specifically designed
-				for analyzing network traffic patterns. The key innovation is the use of
-				attention mechanisms to focus on critical packet features.</p>
+				<p>We propose a convolutional neural network architecture specifically designed for analyzing network traffic patterns. The key innovation is the use of attention mechanisms to focus on critical packet features.</p>
 			</div>
 		</div>
 	</body>

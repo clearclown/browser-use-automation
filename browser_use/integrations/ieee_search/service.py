@@ -330,63 +330,69 @@ class IEEESearchService:
 			paper_title: Title of the paper
 			authors: List of author names
 			sections: List of section names to extract (e.g., ['Introduction', 'Methodology'])
-			browser_session: Browser session for downloading (to avoid bot detection)
+			browser_session: Browser session for downloading (uses browser cookies for authentication)
 
 		Returns:
 			List of Citation objects with text from PDF
 		"""
+		if not browser_session:
+			logger.warning('⚠️ Browser session required for PDF download')
+			return []
+
 		logger.info(f'📥 Downloading PDF from: {pdf_url}')
 
 		try:
-			if browser_session:
-				# Use browser session to download PDF (avoids bot detection)
-				from browser_use.browser.events import NavigateToUrlEvent
-				import asyncio
+			import asyncio
+			from browser_use.browser.events import NavigateToUrlEvent, FileDownloadedEvent
 
-				# Navigate to PDF URL (this will trigger download)
+			# Create a future to wait for download completion
+			download_future: asyncio.Future[str] = asyncio.Future()
+
+			def download_handler(event: FileDownloadedEvent):
+				"""Handle file download event."""
+				# Check if this is our PDF
+				if event.url == pdf_url or pdf_url in event.url:
+					logger.debug(f'📥 Received download event for: {event.file_name}')
+					if not download_future.done():
+						download_future.set_result(event.path)
+
+			# Subscribe to download events
+			browser_session.event_bus.on(FileDownloadedEvent, download_handler)
+
+			try:
+				# Navigate to PDF URL (this will trigger browser download)
+				logger.debug(f'🌐 Navigating to PDF URL: {pdf_url}')
 				nav_event = browser_session.event_bus.dispatch(NavigateToUrlEvent(url=pdf_url))
 				await nav_event
 
-				# Wait for potential download to start
-				await asyncio.sleep(3)
+				# Wait for download to complete (with timeout)
+				try:
+					pdf_path_str = await asyncio.wait_for(download_future, timeout=30.0)
+					pdf_path = Path(pdf_path_str)
+					logger.info(f'✅ PDF downloaded successfully: {pdf_path.name} ({pdf_path.stat().st_size} bytes)')
+				except asyncio.TimeoutError:
+					logger.warning('⚠️ PDF download timed out after 30 seconds')
+					logger.info('💡 This paper may require IEEE subscription or institutional access')
+					return []
 
-				# Check if download happened
-				# For now, we'll try direct download with proper headers as fallback
-				logger.warning('⚠️ Browser-based PDF download not yet implemented, trying direct download...')
+			finally:
+				# Unsubscribe from download events
+				# Note: bubus does not have unsubscribe - event handlers persist
+				pass
 
-			# Fallback to direct download with proper headers
-			headers = {
-				'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-				'Referer': pdf_url.replace('/stamp/', '/document/'),
-			}
-			response = requests.get(pdf_url, headers=headers, timeout=30)
-			response.raise_for_status()
-
-			# Check if we got a PDF (not HTML error page)
-			content_type = response.headers.get('content-type', '')
-			if 'pdf' not in content_type.lower() and not response.content.startswith(b'%PDF'):
-				logger.warning(f'⚠️ Downloaded content is not PDF (content-type: {content_type})')
-				logger.info('💡 This paper may require IEEE subscription or institutional access')
-				return []
-
-			# Save to temporary file
-			with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
-				tmp_file.write(response.content)
-				pdf_path = Path(tmp_file.name)
-
-			logger.info(f'✅ Downloaded PDF ({len(response.content)} bytes)')
-
-			# Extract text from PDF
+			# Extract text from downloaded PDF
 			citations = self._extract_text_from_pdf(pdf_path, pdf_url, paper_title, authors, sections)
 
-			# Clean up temporary file
-			pdf_path.unlink()
+			# Clean up downloaded file
+			if pdf_path.exists():
+				pdf_path.unlink()
+				logger.debug(f'🗑️ Cleaned up temporary PDF: {pdf_path.name}')
 
 			return citations
 
 		except Exception as e:
 			logger.error(f'❌ Failed to download/parse PDF: {e}')
-			logger.info('💡 Note: Some IEEE papers require subscription or institutional access')
+			logger.info('💡 Note: Some IEEE papers may require subscription or institutional access')
 			return []
 
 	def _extract_text_from_pdf(

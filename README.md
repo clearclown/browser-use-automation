@@ -1,142 +1,300 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./static/browser-use-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="./static/browser-use.png">
-  <img alt="Shows a black Browser Use Logo in light color mode and a white one in dark color mode." src="./static/browser-use.png"  width="full">
-</picture>
+# Browser-Use Automation with IEEE Xplore Integration
 
-<h1 align="center">Enable AI to control your browser</h1>
+Browser-Useライブラリをベースにした、**IEEE Xplore論文自動検索・引用抽出システム**。
 
-[![Docs](https://img.shields.io/badge/Docs-📕-blue?style=for-the-badge)](https://docs.browser-use.com)
-[![Browser-use cloud](https://img.shields.io/badge/Browser_Use_Cloud-☁️-blue?style=for-the-badge&logo=rocket&logoColor=white)](https://cloud.browser-use.com)
+LLM駆動のブラウザ自動化により、学術論文の検索・メタデータ抽出・引用収集を完全自動化します。
 
-[![Discord](https://img.shields.io/discord/1303749220842340412?color=7289DA&label=Discord&logo=discord&logoColor=white)](https://link.browser-use.com/discord)
-[![Twitter Follow](https://img.shields.io/twitter/follow/Gregor?style=social)](https://x.com/intent/user?screen_name=gregpr07)
-[![Twitter Follow](https://img.shields.io/twitter/follow/Magnus?style=social)](https://x.com/intent/user?screen_name=mamagnus00)
-[![Merch store](https://img.shields.io/badge/Merch_store-👕-blue)](https://browsermerch.com)
-[![Weave Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fapp.workweave.ai%2Fapi%2Frepository%2Fbadge%2Forg_T5Pvn3UBswTHIsN1dWS3voPg%2F881458615&labelColor=#EC6341)](https://app.workweave.ai/reports/repository/org_T5Pvn3UBswTHIsN1dWS3voPg/881458615)
+---
 
+## 主な機能
 
+### ✅ IEEE Xplore統合
+- **自動論文検索** - キーワードベースの論文検索
+- **メタデータ抽出** - タイトル、著者、DOI、URLの自動取得
+- **引用・抜粋記録** - 論文からの引用をセクション別に抽出
+- **PDF本文解析** - PDFから各セクション（Abstract, Introduction等）を自動抽出
+- **進捗表示** - リアルタイム検索進捗の可視化
+- **対話的インターフェース** - チャット形式での検索・引用抽出操作
 
+### ✅ マルチLLM対応
+サポートするLLMプロバイダー：
+- **Claude** (Anthropic)
+- **OpenAI** (GPT-4o, GPT-4o-mini)
+- **DeepSeek** (deepseek-chat, deepseek-coder) - OpenAI互換API
+- **Google Gemini**
+- **Groq**
+- **OpenRouter**
 
+### ✅ コンテナ対応
+- **Podman/Docker** フルサポート
+- **ヘッドレス/GUI** 両モード対応
+- **X11転送** によるGUIアプリケーション実行
 
-<!-- Keep these links. Translations will automatically update with the README. -->
-[Deutsch](https://www.readme-i18n.com/browser-use/browser-use?lang=de) |
-[Español](https://www.readme-i18n.com/browser-use/browser-use?lang=es) |
-[français](https://www.readme-i18n.com/browser-use/browser-use?lang=fr) |
-[日本語](https://www.readme-i18n.com/browser-use/browser-use?lang=ja) |
-[한국어](https://www.readme-i18n.com/browser-use/browser-use?lang=ko) |
-[Português](https://www.readme-i18n.com/browser-use/browser-use?lang=pt) |
-[Русский](https://www.readme-i18n.com/browser-use/browser-use?lang=ru) |
-[中文](https://www.readme-i18n.com/browser-use/browser-use?lang=zh)
+---
 
+## クイックスタート
 
-# 🤖 Quickstart
-
-With uv (Python>=3.11):
-
-```bash
-#  We ship every day - use the latest version!
-uv pip install browser-use
-```
-
-Download chromium using playwright's shortcut:
+### 1. セットアップ
 
 ```bash
-uvx playwright install chromium --with-deps --no-shell
+# リポジトリのクローン
+git clone <repository-url>
+cd browser-use-automation
+
+# 依存関係のインストール（uv使用）
+uv sync
+
+# 環境変数の設定
+cp .env.example .env
+# .envファイルにAPI keyを設定
 ```
 
-Get your API key from [Browser Use Cloud](https://cloud.browser-use.com/dashboard/api) and add it to your `.env` file (new signups get $10 free credits via OAuth or $1 via email):
+### 2. 基本的な使用方法
+
+**論文検索（コマンドライン）:**
 
 ```bash
-BROWSER_USE_API_KEY=your-key
+# デフォルト設定で検索
+uv run python examples/ieee_paper_search.py
+
+# カスタムクエリで検索
+uv run python examples/ieee_paper_search.py -q "machine learning" -n 10
+
+# 出力先を指定
+uv run python examples/ieee_paper_search.py -q "deep learning" -o ./my_papers
 ```
 
-Run your first agent:
+**対話的インターフェース（推奨）:**
+
+```bash
+uv run python examples/ieee_chat_interface.py
+```
+
+対話モード内で使用可能なコマンド：
+- `search <query> [max_results]` - 論文検索
+- `extract <paper_number>` - 引用抽出
+- `list` - 検索結果一覧
+- `save [filename]` - JSON保存
+- `quit` - 終了
+
+**Podmanコンテナで実行:**
+
+```bash
+# コンテナビルド
+podman-compose build
+
+# 検索実行
+podman run --rm \
+  --env-file .env \
+  -e LLM_PROVIDER=deepseek \
+  -e HEADLESS=false \
+  -e DISPLAY=:0 \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+  -v ./papers:/app/papers:z \
+  --network host \
+  localhost/browser-use-automation_ieee-search:latest \
+  uv run python examples/ieee_paper_search.py -q "neural networks" -n 5
+```
+
+### 3. Pythonコードでの使用
 
 ```python
-from browser_use import Agent, ChatBrowserUse
+import asyncio
+from browser_use.browser import BrowserSession
+from browser_use.browser.profile import BrowserProfile
+from browser_use.integrations.ieee_search import IEEESearchService
 
-agent = Agent(
-    task="Find the number of stars of the browser-use repo",
-    llm=ChatBrowserUse(),
-)
-agent.run_sync()
+async def search_papers():
+    # ブラウザセッション作成
+    profile = BrowserProfile(headless=False)  # IEEE検索にはheadless=False推奨
+    browser_session = BrowserSession(browser_profile=profile)
+    await browser_session.start()
+
+    # IEEE検索サービス初期化
+    ieee_service = IEEESearchService()
+
+    # 論文検索
+    results = await ieee_service.search(
+        query="machine learning security",
+        max_results=10,
+        browser_session=browser_session
+    )
+
+    # 結果表示
+    for paper in results:
+        print(f"Title: {paper['title']}")
+        print(f"Authors: {', '.join(paper['authors'])}")
+        print(f"URL: {paper['url']}\n")
+
+    await browser_session.kill()
+
+asyncio.run(search_papers())
 ```
 
-Check out the [library docs](https://docs.browser-use.com) and [cloud docs](https://docs.cloud.browser-use.com) for more settings.
+---
 
+## 詳細ドキュメント
 
-## Stealth Browser Infrastructure
+**IEEE検索機能の詳細**: [`IEEE_SEARCH_README.md`](./IEEE_SEARCH_README.md)を参照してください。
 
-Want to bypass Cloudflare, or any other anti-bot protection?
+以下の内容が含まれています：
+- 全コマンドラインオプション
+- 対話的インターフェースの詳細
+- 引用抽出のAPI使用方法
+- トラブルシューティング
+- 技術詳細・アーキテクチャ
 
-Simply go to [Browser Use Cloud](https://docs.cloud.browser-use.com) grab a `BROWSER_USE_API_KEY` and use the `use_cloud` parameter.
+---
 
-```python
-from browser_use import Agent, Browser
-from browser_use import ChatBrowserUse
+## 最近の改善
 
-# Use Browser-Use cloud browser service
-browser = Browser(
-    use_cloud=True,  # Automatically provisions a cloud browser
-)
+### 2025-01-16: EventBus APIバグ修正 & DeepSeekテスト追加
 
-agent = Agent(
-    task="Your task here",
-    llm=ChatBrowserUse(),
-    browser=browser,
-)
+**修正内容:**
+- **EventBus API不一致の修正** (`browser_use/integrations/ieee_search/service.py:360`)
+  - `bubus` library (v1.5.6+) の正しいAPI（`.on()`）に更新
+  - PDF ダウンロード機能が正常動作するように修正
+
+- **DeepSeekテストケース追加** (`browser_use/llm/tests/test_chat_models.py`)
+  - 通常テキスト応答テスト: `test_deepseek_ainvoke_normal()`
+  - 構造化出力テスト: `test_deepseek_ainvoke_structured()`
+
+**検証結果:**
+- IEEE統合テスト: 4/4 passed
+- Podmanコンテナ実行テスト: 成功
+- PDF抽出機能: 正常動作（サブスクリプション論文は予想通りタイムアウト）
+
+**実績:**
+- "associative memory database" 検索: 3件の論文抽出成功
+- "machine learning" 検索: 3件の論文抽出成功
+- 引用抽出: Abstract・Introduction等のセクション抽出成功
+
+---
+
+## 環境変数
+
+`.env`ファイルに以下を設定：
+
+```bash
+# LLMプロバイダー選択（claude, openai, deepseek, google, groq）
+LLM_PROVIDER=deepseek
+
+# API Keys
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+DEEPSEEK_API_KEY=sk-...
+GOOGLE_API_KEY=...
+GROQ_API_KEY=...
+
+# ブラウザ設定
+HEADLESS=false  # IEEE検索にはfalse推奨
 ```
 
+---
 
+## 技術スタック
 
-# Demos
+- **Python 3.11+**
+- **Browser-Use** - LLM駆動ブラウザ自動化ライブラリ
+- **Chromium/Chrome** - CDP (Chrome DevTools Protocol) 経由制御
+- **BeautifulSoup4** - HTML解析
+- **PyPDF2** - PDF本文抽出
+- **Podman/Docker** - コンテナ化実行環境
+- **pytest** - テストフレームワーク
 
-[Task](https://github.com/browser-use/browser-use/blob/main/examples/use-cases/shopping.py): Add grocery items to cart, and checkout.
+---
 
-[![AI Did My Groceries](https://github.com/user-attachments/assets/a0ffd23d-9a11-4368-8893-b092703abc14)](https://www.youtube.com/watch?v=L2Ya9PYNns8)
+## 開発
 
-<br/><br/>
+### テスト実行
 
+```bash
+# CI用テスト実行
+uv run pytest -vxs tests/ci
 
-[Task](https://github.com/browser-use/browser-use/blob/main/examples/use-cases/find_and_apply_to_jobs.py): Read my CV & find ML jobs, save them to a file, and then start applying for them in new tabs, if you need help, ask me.
+# 全テスト実行
+uv run pytest -vxs tests/
 
-![Job Application Demo](https://github.com/user-attachments/assets/57865ee6-6004-49d5-b2c2-6dff39ec2ba9)
-
-<br/><br/>
-
-See [more examples](https://docs.browser-use.com/examples) and give us a star!
-
-
-<br/><br/>
-## MCP Integration
-
-This gives Claude Desktop access to browser automation tools for web scraping, form filling, and more. See the [MCP docs](https://docs.browser-use.com/customize/mcp-server).
-```json
-{
-  "mcpServers": {
-    "browser-use": {
-      "command": "uvx",
-      "args": ["browser-use[cli]", "--mcp"],
-      "env": {
-        "OPENAI_API_KEY": "sk-..."
-      }
-    }
-  }
-}
+# 特定のテスト
+uv run pytest -vxs tests/ci/test_ieee_search.py
 ```
 
-<div align="center">
-  
-**Tell your computer what to do, and it gets it done.**
+### コード品質チェック
 
-<img src="https://github.com/user-attachments/assets/06fa3078-8461-4560-b434-445510c1766f" width="400"/>
+```bash
+# 型チェック
+uv run pyright
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/Magnus?style=social)](https://x.com/intent/user?screen_name=mamagnus00)
-[![Twitter Follow](https://img.shields.io/twitter/follow/Gregor?style=social)](https://x.com/intent/user?screen_name=gregpr07)
+# Linting & フォーマット
+uv run ruff check --fix
+uv run ruff format
 
-</div>
+# Pre-commit hooks
+uv run pre-commit run --all-files
+```
 
-<div align="center">
-Made with ❤️ in Zurich and San Francisco
- </div>
+---
+
+## アーキテクチャ
+
+Browser-Useの**イベント駆動アーキテクチャ**をベースに構築：
+
+- **Agent** (`browser_use/agent/service.py`) - タスク実行オーケストレーター
+- **BrowserSession** (`browser_use/browser/session.py`) - CDP接続・ブラウザライフサイクル管理
+- **IEEESearchService** (`browser_use/integrations/ieee_search/service.py`) - IEEE検索・引用抽出
+- **EventBus** (`bubus`) - 各種Watchdog間の通信（Downloads, Popups, Security, DOM）
+
+---
+
+## トラブルシューティング
+
+### IEEE XploreでBot検出される
+
+**症状**: "Request Rejected" エラー
+
+**解決方法**:
+```bash
+# ヘッドレスモードを無効化
+export HEADLESS=false
+
+# Xサーバーを確認
+echo $DISPLAY  # :0 などが表示されるはず
+```
+
+### PDF抽出がタイムアウトする
+
+**原因**: 論文がIEEE購読または機関アクセス制限付き
+
+**解決方法**:
+1. IEEE会員の場合: ブラウザでログイン後に実行
+2. 機関ネットワーク経由で実行
+3. オープンアクセス論文を検索対象にする
+
+### Chromiumが見つからない
+
+```bash
+# Debian/Ubuntu
+sudo apt install chromium chromium-driver
+
+# Fedora/RHEL
+sudo dnf install chromium
+```
+
+---
+
+## ライセンス
+
+本プロジェクトは [Browser-Use](https://github.com/browser-use/browser-use) をベースに構築されています。
+
+---
+
+## リンク
+
+- **Browser-Use**: https://github.com/browser-use/browser-use
+- **Browser-Use Docs**: https://docs.browser-use.com
+- **DeepSeek API**: https://platform.deepseek.com/api-docs/
+
+---
+
+**開発**: Test-Driven Development (TDD) with Claude Code
+**最終更新**: 2025-01-16
