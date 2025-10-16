@@ -1,0 +1,100 @@
+{
+  "query": "3D reconstruction animal volume weight",
+  "results": [
+    {
+      "title": "DreaMo: Articulated 3D Reconstruction from a Single Casual Video",
+      "authors": [
+        "Tao Tu",
+        "Ming-Feng Li",
+        "Chieh Hubert Lin",
+        "Yen-Chi Cheng",
+        "Min Sun",
+        "Ming-Hsuan Yang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10944035/"
+    },
+    {
+      "title": "Cardiac C-Arm CT: A Unified Framework for Motion Estimation and Dynamic CT",
+      "authors": [
+        "Marcus Prummer",
+        "Joachim Hornegger",
+        "Guenter Lauritsch",
+        "Lars Wigstrom",
+        "Erin Girard-Hughes",
+        "Rebecca Fahrig"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/5299272/"
+    },
+    {
+      "title": "Reconstruction and Visualization of Coordinated 3D Cell Migration Based on Optical Flow",
+      "authors": [
+        "Christopher P. Kappe",
+        "Lucas Schütz",
+        "Stefan Gunther",
+        "Lars Hufnagel",
+        "Steffen Lemke",
+        "Heike Leitte"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7210213/"
+    },
+    {
+      "title": "Animatable Gaussians: Learning Pose-Dependent Gaussian Maps for High-Fidelity Human Avatar Modeling",
+      "authors": [
+        "Zhe Li",
+        "Zerong Zheng",
+        "Lizhen Wang",
+        "Yebin Liu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10658417/"
+    },
+    {
+      "title": "REACTO: Reconstructing Articulated Objects from a Single Video",
+      "authors": [
+        "Chaoyue Song",
+        "Jiacheng Wei",
+        "Chuan Sheng Foo",
+        "Guosheng Lin",
+        "Fayao Liu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10657064/"
+    },
+    {
+      "title": "Diffeomorphic Upsampling of Serially Acquired Sparse 2D Cross-Sections in Cardiac MRI",
+      "authors": [
+        "Brian C. Lee",
+        "Daniel J. Tward",
+        "Jinchi Wei",
+        "Dnyanesh Tipre",
+        "Robert G. Weiss",
+        "Michael I. Miller",
+        "Siamak Ardekani"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8856317/"
+    },
+    {
+      "title": "Knife-edge scanning microscopy for connectomics research",
+      "authors": [
+        "Yoonsuck Choe",
+        "David Mayerich",
+        "Jaerock Kwon",
+        "Daniel E. Miller",
+        "Ji Ryang Chung",
+        "Chul Sung",
+        "John Keyser",
+        "Louise C. Abbott"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6033510/"
+    },
+    {
+      "title": "Crepuscular Rays for Tumor Accessibility Planning",
+      "authors": [
+        "Rostislav Khlebnikov",
+        "Bernhard Kainz",
+        "Judith Muehl",
+        "Dieter Schmalstieg"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6064981/"
+    }
+  ],
+  "count": 8
+}

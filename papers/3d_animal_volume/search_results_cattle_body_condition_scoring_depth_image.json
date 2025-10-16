@@ -1,0 +1,64 @@
+{
+  "query": "cattle body condition scoring depth image",
+  "results": [
+    {
+      "title": "Automatic dairy cow body condition scoring using depth images and 3D surface fitting",
+      "authors": [
+        "Wen-Yong Li",
+        "Yang Shen",
+        "Du-Jin Wang",
+        "Zhan-Kui Yang",
+        "Xin-Ting Yang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9124900/"
+    },
+    {
+      "title": "Automatic Classification of Body Condition Score of Cows: A Systematic Literature Review",
+      "authors": [
+        "Gabriel Viana",
+        "Pedro Araújo",
+        "Guilherme Melquíades",
+        "Kádna Camboim",
+        "Luis Filipe Pereira",
+        "Rodrigo Rocha",
+        "Igor Vanderlei",
+        "Jean Araujo"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10211950/"
+    },
+    {
+      "title": "An Intelligent Edge-IoT Platform With Deep Learning for Body Condition Scoring of Dairy Cow",
+      "authors": [
+        "Junhao Wang",
+        "Baisheng Dai",
+        "Yang Li",
+        "Yongqiang He",
+        "Yukun Sun",
+        "Weizheng Shen"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10413358/"
+    },
+    {
+      "title": "Framework of Cow Calving Monitoring System Using a Single Depth Camera",
+      "authors": [
+        "Kosuke Sumi",
+        "Thi Thi Zin",
+        "Ikuo Kobayashi",
+        "Yoiehiro Horii"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8634738/"
+    },
+    {
+      "title": "Internet of Things (IoT) and Machine Learning (ML) enabled Livestock Monitoring",
+      "authors": [
+        "Abdul Aziz Chaudhry",
+        "Rafia Mumtaz",
+        "Syed Mohammad Hassan Zaidi",
+        "Muhammad Ali Tahir",
+        "Syed Hassan Muzammil School"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9322666/"
+    }
+  ],
+  "count": 5
+}

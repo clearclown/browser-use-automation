@@ -1,0 +1,37 @@
+{
+  "query": "disparity map animal depth estimation",
+  "results": [
+    {
+      "title": "Depth Estimation Based on Pyramid Normalized Cross-Correlation Algorithm for Vergence Control",
+      "authors": [
+        "Abdulla Mohamed",
+        "Phil F. Culverhouse",
+        "Angelo Cangelosi",
+        "Chenguang Yang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8502763/"
+    },
+    {
+      "title": "Vision-Based Proximity Detection in Retinal Surgery",
+      "authors": [
+        "Rogério Richa",
+        "Marcin Balicki",
+        "Raphael Sznitman",
+        "Eric Meisner",
+        "Russell Taylor",
+        "Gregory Hager"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6212340/"
+    },
+    {
+      "title": "Development of 3D endoscope for minimum invasive surgical system",
+      "authors": [
+        "Dhiraj",
+        "Priyanka Soni",
+        "Jagdish Lal Raheja"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6884880/"
+    }
+  ],
+  "count": 3
+}

@@ -1,0 +1,67 @@
+{
+  "query": "livestock weight estimation computer vision",
+  "results": [
+    {
+      "title": "Body Weight Prediction of Goats: A Computer Vision Approach",
+      "authors": [
+        "M Muthulakshmi",
+        "M Akashvarma",
+        "G Yashaswini",
+        "E Keerthana",
+        "S Siddharth",
+        "K Saipooja",
+        "P Selvaraj"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10627671/"
+    },
+    {
+      "title": "Pixel-based Weight Estimation of Vannamei Shrimp Using Digital Image Processing: A Solution for Precise Feeding Management in Aquaculture",
+      "authors": [
+        "Husni Mubarak",
+        "Zahir Zainuddin",
+        "Muhammad Niswar"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10220967/"
+    },
+    {
+      "title": "Automatic Animal Detection from Kinect Sensed Images for Livestock Monitoring and Assessment",
+      "authors": [
+        "Qiming Zhu",
+        "Jinchang Ren",
+        "David Barclay",
+        "Samuel McCormack",
+        "Willie Thomson"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7363216/"
+    },
+    {
+      "title": "Combining Image Analysis and Smart Data Mining for Precision Agriculture in Livestock Farming",
+      "authors": [
+        "He Sun",
+        "Qiming Zhu",
+        "Jinchang Ren",
+        "David Barclay",
+        "Willie Thomson"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8276884/"
+    },
+    {
+      "title": "An Automatic Measurement Method of Animal Body Size Based on Contour Segmentation",
+      "authors": [
+        "Yuqi Mao",
+        "Yue Zhao",
+        "Qian Zhao"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10846699/"
+    },
+    {
+      "title": "Fully Automatic Horizon Estimation for Surveillance Cameras",
+      "authors": [
+        "Vojtech Bartl",
+        "Adam Herout"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8227437/"
+    }
+  ],
+  "count": 6
+}

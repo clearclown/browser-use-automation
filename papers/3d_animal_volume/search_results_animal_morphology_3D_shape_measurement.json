@@ -1,0 +1,91 @@
+{
+  "query": "animal morphology 3D shape measurement",
+  "results": [
+    {
+      "title": "Shape Interpolation with Flattenings",
+      "authors": [
+        "Fernand Meyer"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/5595934/"
+    },
+    {
+      "title": "Optimal Mass Transport for Shape Matching and Comparison",
+      "authors": [
+        "Zhengyu Su",
+        "Yalin Wang",
+        "Rui Shi",
+        "Wei Zeng",
+        "Jian Sun",
+        "Feng Luo",
+        "Xianfeng Gu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7053911/"
+    },
+    {
+      "title": "Determining the branchings of 3D structures from respective 2D projections",
+      "authors": [
+        "Jorge J. G. Leandro",
+        "Roberto M. Jr. Cesar",
+        "Luciano Da Fontoura Costa"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/4027084/"
+    },
+    {
+      "title": "A Novel 3-D Image-Based Morphological Method for Phenotypic Analysis",
+      "authors": [
+        "Erika Kristensen",
+        "Trish E. Parsons",
+        "Benedikt HallgrÍmsson",
+        "Steven K. Boyd*"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/4487053/"
+    },
+    {
+      "title": "A Neuron Membrane Mesh Representation for Visualization of Electrophysiological Simulations",
+      "authors": [
+        "Sebastien Lasserre",
+        "Juan Hernando",
+        "Sean Hill",
+        "Felix Schuermann",
+        "Pedro de Miguel Anasagasti",
+        "Georges Abou Jaoude",
+        "Henry Markram"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/5728807/"
+    },
+    {
+      "title": "Comparison of SMAL and hSMAL Parametric Reconstruction of Horse Based on Point Cloud",
+      "authors": [
+        "Hexiao Lu",
+        "Bingxue Wei",
+        "Hao Guo",
+        "Battsetseg Damjin",
+        "Yannick Le-Cozler",
+        "Alexey Ruchay",
+        "Andrea Pezzuolo"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10948793/"
+    },
+    {
+      "title": "Position, Posture, and Pose Definitions for 3D Body Processing",
+      "authors": [
+        "Carol McDonald",
+        "Bonny Carmicino",
+        "Katy Schildmeyer",
+        "Emma Scott",
+        "Inga Dabolina"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10486845/"
+    },
+    {
+      "title": "RoboScallop: A Bivalve Inspired Swimming Robot",
+      "authors": [
+        "Matthew A. Robertson",
+        "Filip Efremov",
+        "Jamie Paik"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/8633357/"
+    }
+  ],
+  "count": 8
+}

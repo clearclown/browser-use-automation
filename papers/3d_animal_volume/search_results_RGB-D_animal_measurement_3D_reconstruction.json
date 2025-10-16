@@ -1,0 +1,74 @@
+{
+  "query": "RGB-D animal measurement 3D reconstruction",
+  "results": [
+    {
+      "title": "A technology of contactless three-dimensional reconstruction of animal models using depth cameras",
+      "authors": [
+        "Alexey Ruchay",
+        "Konstantin Dorofeev",
+        "Vsevolod Kalschikov",
+        "Vladimir Kolpakov",
+        "Kinispay Dzhulamanov"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9649106/"
+    },
+    {
+      "title": "Comparison of SMAL and hSMAL Parametric Reconstruction of Horse Based on Point Cloud",
+      "authors": [
+        "Hexiao Lu",
+        "Bingxue Wei",
+        "Hao Guo",
+        "Battsetseg Damjin",
+        "Yannick Le-Cozler",
+        "Alexey Ruchay",
+        "Andrea Pezzuolo"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10948793/"
+    },
+    {
+      "title": "Body Condition Scoring of Dairy Cows Based on Feature Point Location",
+      "authors": [
+        "Keqiang Li",
+        "Guifa Teng",
+        "Jiantao Wang",
+        "Yuxin Zhang",
+        "Lei Gao",
+        "Hui Feng"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10379607/"
+    },
+    {
+      "title": "4Deform: Neural Surface Deformation for Robust Shape Interpolation",
+      "authors": [
+        "Lu Sang",
+        "Zehranaz Canfes",
+        "Dongliang Cao",
+        "Riccardo Marin",
+        "Florian Bernard",
+        "Daniel Cremers"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11093870/"
+    },
+    {
+      "title": "A video-based stereoscopic imaging and measurement system (SIMS) for undersea applications",
+      "authors": [
+        "H.T. Liu"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/968739/"
+    },
+    {
+      "title": "Dead-Reckoning Configurations Analysis for Marine Turtle Context in a Controlled Environment",
+      "authors": [
+        "Pierre Gogendeau",
+        "Sylvain Bonhommeau",
+        "Hassen Fourati",
+        "Denis De Oliveira",
+        "Virgil Taillandier",
+        "Andrea Goharzadeh",
+        "Serge Bernard"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9763044/"
+    }
+  ],
+  "count": 6
+}

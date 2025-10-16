@@ -1,0 +1,78 @@
+{
+  "query": "depth camera animal body size measurement",
+  "results": [
+    {
+      "title": "An Automatic Measurement Method of Animal Body Size Based on Contour Segmentation",
+      "authors": [
+        "Yuqi Mao",
+        "Yue Zhao",
+        "Qian Zhao"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10846699/"
+    },
+    {
+      "title": "Yak Body Size Measurement and Weight Estimation Based On 3D Point Cloud",
+      "authors": [
+        "Tian Yao",
+        "Yuan Zhang",
+        "Junyi Liu",
+        "Jian Xiao",
+        "Rende Song",
+        "Zhiyi Jia"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10810164/"
+    },
+    {
+      "title": "Body Condition Scoring of Dairy Cows Based on Feature Point Location",
+      "authors": [
+        "Keqiang Li",
+        "Guifa Teng",
+        "Jiantao Wang",
+        "Yuxin Zhang",
+        "Lei Gao",
+        "Hui Feng"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10379607/"
+    },
+    {
+      "title": "Morphological observation of marine organisms by underwater ultrasonography",
+      "authors": [
+        "K. Iida",
+        "T. Mukai",
+        "D. Kang",
+        "M. Sato"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1402943/"
+    },
+    {
+      "title": "Real-Time Simultaneous Pose and Shape Estimation for Articulated Objects Using a Single Depth Camera",
+      "authors": [
+        "Mao Ye",
+        "Yang Shen",
+        "Chao Du",
+        "Zhigeng Pan",
+        "Ruigang Yang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/7457693/"
+    },
+    {
+      "title": "Fast image processing techniques for the gill position measurement in fish",
+      "authors": [
+        "N. Riahi",
+        "C.W. de Silva"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/149186/"
+    },
+    {
+      "title": "Experimental validation of alternating transillumination for imaging intramural wave propagation",
+      "authors": [
+        "Richard D. Walton",
+        "Christopher D. Lawrence Xavier",
+        "Ilias Tachtsidis",
+        "Olivier Bernus"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/6090482/"
+    }
+  ],
+  "count": 7
+}

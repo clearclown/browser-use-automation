@@ -1,0 +1,60 @@
+{
+  "query": "pig weight prediction image analysis",
+  "results": [
+    {
+      "title": "Precision Pig Farming Image Analysis Using Random Forest and Boruta Predictive Big Data Analysis Using Neural Network and K- Nearest Neighbor",
+      "authors": [
+        "S. A. Shaik Mazhar",
+        "G. Suseendran"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/9445328/"
+    },
+    {
+      "title": "Non-Invasive Pig Weight Prediction using SAM-Enhanced Deep Learning and Depth Imaging",
+      "authors": [
+        "Sanjana Bharadwaj",
+        "Pranjal Ranjan",
+        "Yingqi Pei",
+        "Jay Yim",
+        "Ye Bi",
+        "Dong Ha",
+        "Gota Morota",
+        "Sook Shin"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10971513/"
+    },
+    {
+      "title": "Prediction Demonstration of Elman Neural Network",
+      "authors": [
+        "Shumei Guo",
+        "Jiandong Yang",
+        "Jie Guo",
+        "Ning Zhang"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/10257860/"
+    },
+    {
+      "title": "Support vector analysis of color-Doppler images : a new approach for estimating indices of left ventricular function",
+      "authors": [
+        "J.L. Rojo-Alvarez",
+        "J. Bermejo",
+        "V.M. Juarez-Caballero",
+        "R. Yotti",
+        "C. Cortina",
+        "M.A. Garcia-Fernandez",
+        "J.C. Antoranz"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/1661698/"
+    },
+    {
+      "title": "Puncture Status Perception Method for a Venipuncture Robot Based on Force Prediction",
+      "authors": [
+        "Tianbao He(何天宝)",
+        "Chuangqiang Guo(郭闯强)",
+        "Li Jiang(姜力)"
+      ],
+      "url": "https://ieeexplore.ieee.org/document/11016018/"
+    }
+  ],
+  "count": 5
+}
