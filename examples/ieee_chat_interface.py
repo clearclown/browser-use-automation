@@ -6,8 +6,10 @@ Allows users to search and extract citations interactively.
 import asyncio
 import json
 import logging
+import os
 from pathlib import Path
 
+import click
 from dotenv import load_dotenv
 
 from browser_use.browser import BrowserSession
@@ -109,7 +111,7 @@ class IEEEChatInterface:
 
 	def save_citations(self, filename: str = 'citations.json'):
 		"""Save all collected citations to file."""
-		output_dir = Path('./papers')
+		output_dir = Path(os.getenv('OUTPUT_DIR', './papers'))
 		output_dir.mkdir(exist_ok=True)
 
 		output_file = output_dir / filename
@@ -209,11 +211,50 @@ class IEEEChatInterface:
 			await self.stop_browser()
 
 
-async def main():
-	"""Main entry point."""
+@click.command()
+@click.option(
+	'--headless/--no-headless',
+	default=False,
+	help='Run browser in headless mode (may be blocked by IEEE)',
+	show_default=True,
+)
+@click.option(
+	'--output',
+	'-o',
+	type=click.Path(dir_okay=True, file_okay=False),
+	default='./papers',
+	help='Output directory for saved citations',
+	show_default=True,
+)
+def main(headless: bool, output: str):
+	"""
+	IEEE Paper Search - Interactive Chat Interface
+
+	Interactive command-line interface for searching IEEE Xplore
+	and extracting citations from papers.
+
+	\b
+	Available commands in chat:
+	  search <query> [max_results]  - Search for papers
+	  extract <paper_number> [sections]  - Extract citations
+	  list - Show current search results
+	  citations - Show collected citations
+	  save [filename] - Save citations to JSON
+	  quit / exit - Exit the program
+
+	\b
+	Examples:
+	  python ieee_chat_interface.py
+	  python ieee_chat_interface.py --no-headless
+	  python ieee_chat_interface.py -o ./my_citations
+	"""
+	# Set environment variables
+	os.environ['HEADLESS'] = str(headless).lower()
+	os.environ['OUTPUT_DIR'] = output
+
 	chat = IEEEChatInterface()
-	await chat.run_interactive()
+	asyncio.run(chat.run_interactive())
 
 
 if __name__ == '__main__':
-	asyncio.run(main())
+	main()

@@ -9,6 +9,7 @@ import logging
 import os
 from pathlib import Path
 
+import click
 from dotenv import load_dotenv
 
 from browser_use.browser import BrowserSession
@@ -72,7 +73,7 @@ async def search_ieee_papers(query: str, max_results: int = 5):
 			logger.info('')
 
 		# Save results to JSON file
-		output_dir = Path('./papers')
+		output_dir = Path(os.getenv('OUTPUT_DIR', './papers'))
 		output_dir.mkdir(exist_ok=True)
 
 		output_file = output_dir / f'search_results_{query.replace(" ", "_")}.json'
@@ -90,23 +91,69 @@ async def search_ieee_papers(query: str, max_results: int = 5):
 		logger.info('🔚 Browser session closed')
 
 
-async def main():
-	"""Main entry point for the IEEE paper search tool."""
-	# Example queries
-	queries = [
-		'machine learning cybersecurity',
-		'deep learning network traffic',
-		'neural networks intrusion detection',
-	]
+@click.command()
+@click.option(
+	'--query',
+	'-q',
+	default='machine learning cybersecurity',
+	help='Search query for IEEE Xplore',
+	show_default=True,
+)
+@click.option(
+	'--max-results',
+	'-n',
+	default=5,
+	type=int,
+	help='Maximum number of papers to retrieve',
+	show_default=True,
+)
+@click.option(
+	'--headless/--no-headless',
+	default=False,
+	help='Run browser in headless mode (may be blocked by IEEE)',
+	show_default=True,
+)
+@click.option(
+	'--output',
+	'-o',
+	type=click.Path(dir_okay=True, file_okay=False),
+	default='./papers',
+	help='Output directory for results',
+	show_default=True,
+)
+def main(query: str, max_results: int, headless: bool, output: str):
+	"""
+	IEEE Paper Search Tool
 
-	# You can also specify a single query
-	single_query = os.getenv('SEARCH_QUERY', queries[0])
+	Search IEEE Xplore for academic papers and save results to JSON.
 
+	Examples:
+
+	\b
+	  # Basic search
+	  python ieee_paper_search.py --query "deep learning"
+
+	\b
+	  # Search with custom number of results
+	  python ieee_paper_search.py -q "neural networks" -n 10
+
+	\b
+	  # Specify output directory
+	  python ieee_paper_search.py -q "machine learning" -o ./my_papers
+	"""
 	logger.info('🚀 IEEE Paper Search Tool')
 	logger.info('=' * 80)
 
-	await search_ieee_papers(query=single_query, max_results=5)
+	# Override headless setting if HEADLESS env var is set
+	if os.getenv('HEADLESS'):
+		headless = os.getenv('HEADLESS', 'false').lower() == 'true'
+
+	# Set environment variable for search function
+	os.environ['HEADLESS'] = str(headless).lower()
+	os.environ['OUTPUT_DIR'] = output
+
+	asyncio.run(search_ieee_papers(query=query, max_results=max_results))
 
 
 if __name__ == '__main__':
-	asyncio.run(main())
+	main()

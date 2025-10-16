@@ -6,8 +6,10 @@ Demonstrates all features: search, citation extraction, progress tracking.
 import asyncio
 import json
 import logging
+import os
 from pathlib import Path
 
+import click
 from dotenv import load_dotenv
 
 from browser_use.browser import BrowserSession
@@ -24,7 +26,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-async def comprehensive_demo():
+async def comprehensive_demo(query: str = 'machine learning security', max_results: int = 3, output_dir: str = './papers'):
 	"""Demonstrate all IEEE search features."""
 
 	logger.info('=' * 80)
@@ -63,9 +65,8 @@ async def comprehensive_demo():
 				print(f'  📊 {status}')
 
 		# Search for papers
-		query = 'machine learning security'
 		results = await ieee_service.search(
-			query=query, max_results=3, browser_session=browser_session, progress_callback=progress_callback
+			query=query, max_results=max_results, browser_session=browser_session, progress_callback=progress_callback
 		)
 
 		print(f'\n✅ Found {len(results)} papers:\n')
@@ -101,8 +102,8 @@ async def comprehensive_demo():
 			# ============================================
 			logger.info('\n💾 FEATURE 3: Saving citations with full metadata...\n')
 
-			output_dir = Path('./papers')
-			output_dir.mkdir(exist_ok=True)
+			output_path = Path(output_dir)
+			output_path.mkdir(exist_ok=True)
 
 			# Save citations
 			citations_data = {
@@ -126,7 +127,7 @@ async def comprehensive_demo():
 				],
 			}
 
-			output_file = output_dir / f'comprehensive_demo_{query.replace(" ", "_")}.json'
+			output_file = output_path / f'comprehensive_demo_{query.replace(" ", "_")}.json'
 			with open(output_file, 'w', encoding='utf-8') as f:
 				json.dump(citations_data, f, indent=2, ensure_ascii=False)
 
@@ -158,10 +159,60 @@ async def comprehensive_demo():
 		logger.info('\n🔚 Browser session closed')
 
 
-async def main():
-	"""Main entry point."""
-	await comprehensive_demo()
+@click.command()
+@click.option(
+	'--query',
+	'-q',
+	default='machine learning security',
+	help='Search query for IEEE Xplore',
+	show_default=True,
+)
+@click.option(
+	'--max-results',
+	'-n',
+	default=3,
+	type=int,
+	help='Maximum number of papers to retrieve',
+	show_default=True,
+)
+@click.option(
+	'--headless/--no-headless',
+	default=False,
+	help='Run browser in headless mode (may be blocked by IEEE)',
+	show_default=True,
+)
+@click.option(
+	'--output',
+	'-o',
+	type=click.Path(dir_okay=True, file_okay=False),
+	default='./papers',
+	help='Output directory for results',
+	show_default=True,
+)
+def main(query: str, max_results: int, headless: bool, output: str):
+	"""
+	IEEE Paper Search - Comprehensive Demo
+
+	Demonstrates all features: search, citation extraction, progress tracking.
+
+	\b
+	Features demonstrated:
+	  - IEEE Xplore paper search with real-time progress
+	  - Citation/excerpt extraction from papers
+	  - Full metadata preservation
+	  - JSON export
+
+	\b
+	Examples:
+	  python ieee_comprehensive_example.py
+	  python ieee_comprehensive_example.py -q "deep learning" -n 5
+	  python ieee_comprehensive_example.py -q "neural networks" -o ./results
+	"""
+	# Set environment variables
+	os.environ['HEADLESS'] = str(headless).lower()
+
+	asyncio.run(comprehensive_demo(query=query, max_results=max_results, output_dir=output))
 
 
 if __name__ == '__main__':
-	asyncio.run(main())
+	main()
