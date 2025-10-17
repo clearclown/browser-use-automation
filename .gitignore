@@ -30,6 +30,10 @@ dist/
 *.log
 *.bak
 
+# But allow papers directory (theme-based search results)
+!papers/
+!papers/**/*.json
+
 # Secrets and sensitive files
 secrets.env
 .env
