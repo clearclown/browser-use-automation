@@ -48,6 +48,13 @@ async def run_research(
 ):
 	"""研究調査を実行"""
 	try:
+		# ブラウザタイムアウトを延長（環境変数で設定 - 最初に実行）
+		import os
+
+		os.environ['TIMEOUT_NavigateToUrlEvent'] = '60'  # 60秒
+		os.environ['TIMEOUT_BrowserStateRequestEvent'] = '120'  # 120秒
+		os.environ['TIMEOUT_ClickElementEvent'] = '30'  # 30秒
+
 		add_log(f'🚀 研究調査を開始: {research_topic}')
 		add_log(f'📊 LLMプロバイダー: {provider}')
 
