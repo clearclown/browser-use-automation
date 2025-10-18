@@ -91,12 +91,14 @@ if [ "${USE_DEMO:-false}" = "true" ]; then
 	echo ""
 
 	podman run --rm -it \
+		--userns=keep-id \
 		--env-file .env \
 		-e LLM_PROVIDER="$PROVIDER" \
 		-v ./automated_research/data:/app/automated_research/data:z \
 		-v ./automated_research/reports:/app/automated_research/reports:z \
 		-v ./automated_research/logs:/app/automated_research/logs:z \
 		-v ./papers:/app/papers:z \
+		--entrypoint="" \
 		"$IMAGE_NAME:$IMAGE_TAG" \
 		python demo_llm_research.py
 else
