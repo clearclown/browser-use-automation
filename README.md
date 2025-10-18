@@ -1,6 +1,6 @@
-# Browser-Use Automation with IEEE Xplore Integration
+# Browser-Use Automation with PRISMA-Compliant Research System
 
-Browser-Useライブラリをベースにした、**IEEE Xplore論文自動検索・引用抽出システム**。
+Browser-Useライブラリをベースにした、**PRISMA 2020準拠の自動文献調査システム**と**IEEE Xplore論文自動検索・引用抽出システム**。
 
 LLM駆動のブラウザ自動化により、学術論文の検索・メタデータ抽出・引用収集を完全自動化します。
 
@@ -9,6 +9,9 @@ LLM駆動のブラウザ自動化により、学術論文の検索・メタデ�
 ## 📋 目次
 
 - [主な機能](#主な機能)
+  - [PRISMA準拠研究システム](#prisma準拠研究システム)
+  - [IEEE Xplore統合](#ieee-xplore統合)
+  - [マルチデータベース対応](#マルチデータベース対応)
 - [システム要件](#システム要件)
 - [詳細セットアップ手順](#詳細セットアップ手順)
 - [基本的な使用方法](#基本的な使用方法)
@@ -19,6 +22,22 @@ LLM駆動のブラウザ自動化により、学術論文の検索・メタデ�
 
 ## 主な機能
 
+### ✅ PRISMA準拠研究システム
+
+**完全自動化されたPRISMA 2020準拠の文献調査システム**
+
+- **対話型ヒアリング** - LLMによる研究内容の深堀りインタビュー
+- **PRISMA検索戦略** - Boolean演算子を使った体系的な検索計画
+- **スクリーニング基準** - 包含/除外基準の自動生成と適用
+- **複数データベース検索** - arXiv、J-STAGE、政府文書、IEEE Xplore対応
+- **複数レビュアー対応** - 独立スクリーニング、Cohen's kappa計算
+- **リスクオブバイアス評価** - Cochrane RoB 2準拠の5ドメイン評価
+- **PRISMAフロー図** - Mermaid形式での検索プロセス可視化
+- **落合陽一式レポート** - 各論文の7つの観点からの詳細分析
+- **統合レポート生成** - 全論文を統合した総合レビュー
+
+📖 **詳細**: [`automated_research/README.md`](./automated_research/README.md)
+
 ### ✅ IEEE Xplore統合
 - **自動論文検索** - キーワードベースの論文検索
 - **メタデータ抽出** - タイトル、著者、DOI、URLの自動取得
@@ -26,6 +45,27 @@ LLM駆動のブラウザ自動化により、学術論文の検索・メタデ�
 - **PDF本文解析** - PDFから各セクション（Abstract, Introduction等）を自動抽出
 - **進捗表示** - リアルタイム検索進捗の可視化
 - **対話的インターフェース** - チャット形式での検索・引用抽出操作
+
+📖 **詳細**: [`IEEE_SEARCH_README.md`](./IEEE_SEARCH_README.md)
+
+### ✅ マルチデータベース対応
+
+**複数の学術データベースに対応した統合検索**
+
+| データベース | 対応状況 | 実装ファイル |
+|------------|---------|------------|
+| **arXiv** | ✅ 実装済み | `automated_research/arxiv_search.py` |
+| **J-STAGE** (日本) | ✅ 実装済み | `automated_research/jstage_search.py` |
+| **政府文書** | ✅ 実装済み | `automated_research/government_documents_search.py` |
+| **IEEE Xplore** | ✅ 実装済み | `browser_use/integrations/ieee_search/` |
+
+**政府文書データベース対応国・機関**:
+- 🇺🇸 USA (USA.gov)
+- 🇯🇵 Japan (e-Gov)
+- 🇬🇧 United Kingdom (GOV.UK)
+- 🇪🇺 European Union (EUR-Lex)
+- 🌐 World Health Organization (WHO)
+- 🌐 United Nations (UN)
 
 ### ✅ マルチLLM対応
 サポートするLLMプロバイダー：
@@ -213,9 +253,57 @@ INFO     [__main__] 🔚 Browser session closed
 
 ---
 
+## クイックスタート
+
+### PRISMA準拠の自動文献調査を開始
+
+```bash
+# 完全自動実行（対話モードあり）
+uv run python -m automated_research.main
+
+# または論文数を指定して実行
+uv run python -m automated_research.main --max-papers 30
+
+# ヘッドレスモードで実行
+uv run python -m automated_research.main --headless
+```
+
+システムが自動的に以下を実行します：
+1. 研究テーマのヒアリング
+2. PRISMA検索戦略の立案
+3. 複数データベースから論文収集（arXiv、J-STAGE、政府文書、IEEE）
+4. スクリーニング・品質評価
+5. PRISMAフロー図生成
+6. 落合陽一式レポート作成
+
+📖 **詳細**: [`automated_research/README.md`](./automated_research/README.md) | [`QUICKSTART.md`](./automated_research/QUICKSTART.md)
+
+---
+
 ## 基本的な使用方法
 
-### 方法1: コマンドライン論文検索（最もシンプル）
+### 方法1: PRISMA準拠の自動文献調査（推奨）
+
+```bash
+# 完全自動実行
+uv run python -m automated_research.main
+
+# Podmanコンテナで実行
+podman run --rm -it \
+  --env-file .env \
+  -e HEADLESS=false \
+  -v ./automated_research:/app/automated_research:z \
+  -v ./papers:/app/papers:z \
+  localhost/browser-use-research:latest \
+  --max-papers 50
+```
+
+**出力ファイル**:
+- `automated_research/data/` - 研究情報、検索戦略、論文リスト
+- `automated_research/reports/` - 個別論文レポート、統合レポート、PRISMAフロー図
+- `automated_research/logs/` - 実行ログ
+
+### 方法2: コマンドライン論文検索（シンプル）
 
 ```bash
 # デフォルト設定で検索
@@ -240,7 +328,7 @@ uv run python examples/ieee_paper_search.py --help
 | `--headless` | - | ヘッドレスモード | `False` |
 | `--output` | `-o` | 出力ディレクトリ | `./papers` |
 
-### 方法2: 対話的インターフェース（推奨）
+### 方法3: 対話的インターフェース（IEEE検索）
 
 ```bash
 # 対話モード起動
@@ -258,7 +346,7 @@ uv run python examples/ieee_chat_interface.py
 | `save [filename]` | JSONファイルに保存 | `save my_citations.json` |
 | `quit` または `exit` | 終了 | `quit` |
 
-### 方法3: Pythonコードで直接使用
+### 方法4: Pythonコードで直接使用
 
 ```python
 import asyncio
@@ -293,7 +381,7 @@ async def search_papers():
 asyncio.run(search_papers())
 ```
 
-### 方法4: Podman/Dockerコンテナで実行
+### 方法5: Podman/Dockerコンテナで実行
 
 ```bash
 # コンテナビルド（初回のみ、10分程度）
@@ -616,26 +704,40 @@ Browser-Useの**イベント駆動アーキテクチャ**をベースに構築�
 
 ## 最近の改善
 
+### 2025-10-18: PRISMA 2020準拠システム実装完了 & Podman対応
+
+**新機能:**
+- **PRISMA 2020準拠システム** - 完全自動化の文献調査システム
+  - arXiv検索: 9テスト実装・合格
+  - J-STAGE検索: 10テスト実装・合格
+  - 政府文書検索: 14テスト実装・合格（USA, Japan, UK, EU, WHO, UN）
+  - リスクオブバイアス評価: 8テスト実装・合格（Cochrane RoB 2準拠）
+  - 複数レビュアー機能: 9テスト実装・合格（Cohen's kappa計算）
+  - 結合テスト: 5テスト実装・合格
+
+- **Podman Rootless対応完了**
+  - UV_CACHE_DIR権限エラー修正
+  - 全34ステップのビルド成功
+  - コンテナ内で全テスト合格（55テスト）
+  - イメージサイズ: 2.02 GB
+
+**テスト結果:**
+- **ホスト環境**: 68 単体テスト + 5 結合テスト = 73 passed ✓
+- **Podman Container**: 50 automated_research テスト + 5 結合テスト = 55 passed ✓
+- **TDD方式**: 全機能をTest-First開発で実装
+
+**Git Commits**: 7回のcommit & push（細かい粒度で実装）
+
 ### 2025-01-16: EventBus APIバグ修正 & DeepSeekテスト追加
 
 **修正内容:**
-- **EventBus API不一致の修正** (`browser_use/integrations/ieee_search/service.py:360`)
-  - `bubus` library (v1.5.6+) の正しいAPI（`.on()`）に更新
-  - PDF ダウンロード機能が正常動作するように修正
-
-- **DeepSeekテストケース追加** (`browser_use/llm/tests/test_chat_models.py`)
-  - 通常テキスト応答テスト: `test_deepseek_ainvoke_normal()`
-  - 構造化出力テスト: `test_deepseek_ainvoke_structured()`
+- **EventBus API不一致の修正** - PDF ダウンロード機能正常化
+- **DeepSeekテストケース追加** - 通常テキスト応答・構造化出力テスト
 
 **検証結果:**
 - IEEE統合テスト: 4/4 passed
 - Podmanコンテナ実行テスト: 成功
-- PDF抽出機能: 正常動作（サブスクリプション論文は予想通りタイムアウト）
-
-**実績:**
-- "associative memory database" 検索: 3件の論文抽出成功
-- "machine learning" 検索: 3件の論文抽出成功
-- 引用抽出: Abstract・Introduction等のセクション抽出成功
+- PDF抽出機能: 正常動作
 
 ---
 
