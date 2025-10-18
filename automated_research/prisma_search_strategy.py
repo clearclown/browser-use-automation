@@ -12,7 +12,7 @@ from typing import Any
 from dotenv import load_dotenv
 
 from automated_research.prompts.system_prompts import PRISMA_SEARCH_STRATEGY_PROMPT
-from browser_use.llm.messages import UserMessage
+from langchain_core.messages import HumanMessage
 from automated_research.llm_provider import get_llm
 
 load_dotenv()
@@ -46,11 +46,11 @@ class PRISMASearchStrategyGenerator:
 		# プロンプトを作成
 		prompt = PRISMA_SEARCH_STRATEGY_PROMPT.format(research_context=research_context)
 
-		messages = [UserMessage(content=prompt)]
+		messages = [HumanMessage(content=prompt)]
 
 		try:
 			# LLMに検索戦略を生成させる
-			response = await self.llm.get_response(messages)
+			response = await self.llm.ainvoke(messages)
 			response_text = response.content
 
 			# JSONを抽出

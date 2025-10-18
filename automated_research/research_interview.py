@@ -85,12 +85,12 @@ JSON形式で以下の構造で出力してください：
 """
 
 		# LLMを使って分析
-		from browser_use.llm.messages import UserMessage
+		from langchain_core.messages import HumanMessage
 
-		messages = [UserMessage(content=analysis_prompt)]
+		messages = [HumanMessage(content=analysis_prompt)]
 
 		try:
-			response = await self.llm.get_response(messages)
+			response = await self.llm.ainvoke(messages)
 			response_text = response.content
 
 			# JSONを抽出（マークダウンコードブロックを除去）

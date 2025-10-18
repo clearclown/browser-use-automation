@@ -45,7 +45,9 @@ logger = logging.getLogger(__name__)
 class AutomatedResearchAssistant:
 	"""完全自動化研究支援システム"""
 
-	def __init__(self, llm: Any | None = None, headless: bool = False, max_papers: int = 20):
+	def __init__(
+		self, llm: Any | None = None, headless: bool = False, max_papers: int = 20, non_interactive: bool = False, research_topic: str | None = None
+	):
 		"""
 		Initialize the automated research assistant
 
@@ -53,10 +55,14 @@ class AutomatedResearchAssistant:
 			llm: Language model instance (if None, will use get_llm() to auto-select from env)
 			headless: Run browser in headless mode
 			max_papers: Maximum number of papers to collect
+			non_interactive: Skip interactive interview and use predefined research info
+			research_topic: Research topic for non-interactive mode
 		"""
 		self.llm = llm or get_llm(temperature=0.4)
 		self.headless = headless
 		self.max_papers = max_papers
+		self.non_interactive = non_interactive
+		self.research_topic = research_topic
 
 		# データ保存ディレクトリ
 		self.base_dir = Path('automated_research')
@@ -121,12 +127,46 @@ class AutomatedResearchAssistant:
 		print('ステップ 1/5: 研究内容のヒアリング')
 		print('🎯 ' * 30 + '\n')
 
-		interviewer = ResearchInterviewer(llm=self.llm)
-		research_info = await interviewer.conduct_interview()
+		if self.non_interactive:
+			# 非対話型モード：事前定義された研究情報を使用
+			print('📝 非対話型モード：事前定義された研究情報を使用\n')
+
+			topic = self.research_topic or 'Large Language Models (LLM) の最新研究動向'
+			research_info = {
+				'research_topic': topic,
+				'research_question': f'{topic}における最新技術と応用分野は何か？',
+				'keywords': [
+					'large language model',
+					'LLM',
+					'transformer',
+					'neural network',
+					'deep learning',
+					'natural language processing',
+				],
+				'specific_interests': [
+					'最新のアーキテクチャ改善',
+					'効率化手法',
+					'応用分野',
+					'性能向上技術',
+				],
+				'research_background': f'{topic}の研究動向を体系的に調査する。',
+				'year_range': {'start': 2022, 'end': 2025},
+				'databases': ['ieee'],
+			}
+
+			print(f'✅ 研究トピック: {research_info["research_topic"]}')
+			print(f'✅ 研究期間: {research_info["year_range"]["start"]}-{research_info["year_range"]["end"]}\n')
+		else:
+			# 対話型モード
+			interviewer = ResearchInterviewer(llm=self.llm)
+			research_info = await interviewer.conduct_interview()
 
 		# 保存
 		output_path = self.data_dir / f'research_info_{self.session_id}.json'
-		interviewer.save_research_info(research_info, output_path)
+		with open(output_path, 'w', encoding='utf-8') as f:
+			json.dump(research_info, f, indent=2, ensure_ascii=False)
+
+		print(f'💾 研究情報を保存: {output_path}\n')
 
 		return research_info
 
@@ -342,6 +382,8 @@ async def main():
 		'--provider', type=str, default=None, help='LLMプロバイダー（openai, claude, deepseek, google, groq）'
 	)
 	parser.add_argument('--model', type=str, default=None, help='使用するLLMモデル（プロバイダーのデフォルトを使用する場合は省略可）')
+	parser.add_argument('--non-interactive', action='store_true', help='非対話型モード（デモ用の事前定義された研究情報を使用）')
+	parser.add_argument('--research-topic', type=str, default=None, help='研究トピック（--non-interactiveと併用）')
 
 	args = parser.parse_args()
 
@@ -352,7 +394,9 @@ async def main():
 	llm = get_llm(provider=args.provider, model=args.model, temperature=0.4)
 
 	# システム初期化
-	assistant = AutomatedResearchAssistant(llm=llm, headless=args.headless, max_papers=args.max_papers)
+	assistant = AutomatedResearchAssistant(
+		llm=llm, headless=args.headless, max_papers=args.max_papers, non_interactive=args.non_interactive, research_topic=args.research_topic
+	)
 
 	# パイプライン実行
 	await assistant.run_full_pipeline()

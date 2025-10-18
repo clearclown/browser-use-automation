@@ -15,7 +15,7 @@ from automated_research.prompts.system_prompts import (
 	FINAL_SUMMARY_PROMPT,
 	OCHIAI_STYLE_ANALYSIS_PROMPT,
 )
-from browser_use.llm.messages import UserMessage
+from langchain_core.messages import HumanMessage
 from automated_research.llm_provider import get_llm
 
 load_dotenv()
@@ -59,11 +59,11 @@ class OchiaiReportGenerator:
 			paper_metadata=metadata_text, paper_content=content_text, user_research=user_research_text
 		)
 
-		messages = [UserMessage(content=prompt)]
+		messages = [HumanMessage(content=prompt)]
 
 		try:
 			# LLMでレポート生成
-			response = await self.llm.get_response(messages)
+			response = await self.llm.ainvoke(messages)
 			report = response.content
 
 			# マークダウンのコードブロックを除去
@@ -190,10 +190,10 @@ categories: Research
 			total_papers=len(all_reports),
 		)
 
-		messages = [UserMessage(content=prompt)]
+		messages = [HumanMessage(content=prompt)]
 
 		try:
-			response = await self.llm.get_response(messages)
+			response = await self.llm.ainvoke(messages)
 			summary = response.content
 
 			# マークダウンのコードブロックを除去
