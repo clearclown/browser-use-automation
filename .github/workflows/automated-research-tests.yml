@@ -171,15 +171,17 @@ jobs:
         run: |
           podman run --rm \
             --entrypoint bash \
+            -e UV_CACHE_DIR=/tmp/uv-cache \
             browser-use-research:test \
-            -c "uv run pytest -vxs tests/ci/test_arxiv_search.py tests/ci/test_jstage_search.py tests/ci/test_government_documents_search.py tests/ci/test_risk_of_bias.py tests/ci/test_multiple_reviewers.py --tb=short"
+            -c "mkdir -p /tmp/uv-cache && uv run pytest -vxs tests/ci/test_arxiv_search.py tests/ci/test_jstage_search.py tests/ci/test_government_documents_search.py tests/ci/test_risk_of_bias.py tests/ci/test_multiple_reviewers.py --tb=short"
 
       - name: Test integration in container
         run: |
           podman run --rm \
             --entrypoint bash \
+            -e UV_CACHE_DIR=/tmp/uv-cache \
             browser-use-research:test \
-            -c "uv run pytest -vxs tests/integration/test_full_research_workflow.py --tb=short"
+            -c "mkdir -p /tmp/uv-cache && uv run pytest -vxs tests/integration/test_full_research_workflow.py --tb=short"
 
       - name: Check container image size
         run: |
