@@ -377,12 +377,28 @@ async def main():
 	import os
 
 	# ブラウザタイムアウトを延長（環境変数で設定）
-	os.environ.setdefault('TIMEOUT_BrowserStartEvent', '120')  # 120秒
-	os.environ.setdefault('TIMEOUT_BrowserLaunchEvent', '120')  # 120秒
-	os.environ.setdefault('TIMEOUT_CDP_URL_WAIT', '120')  # 120秒
-	os.environ.setdefault('TIMEOUT_NavigateToUrlEvent', '60')  # 60秒
+	# ブラウザ起動関連（最も重要）
+	os.environ.setdefault('TIMEOUT_BrowserStartEvent', '180')  # 180秒（ブラウザ起動全体）
+	os.environ.setdefault('TIMEOUT_BrowserLaunchEvent', '180')  # 180秒（ブラウザプロセス起動）
+	os.environ.setdefault('TIMEOUT_CDP_URL_WAIT', '180')  # 180秒（CDP URL待機）
+	os.environ.setdefault('TIMEOUT_BrowserConnectedEvent', '120')  # 120秒（ブラウザ接続）
+	os.environ.setdefault('TIMEOUT_TabCreatedEvent', '60')  # 60秒（タブ作成）
+
+	# ブラウザ操作関連
+	os.environ.setdefault('TIMEOUT_NavigateToUrlEvent', '90')  # 90秒（ページ遷移）
+	os.environ.setdefault('TIMEOUT_NavigationStartedEvent', '60')  # 60秒
+	os.environ.setdefault('TIMEOUT_NavigationCompleteEvent', '90')  # 90秒
 	os.environ.setdefault('TIMEOUT_BrowserStateRequestEvent', '120')  # 120秒
 	os.environ.setdefault('TIMEOUT_ClickElementEvent', '30')  # 30秒
+	os.environ.setdefault('TIMEOUT_UploadFileEvent', '60')  # 60秒
+
+	# その他のイベント
+	os.environ.setdefault('TIMEOUT_BrowserKillEvent', '30')  # 30秒
+	os.environ.setdefault('TIMEOUT_BrowserStoppedEvent', '30')  # 30秒
+	os.environ.setdefault('TIMEOUT_BrowserErrorEvent', '30')  # 30秒
+	os.environ.setdefault('TIMEOUT_StorageStateSavedEvent', '60')  # 60秒
+	os.environ.setdefault('TIMEOUT_StorageStateLoadedEvent', '60')  # 60秒
+	os.environ.setdefault('TIMEOUT_FileDownloadedEvent', '120')  # 120秒（論文ダウンロード）
 
 	parser = argparse.ArgumentParser(description='完全自動化研究支援システム')
 	parser.add_argument('--headless', action='store_true', help='ヘッドレスモードで実行')

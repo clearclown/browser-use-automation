@@ -13,17 +13,35 @@ from datetime import datetime
 from pathlib import Path
 
 # ブラウザタイムアウトを延長（モジュールロード前に設定）
-os.environ['TIMEOUT_BrowserStartEvent'] = '120'  # 120秒（ブラウザ起動全体）
-os.environ['TIMEOUT_BrowserLaunchEvent'] = '120'  # 120秒（ブラウザプロセス起動）
-os.environ['TIMEOUT_CDP_URL_WAIT'] = '120'  # 120秒（CDP URL待機）
-os.environ['TIMEOUT_NavigateToUrlEvent'] = '60'  # 60秒
+# ブラウザ起動関連（最も重要）
+os.environ['TIMEOUT_BrowserStartEvent'] = '180'  # 180秒（ブラウザ起動全体）
+os.environ['TIMEOUT_BrowserLaunchEvent'] = '180'  # 180秒（ブラウザプロセス起動）
+os.environ['TIMEOUT_CDP_URL_WAIT'] = '180'  # 180秒（CDP URL待機）
+os.environ['TIMEOUT_BrowserConnectedEvent'] = '120'  # 120秒（ブラウザ接続）
+os.environ['TIMEOUT_TabCreatedEvent'] = '60'  # 60秒（タブ作成）
+
+# ブラウザ操作関連
+os.environ['TIMEOUT_NavigateToUrlEvent'] = '90'  # 90秒（ページ遷移）
+os.environ['TIMEOUT_NavigationStartedEvent'] = '60'  # 60秒
+os.environ['TIMEOUT_NavigationCompleteEvent'] = '90'  # 90秒
 os.environ['TIMEOUT_BrowserStateRequestEvent'] = '120'  # 120秒
 os.environ['TIMEOUT_ClickElementEvent'] = '30'  # 30秒
+os.environ['TIMEOUT_UploadFileEvent'] = '60'  # 60秒
+
+# その他のイベント
+os.environ['TIMEOUT_BrowserKillEvent'] = '30'  # 30秒
+os.environ['TIMEOUT_BrowserStoppedEvent'] = '30'  # 30秒
+os.environ['TIMEOUT_BrowserErrorEvent'] = '30'  # 30秒
+os.environ['TIMEOUT_StorageStateSavedEvent'] = '60'  # 60秒
+os.environ['TIMEOUT_StorageStateLoadedEvent'] = '60'  # 60秒
+os.environ['TIMEOUT_FileDownloadedEvent'] = '120'  # 120秒（論文ダウンロード）
 
 import streamlit as st
 
 from automated_research.llm_provider import get_available_providers, get_llm
-from automated_research.main import AutomatedResearchAssistant
+
+# NOTE: AutomatedResearchAssistant は関数内でインポート
+# browser_use モジュールがインポートされる前に環境変数を設定する必要があるため
 
 
 def init_session_state():
@@ -57,6 +75,10 @@ async def run_research(
 ):
 	"""研究調査を実行"""
 	try:
+		# browser_use モジュールのインポートを遅延させる
+		# 環境変数が設定された後にインポートされるように
+		from automated_research.main import AutomatedResearchAssistant
+
 		add_log(f'🚀 研究調査を開始: {research_topic}')
 		add_log(f'📊 LLMプロバイダー: {provider}')
 
