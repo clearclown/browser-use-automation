@@ -159,13 +159,65 @@ LLM駆動のブラウザ自動化により、体系的文献レビュー（Syste
 
 ### ✅ マルチLLM対応
 
-サポートするLLMプロバイダー：
-- **Claude** (Anthropic) - claude-3.5-sonnet, claude-3-opus
-- **OpenAI** - GPT-4o, GPT-4o-mini, GPT-4 Turbo
-- **DeepSeek** - deepseek-chat, deepseek-coder (OpenAI互換API)
-- **Google Gemini** - gemini-pro, gemini-1.5-pro
-- **Groq** - llama-3, mixtral
-- **OpenRouter** - 複数モデル対応
+**5つの主要LLMプロバイダーに対応** - 環境変数またはコマンドライン引数で簡単に切り替え可能
+
+| プロバイダー | デフォルトモデル | API互換性 | 必要な環境変数 |
+|------------|----------------|----------|---------------|
+| **OpenAI** | `gpt-4o` | ネイティブ | `OPENAI_API_KEY` |
+| **Claude** (Anthropic) | `claude-3-5-sonnet-20241022` | ネイティブ | `ANTHROPIC_API_KEY` |
+| **DeepSeek** | `deepseek-chat` | OpenAI互換 | `DEEPSEEK_API_KEY` |
+| **Google Gemini** | `gemini-2.0-flash-exp` | ネイティブ | `GOOGLE_API_KEY` |
+| **Groq** | `llama-3.3-70b-versatile` | OpenAI互換 | `GROQ_API_KEY` |
+
+#### 使い方
+
+**環境変数で設定** (`.env`):
+```bash
+# プロバイダー選択
+LLM_PROVIDER=claude  # openai, claude, deepseek, google, groq
+
+# APIキー設定（使用するプロバイダーのもの）
+ANTHROPIC_API_KEY=sk-ant-...
+
+# モデル指定（オプション、省略時はデフォルト使用）
+CLAUDE_MODEL=claude-3-5-sonnet-20241022
+```
+
+**コマンドライン引数で指定**:
+```bash
+# Claudeを使用
+uv run python -m automated_research.main --provider claude
+
+# DeepSeekの特定モデルを使用
+uv run python -m automated_research.main --provider deepseek --model deepseek-chat
+
+# 環境変数LLM_PROVIDERを無視してOpenAIを使用
+uv run python -m automated_research.main --provider openai --model gpt-4o-mini
+```
+
+**利用可能プロバイダーの確認**:
+```bash
+# 設定済みAPIキーを確認
+uv run python -m automated_research.llm_provider
+```
+
+実行時に自動的に設定状況が表示されます：
+```
+============================================================
+LLM Provider Configuration
+============================================================
+Selected Provider: claude
+
+Available Providers: openai, claude, deepseek
+
+API Key Status:
+  OpenAI:    ✓ Set
+  Claude:    ✓ Set
+  DeepSeek:  ✓ Set
+  Google:    ✗ Not set
+  Groq:      ✗ Not set
+============================================================
+```
 
 ---
 
@@ -412,7 +464,7 @@ BROWSER_USE_LOGGING_LEVEL=info
 ### 方法1: PRISMA準拠の自動文献調査（推奨）
 
 ```bash
-# 完全自動実行
+# 完全自動実行（.envのLLM_PROVIDERを使用）
 uv run python -m automated_research.main
 
 # 論文数を指定
@@ -420,6 +472,11 @@ uv run python -m automated_research.main --max-papers 30
 
 # ヘッドレスモードで実行
 uv run python -m automated_research.main --headless
+
+# LLMプロバイダーを指定して実行
+uv run python -m automated_research.main --provider claude
+uv run python -m automated_research.main --provider deepseek --model deepseek-chat
+uv run python -m automated_research.main --provider google --max-papers 50
 ```
 
 **出力ファイル**:
@@ -674,6 +731,41 @@ Integration Tests:  5/5  passed ✅ (0.57秒)
 
 ## 最近の改善
 
+### 2025-10-18 (最新): マルチLLMプロバイダー対応完了
+
+**新機能:**
+- **5つのLLMプロバイダーに対応** 🎉
+  - ✅ OpenAI (GPT-4o, GPT-4o-mini)
+  - ✅ Claude (claude-3-5-sonnet-20241022)
+  - ✅ DeepSeek (deepseek-chat) - コスト最安
+  - ✅ Google Gemini (gemini-2.0-flash-exp)
+  - ✅ Groq (llama-3.3-70b-versatile) - 高速処理
+
+- **柔軟な選択方式**
+  - 環境変数 `LLM_PROVIDER` で自動選択
+  - コマンドライン引数 `--provider` で動的切り替え
+  - モデル名も `--model` でカスタマイズ可能
+  - `uv run python -m automated_research.llm_provider` で設定確認
+
+- **実装ファイル**
+  - `automated_research/llm_provider.py`: 統一インターフェース
+  - 全モジュールを更新（main.py, research_interview.py 他5ファイル）
+  - `.env.example`: 詳細な設定例を追加
+
+**使い方**:
+```bash
+# Claudeを使用
+uv run python -m automated_research.main --provider claude
+
+# DeepSeekでコスト削減
+uv run python -m automated_research.main --provider deepseek
+
+# Google Geminiの最新モデル
+uv run python -m automated_research.main --provider google
+```
+
+---
+
 ### 2025-10-18: PRISMA 2020準拠システム実装完了 & 完全テストカバレッジ
 
 **新機能:**
@@ -708,7 +800,9 @@ Integration Tests:  5/5  passed ✅ (0.57秒)
 
 **A**: はい、PRISMA研究システムには**LLM APIキーが必須**です。
 - 対話型ヒアリング、検索戦略生成、レポート作成にLLMを使用
-- 推奨: OpenAI GPT-4o または Claude 3.5 Sonnet
+- **5つのプロバイダーから選択可能**: OpenAI, Claude (Anthropic), DeepSeek, Google Gemini, Groq
+- 推奨: OpenAI GPT-4o または Claude 3.5 Sonnet（高品質）、DeepSeek（コスト重視）
+- 環境変数 `LLM_PROVIDER` で簡単に切り替え
 - IEEE検索のみの場合はLLM不要（キーワード検索のみ）
 
 ### Q2: 何分くらいかかりますか？
@@ -720,10 +814,17 @@ Integration Tests:  5/5  passed ✅ (0.57秒)
 
 ### Q3: お金はかかりますか？
 
-**A**: はい、LLM APIの使用料が発生します：
-- 論文1件あたり約$0.05-0.10（GPT-4o使用時）
-- 20論文で約$1-2程度
-- Claude使用時はやや高額になる可能性
+**A**: はい、LLM APIの使用料が発生します（プロバイダーにより異なります）：
+
+| プロバイダー | 論文1件あたり | 20論文で | コメント |
+|------------|-------------|---------|---------|
+| **OpenAI** (GPT-4o) | $0.05-0.10 | $1-2 | バランス型 |
+| **Claude** (3.5 Sonnet) | $0.10-0.20 | $2-4 | 高品質 |
+| **DeepSeek** | $0.01-0.02 | $0.20-0.40 | **コスト最安** |
+| **Google Gemini** | $0.03-0.07 | $0.60-1.40 | コスパ良好 |
+| **Groq** | $0.02-0.05 | $0.40-1.00 | 高速処理 |
+
+コスト重視なら **DeepSeek**、品質重視なら **Claude** または **GPT-4o** がおすすめです。
 
 ### Q4: 日本語の論文にも対応していますか？
 
