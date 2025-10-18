@@ -461,7 +461,42 @@ BROWSER_USE_LOGGING_LEVEL=info
 
 ## 使用方法
 
-### 方法1: PRISMA準拠の自動文献調査（推奨）
+### 方法1: Streamlit Web UI（推奨・最も簡単）🌟
+
+**GUIで簡単操作！複数行入力、リアルタイム進捗表示、結果ダウンロード**
+
+```bash
+# Web UIを起動
+./run_streamlit.sh
+
+# または直接実行
+uv run streamlit run streamlit_app.py
+```
+
+**アクセス**: http://localhost:8501
+
+**特徴**:
+- ✅ **複数行入力** - 研究背景やキーワードを複数行で入力可能
+- ✅ **マルチLLMプロバイダー選択** - OpenAI, Claude, DeepSeek, Google, Groqから選択
+- ✅ **リアルタイム進捗表示** - 実行ログをリアルタイムで確認
+- ✅ **インタラクティブな結果表示** - 論文一覧、統合レポート、ファイルダウンロード
+- ✅ **設定カスタマイズ** - 論文数、年範囲、ヘッドレスモードを簡単設定
+
+### 方法2: コマンドライン（非対話型モード）
+
+```bash
+# 非対話型モードで実行（バックグラウンド実行可能）
+uv run python -m automated_research.main --provider claude --non-interactive --max-papers 10
+
+# カスタムトピックを指定
+uv run python -m automated_research.main --provider deepseek --non-interactive \
+  --research-topic "Quantum Computing" --max-papers 20 --headless
+
+# 対話型モードで実行（質問に答えながら進む）
+uv run python -m automated_research.main --provider claude
+```
+
+### 方法3: コマンドライン（従来の対話型）
 
 ```bash
 # 完全自動実行（.envのLLM_PROVIDERを使用）
@@ -484,7 +519,7 @@ uv run python -m automated_research.main --provider google --max-papers 50
 - `automated_research/reports/` - 個別論文レポート、統合レポート、PRISMAフロー図
 - `automated_research/logs/` - 実行ログ
 
-### 方法2: Podman/Dockerコンテナで実行
+### 方法4: Podman/Dockerコンテナで実行
 
 **簡易実行（推奨）**:
 ```bash
