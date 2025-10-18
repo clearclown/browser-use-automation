@@ -58,8 +58,7 @@ jobs:
           - government-docs
           - risk-of-bias
           - multiple-reviewers
-          - prisma-flow
-          - screening-criteria
+          - prisma-search
 
     steps:
       - name: Checkout code
@@ -94,11 +93,8 @@ jobs:
             multiple-reviewers)
               uv run pytest -vxs tests/ci/test_multiple_reviewers.py --tb=short
               ;;
-            prisma-flow)
-              uv run pytest -vxs tests/ci/test_prisma_flow_diagram.py --tb=short
-              ;;
-            screening-criteria)
-              uv run pytest -vxs tests/ci/test_screening_criteria.py tests/ci/test_prisma_search_strategy.py --tb=short
+            prisma-search)
+              uv run pytest -vxs tests/ci/test_prisma_search_strategy.py --tb=short
               ;;
           esac
 
@@ -236,10 +232,10 @@ jobs:
           echo "- 🔬 Government Documents: 14 tests" >> $GITHUB_STEP_SUMMARY
           echo "- 🔬 Risk of Bias: 8 tests" >> $GITHUB_STEP_SUMMARY
           echo "- 🔬 Multiple Reviewers: 9 tests" >> $GITHUB_STEP_SUMMARY
-          echo "- 🔬 PRISMA Flow & Screening: ~18 tests" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔬 PRISMA Search Strategy: 9 tests" >> $GITHUB_STEP_SUMMARY
           echo "- 🧩 Integration Tests: 5 tests" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Total**: ~73 automated tests" >> $GITHUB_STEP_SUMMARY
+          echo "**Total**: ~64 automated tests" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
           echo "🎯 **PRISMA 2020 Compliance**: ✅ All components tested" >> $GITHUB_STEP_SUMMARY
