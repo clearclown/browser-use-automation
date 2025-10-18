@@ -4,13 +4,10 @@ Supports searching official government publications and policy documents
 from multiple countries and international organizations
 """
 
-import asyncio
 import logging
 import re
 from datetime import datetime
 from typing import Any
-
-import aiohttp
 
 logger = logging.getLogger(__name__)
 
@@ -108,9 +105,7 @@ class GovernmentDocumentsSearcher:
 		logger.info(f'Government document search requires specific API/browser automation (source: {source_id})')
 		return []
 
-	async def search_all_sources(
-		self, search_strategy: dict[str, Any], max_results_per_source: int = 5
-	) -> list[dict[str, Any]]:
+	async def search_all_sources(self, search_strategy: dict[str, Any], max_results_per_source: int = 5) -> list[dict[str, Any]]:
 		"""
 		Search all available government sources
 
@@ -147,9 +142,7 @@ class GovernmentDocumentsSearcher:
 		# Filter by year if specified
 		year_range = search_strategy.get('year_range', {})
 		if year_range:
-			unique_documents = self._filter_by_year(
-				unique_documents, year_range.get('start'), year_range.get('end')
-			)
+			unique_documents = self._filter_by_year(unique_documents, year_range.get('start'), year_range.get('end'))
 
 		logger.info(f'Total government documents found: {len(unique_documents)}')
 		return unique_documents

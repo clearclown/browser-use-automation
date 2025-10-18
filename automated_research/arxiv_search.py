@@ -90,9 +90,7 @@ class ArXivSearcher:
 
 		return unique_papers[:max_results]
 
-	async def _fetch_arxiv_results(
-		self, session: aiohttp.ClientSession, query: str, max_results: int
-	) -> list[dict[str, Any]]:
+	async def _fetch_arxiv_results(self, session: aiohttp.ClientSession, query: str, max_results: int) -> list[dict[str, Any]]:
 		"""
 		Fetch results from arXiv API
 

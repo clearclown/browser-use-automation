@@ -18,9 +18,7 @@ class RiskOfBiasAssessment(BaseModel):
 
 	paper_id: str = Field(..., description='Unique identifier for the paper')
 	title: str = Field(..., description='Paper title')
-	domain_assessments: dict[str, dict[str, str]] = Field(
-		default_factory=dict, description='Assessments for each domain'
-	)
+	domain_assessments: dict[str, dict[str, str]] = Field(default_factory=dict, description='Assessments for each domain')
 	overall_risk: str | None = Field(None, description='Overall risk of bias')
 	assessor_id: str = Field(default='automated', description='ID of the assessor')
 	notes: str = Field(default='', description='Additional notes')
@@ -69,9 +67,7 @@ class RiskOfBiasAssessor:
 		"""Create a blank assessment for a paper"""
 		return RiskOfBiasAssessment(paper_id=paper_id, title=title, domain_assessments={})
 
-	def assess_domain(
-		self, assessment: RiskOfBiasAssessment, domain_id: str, rating: str, rationale: str
-	) -> None:
+	def assess_domain(self, assessment: RiskOfBiasAssessment, domain_id: str, rating: str, rationale: str) -> None:
 		"""
 		Assess a single domain
 
