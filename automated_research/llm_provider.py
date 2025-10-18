@@ -90,7 +90,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 		from browser_use.llm.openai.chat import ChatOpenAI
 
 		api_key = os.getenv('OPENAI_API_KEY')
-		if not api_key:
+		if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
 			raise ValueError('OPENAI_API_KEY environment variable is not set')
 
 		return ChatOpenAI(model=model, temperature=temperature, **kwargs)
@@ -101,7 +101,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 			from browser_use.llm.claude.chat import ChatClaude
 
 			api_key = os.getenv('ANTHROPIC_API_KEY')
-			if not api_key:
+			if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
 				raise ValueError('ANTHROPIC_API_KEY environment variable is not set')
 
 			return ChatClaude(model=model, temperature=temperature, api_key=api_key, **kwargs)
@@ -111,7 +111,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 				from langchain_anthropic import ChatAnthropic
 
 				api_key = os.getenv('ANTHROPIC_API_KEY')
-				if not api_key:
+				if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
 					raise ValueError('ANTHROPIC_API_KEY environment variable is not set')
 
 				return ChatAnthropic(model=model, temperature=temperature, anthropic_api_key=api_key, **kwargs)
@@ -126,7 +126,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 		from browser_use.llm.openai.chat import ChatOpenAI
 
 		api_key = os.getenv('DEEPSEEK_API_KEY')
-		if not api_key:
+		if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
 			raise ValueError('DEEPSEEK_API_KEY environment variable is not set')
 
 		# DeepSeek API baseURL
@@ -140,7 +140,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 			from browser_use.llm.google.chat import ChatGoogle
 
 			api_key = os.getenv('GOOGLE_API_KEY')
-			if not api_key:
+			if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
 				raise ValueError('GOOGLE_API_KEY environment variable is not set')
 
 			return ChatGoogle(model=model, temperature=temperature, api_key=api_key, **kwargs)
@@ -150,7 +150,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 				from langchain_google_genai import ChatGoogleGenerativeAI
 
 				api_key = os.getenv('GOOGLE_API_KEY')
-				if not api_key:
+				if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
 					raise ValueError('GOOGLE_API_KEY environment variable is not set')
 
 				return ChatGoogleGenerativeAI(model=model, temperature=temperature, google_api_key=api_key, **kwargs)
@@ -165,7 +165,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 		from browser_use.llm.openai.chat import ChatOpenAI
 
 		api_key = os.getenv('GROQ_API_KEY')
-		if not api_key:
+		if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
 			raise ValueError('GROQ_API_KEY environment variable is not set')
 
 		# Groq API baseURL
