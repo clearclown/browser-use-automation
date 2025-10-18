@@ -24,14 +24,13 @@ venv/
 # Build Files
 dist/
 
-# Data files
+# Data files (but keep some for automated_research)
 *.gif
-*.txt
-*.pdf
-*.csv
-*.json
-*.jsonl
 *.bak
+# Keep JSON files for automated_research structure
+!automated_research/**/*.json
+# Keep test data
+!tests/**/*.json
 
 # Secrets and sensitive files
 secrets.env

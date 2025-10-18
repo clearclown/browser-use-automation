@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  ieee-search:
+  automated-research:
     build:
       context: .
       dockerfile: Containerfile
-    container_name: ieee-paper-search
+    container_name: browser-use-research
     environment:
       # LLM Provider Selection (claude, openai, deepseek)
-      - LLM_PROVIDER=${LLM_PROVIDER:-claude}
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
       # API Keys (set in .env file)
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
@@ -17,12 +17,27 @@ services:
       - CHROME_BIN=/usr/bin/chromium
       - CHROME_PATH=/usr/bin/chromium
       - DISPLAY=:99
+      # Podman/Docker detection
+      - IN_DOCKER=true
     volumes:
-      - ./examples:/app/examples
-      - ./papers:/app/papers  # Store downloaded papers and citations
+      # Mount automated research outputs
+      - ./automated_research/data:/app/automated_research/data
+      - ./automated_research/reports:/app/automated_research/reports
+      - ./automated_research/logs:/app/automated_research/logs
+      # Mount papers directory
+      - ./papers:/app/papers
+      # Mount examples for reference
+      - ./examples:/app/examples:ro
     working_dir: /app
     # Keep container running for interactive use
     stdin_open: true
     tty: true
-    # Network access for IEEE Xplore
+    # Network access for IEEE Xplore and other academic databases
     network_mode: bridge
+    # Podman-specific: Run as non-root user (optional for rootless mode)
+    user: "1000:1000"
+    # Security options for Podman
+    security_opt:
+      - label=disable
+    # SHM size for Chromium
+    shm_size: '2gb'
