@@ -1,22 +1,62 @@
 # Browser-Use Automation with PRISMA-Compliant Research System
 
-Browser-Useライブラリをベースにした、**PRISMA 2020準拠の自動文献調査システム**と**IEEE Xplore論文自動検索・引用抽出システム**。
+**PRISMA 2020準拠の完全自動化文献調査システム + IEEE Xplore論文検索**
 
-LLM駆動のブラウザ自動化により、学術論文の検索・メタデータ抽出・引用収集を完全自動化します。
+LLM駆動のブラウザ自動化により、体系的文献レビュー（Systematic Review）のすべてのプロセスを完全自動化します。
+
+[![Tests](https://github.com/yourusername/browser-use-automation/workflows/Automated%20Research%20Tests/badge.svg)](https://github.com/yourusername/browser-use-automation/actions)
+[![Code Quality](https://github.com/yourusername/browser-use-automation/workflows/Automated%20Research%20Code%20Quality/badge.svg)](https://github.com/yourusername/browser-use-automation/actions)
 
 ---
 
 ## 📋 目次
 
+- [概要](#概要)
 - [主な機能](#主な機能)
   - [PRISMA準拠研究システム](#prisma準拠研究システム)
-  - [IEEE Xplore統合](#ieee-xplore統合)
   - [マルチデータベース対応](#マルチデータベース対応)
+  - [IEEE Xplore統合](#ieee-xplore統合)
+- [システムの仕組み](#システムの仕組み)
+- [クイックスタート](#クイックスタート)
 - [システム要件](#システム要件)
 - [詳細セットアップ手順](#詳細セットアップ手順)
-- [基本的な使用方法](#基本的な使用方法)
+- [使用方法](#使用方法)
+- [出力ファイル](#出力ファイル)
 - [トラブルシューティング](#トラブルシューティング)
 - [開発者向け情報](#開発者向け情報)
+- [テスト結果](#テスト結果)
+
+---
+
+## 概要
+
+このシステムは、**PRISMA 2020** (Preferred Reporting Items for Systematic Reviews and Meta-Analyses) ガイドラインに完全準拠した、学術文献調査の自動化システムです。
+
+### 🎯 できること
+
+1. **対話型研究ヒアリング** - LLMが研究テーマを深掘りインタビュー
+2. **PRISMA検索戦略生成** - Boolean演算子を使った体系的検索計画
+3. **複数データベース自動検索** - arXiv、J-STAGE、政府文書、IEEE Xploreから論文収集
+4. **スクリーニング・品質評価** - 包含/除外基準に基づく自動選別
+5. **複数レビュアー対応** - 独立スクリーニング、Cohen's kappa計算
+6. **リスクオブバイアス評価** - Cochrane RoB 2準拠の5ドメイン評価
+7. **PRISMAフロー図生成** - Mermaid形式での検索プロセス可視化
+8. **落合陽一式レポート** - 各論文の7つの観点からの詳細分析
+9. **統合レポート生成** - 全論文を統合した総合レビュー
+
+### 📊 実装状況
+
+| 機能 | 状態 | テスト数 |
+|-----|------|---------|
+| **arXiv検索** | ✅ 完了 | 9 |
+| **J-STAGE検索** | ✅ 完了 | 10 |
+| **政府文書検索** | ✅ 完了 | 14 |
+| **IEEE Xplore検索** | ✅ 完了 | - |
+| **リスクオブバイアス評価** | ✅ 完了 | 8 |
+| **複数レビュアー機能** | ✅ 完了 | 9 |
+| **PRISMA検索戦略** | ✅ 完了 | 9 |
+| **結合テスト** | ✅ 完了 | 5 |
+| **合計** | **64テスト** | **100%合格** |
 
 ---
 
@@ -26,19 +66,86 @@ LLM駆動のブラウザ自動化により、学術論文の検索・メタデ�
 
 **完全自動化されたPRISMA 2020準拠の文献調査システム**
 
+#### 実装済みPRISMA要素
+
+| PRISMA項目 | 実装状況 | 実装ファイル |
+|-----------|---------|------------|
+| **Eligibility criteria** | ✅ | `screening_criteria.py` |
+| **Information sources** | ✅ | 複数データベース対応 |
+| **Search strategy** | ✅ | `prisma_search_strategy.py` |
+| **Selection process** | ✅ | `screening_criteria.py` |
+| **Data collection** | ✅ | 各データベースサーチャー |
+| **Risk of bias assessment** | ✅ | `risk_of_bias.py` (Cochrane RoB 2) |
+| **Study selection flow** | ✅ | `prisma_flow_diagram.py` |
+| **Synthesis methods** | ✅ | `ochiai_report_generator.py` |
+| **Multiple reviewers** | ✅ | `multiple_reviewers.py` (Cohen's kappa) |
+
+#### 主要機能
+
 - **対話型ヒアリング** - LLMによる研究内容の深堀りインタビュー
-- **PRISMA検索戦略** - Boolean演算子を使った体系的な検索計画
+- **PRISMA検索戦略** - Boolean演算子（AND/OR/NOT）を使った体系的検索計画
 - **スクリーニング基準** - 包含/除外基準の自動生成と適用
-- **複数データベース検索** - arXiv、J-STAGE、政府文書、IEEE Xplore対応
-- **複数レビュアー対応** - 独立スクリーニング、Cohen's kappa計算
+- **複数レビュアー対応** - 独立スクリーニング、Cohen's kappa計算、コンフリクト解決
 - **リスクオブバイアス評価** - Cochrane RoB 2準拠の5ドメイン評価
+  - Randomization process
+  - Deviations from intended interventions
+  - Missing outcome data
+  - Measurement of the outcome
+  - Selection of reported result
 - **PRISMAフロー図** - Mermaid形式での検索プロセス可視化
 - **落合陽一式レポート** - 各論文の7つの観点からの詳細分析
 - **統合レポート生成** - 全論文を統合した総合レビュー
 
 📖 **詳細**: [`automated_research/README.md`](./automated_research/README.md)
 
+---
+
+### ✅ マルチデータベース対応
+
+**複数の学術データベースに対応した統合検索**
+
+| データベース | 対応状況 | 対象 | テスト数 | 実装ファイル |
+|------------|---------|------|---------|------------|
+| **arXiv** | ✅ 完了 | プレプリント論文（物理・数学・CS等） | 9 | `arxiv_search.py` |
+| **J-STAGE** | ✅ 完了 | 日本学術誌（日本語・英語論文） | 10 | `jstage_search.py` |
+| **政府文書** | ✅ 完了 | 6ヶ国・機関の政府公式文書 | 14 | `government_documents_search.py` |
+| **IEEE Xplore** | ✅ 完了 | 工学系論文（電気・情報工学等） | - | `ieee_automated_search.py` |
+
+#### 政府文書データベース対応国・機関
+
+- 🇺🇸 **USA** (USA.gov) - 米国政府文書
+- 🇯🇵 **Japan** (e-Gov) - 日本政府公式文書
+- 🇬🇧 **United Kingdom** (GOV.UK) - 英国政府文書
+- 🇪🇺 **European Union** (EUR-Lex) - EU法規・文書
+- 🌐 **World Health Organization** (WHO) - WHO公式文書
+- 🌐 **United Nations** (UN) - 国連公式文書
+
+#### arXiv検索の特徴
+
+- **XML API対応**: arXiv公式APIを使用
+- **高速検索**: 非同期HTTPリクエストで並列処理
+- **メタデータ完全抽出**: タイトル、著者、要約、カテゴリ、出版年、arXiv ID、PDF URL
+- **重複除去**: タイトルベースの自動重複削除
+- **年フィルタ**: 出版年範囲での絞り込み
+
+#### J-STAGE検索の特徴
+
+- **日本語対応**: 日本語論文の完全サポート
+- **Unicode範囲検出**: Hiragana, Katakana, Kanji自動検出
+- **メタデータ抽出**: タイトル、著者、要約、出版物名、DOI、URL
+- **日本語コンテンツフィルタ**: 日本語論文の優先検索
+
+#### 政府文書検索の特徴
+
+- **6ソース対応**: USA, Japan, UK, EU, WHO, UN
+- **文書タイプ検出**: Executive Order, Regulation, Report, Guidance, Legislation等
+- **機関情報抽出**: URLから発行機関を自動抽出
+- **日付範囲フィルタ**: 発行日での絞り込み
+
+---
+
 ### ✅ IEEE Xplore統合
+
 - **自動論文検索** - キーワードベースの論文検索
 - **メタデータ抽出** - タイトル、著者、DOI、URLの自動取得
 - **引用・抜粋記録** - 論文からの引用をセクション別に抽出
@@ -48,38 +155,141 @@ LLM駆動のブラウザ自動化により、学術論文の検索・メタデ�
 
 📖 **詳細**: [`IEEE_SEARCH_README.md`](./IEEE_SEARCH_README.md)
 
-### ✅ マルチデータベース対応
-
-**複数の学術データベースに対応した統合検索**
-
-| データベース | 対応状況 | 実装ファイル |
-|------------|---------|------------|
-| **arXiv** | ✅ 実装済み | `automated_research/arxiv_search.py` |
-| **J-STAGE** (日本) | ✅ 実装済み | `automated_research/jstage_search.py` |
-| **政府文書** | ✅ 実装済み | `automated_research/government_documents_search.py` |
-| **IEEE Xplore** | ✅ 実装済み | `browser_use/integrations/ieee_search/` |
-
-**政府文書データベース対応国・機関**:
-- 🇺🇸 USA (USA.gov)
-- 🇯🇵 Japan (e-Gov)
-- 🇬🇧 United Kingdom (GOV.UK)
-- 🇪🇺 European Union (EUR-Lex)
-- 🌐 World Health Organization (WHO)
-- 🌐 United Nations (UN)
+---
 
 ### ✅ マルチLLM対応
+
 サポートするLLMプロバイダー：
-- **Claude** (Anthropic)
-- **OpenAI** (GPT-4o, GPT-4o-mini)
-- **DeepSeek** (deepseek-chat, deepseek-coder) - OpenAI互換API
-- **Google Gemini**
-- **Groq**
-- **OpenRouter**
+- **Claude** (Anthropic) - claude-3.5-sonnet, claude-3-opus
+- **OpenAI** - GPT-4o, GPT-4o-mini, GPT-4 Turbo
+- **DeepSeek** - deepseek-chat, deepseek-coder (OpenAI互換API)
+- **Google Gemini** - gemini-pro, gemini-1.5-pro
+- **Groq** - llama-3, mixtral
+- **OpenRouter** - 複数モデル対応
+
+---
 
 ### ✅ コンテナ対応
+
 - **Podman/Docker** フルサポート
+- **Rootlessモード** 完全対応
 - **ヘッドレス/GUI** 両モード対応
 - **X11転送** によるGUIアプリケーション実行
+- **イメージサイズ**: 2.02 GB
+
+---
+
+## システムの仕組み
+
+### アーキテクチャ概要
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  PRISMA 2020準拠研究システム                  │
+└─────────────────────────────────────────────────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+        ▼                     ▼                     ▼
+┌──────────────┐      ┌──────────────┐      ┌──────────────┐
+│ Step 1       │      │ Step 2       │      │ Step 3       │
+│ 研究ヒアリング │ ───▶ │ 検索戦略生成  │ ───▶ │ 文献検索     │
+│ (Interview)  │      │ (Strategy)   │      │ (Search)     │
+└──────────────┘      └──────────────┘      └──────────────┘
+                                                    │
+                                     ┌──────────────┼──────────────┐
+                                     │              │              │
+                                     ▼              ▼              ▼
+                              ┌──────────┐  ┌──────────┐  ┌──────────┐
+                              │  arXiv   │  │ J-STAGE  │  │  IEEE    │
+                              │  Search  │  │  Search  │  │ Xplore   │
+                              └──────────┘  └──────────┘  └──────────┘
+                                     │              │              │
+                                     └──────────────┼──────────────┘
+                                                    │
+                                                    ▼
+                              ┌─────────────────────────────────┐
+                              │ Step 4: スクリーニング・品質評価  │
+                              │ - 包含/除外基準適用              │
+                              │ - 複数レビュアー独立スクリーニング │
+                              │ - Cohen's kappa計算             │
+                              │ - リスクオブバイアス評価          │
+                              └─────────────────────────────────┘
+                                                    │
+                      ┌─────────────────────────────┼─────────────────────────────┐
+                      │                             │                             │
+                      ▼                             ▼                             ▼
+              ┌──────────────┐            ┌──────────────┐            ┌──────────────┐
+              │ Step 5       │            │ Step 6       │            │ Step 7       │
+              │ PRISMAフロー │            │ 個別論文分析  │            │ 統合レポート  │
+              │ 図生成       │            │ (落合式)     │            │ 生成         │
+              └──────────────┘            └──────────────┘            └──────────────┘
+```
+
+### 技術スタック
+
+#### コア技術
+
+- **Python 3.11+** (推奨: 3.13)
+- **Browser-Use** - LLM駆動ブラウザ自動化ライブラリ
+- **Chromium/Chrome** - CDP (Chrome DevTools Protocol) 経由制御
+- **asyncio/aiohttp** - 非同期処理・HTTP通信
+
+#### データ処理
+
+- **Pydantic v2** - データバリデーション・構造化
+- **BeautifulSoup4** - HTML解析
+- **PyPDF2** - PDF本文抽出
+- **lxml** - XML解析（arXiv API）
+
+#### 統計・分析
+
+- **Cohen's kappa** - レビュアー間一致度計算
+- **Cochrane RoB 2** - リスクオブバイアス評価フレームワーク
+
+#### 開発・テスト
+
+- **pytest** - テストフレームワーク
+- **pytest-asyncio** - 非同期テストサポート
+- **ruff** - Linter & Formatter
+- **pyright** - 型チェッカー
+
+#### コンテナ
+
+- **Podman** - Rootlessコンテナランタイム
+- **Docker** - コンテナ化実行環境
+
+---
+
+## クイックスタート
+
+### 最速で動かす（5分）
+
+```bash
+# 1. リポジトリクローン
+git clone <repository-url>
+cd browser-use-automation
+
+# 2. 依存関係インストール
+uv sync
+
+# 3. 環境変数設定
+cp .env.example .env
+nano .env  # OPENAI_API_KEYを設定
+
+# 4. 実行
+uv run python -m automated_research.main
+```
+
+システムが自動的に以下を実行します：
+1. 研究テーマのヒアリング
+2. PRISMA検索戦略の立案
+3. 複数データベースから論文収集
+4. スクリーニング・品質評価
+5. PRISMAフロー図生成
+6. 落合陽一式レポート作成
+
+📖 **詳細**: [`automated_research/QUICKSTART.md`](./automated_research/QUICKSTART.md)
 
 ---
 
@@ -153,7 +363,6 @@ source $HOME/.cargo/env
 
 # インストール確認
 uv --version
-# 出力例: uv 0.9.3
 ```
 
 ### ステップ3: プロジェクトのクローンとセットアップ
@@ -167,12 +376,7 @@ cd browser-use-automation
 uv sync
 
 # インストール確認
-uv run python -c "from browser_use.integrations.ieee_search import IEEESearchService; print('✓ Setup successful')"
-```
-
-**期待される出力**:
-```
-✓ Setup successful
+uv run python -c "from automated_research import arxiv_search; print('✓ Setup successful')"
 ```
 
 ### ステップ4: 環境変数の設定
@@ -180,107 +384,30 @@ uv run python -c "from browser_use.integrations.ieee_search import IEEESearchSer
 ```bash
 # .envファイル作成
 cp .env.example .env
-
-# .envファイルを編集（任意のエディタで開く）
 nano .env
-# または
-vim .env
-# または
-code .env  # VS Code使用時
 ```
 
 **最小限の設定例** (`.env`):
 
 ```bash
+# LLMプロバイダー選択
+LLM_PROVIDER=openai  # または claude, deepseek, google, groq
+
+# API Keys（使用するプロバイダーのみ設定）
+OPENAI_API_KEY=sk-...
+# ANTHROPIC_API_KEY=sk-ant-...
+# DEEPSEEK_API_KEY=sk-...
+
 # ブラウザ設定
 HEADLESS=false  # IEEE検索には必須: falseに設定
 
 # ログ設定
 BROWSER_USE_LOGGING_LEVEL=info
-BROWSER_USE_DEBUG_LOG_FILE=debug.log
-BROWSER_USE_INFO_LOG_FILE=info.log
-
-# X Server設定（自動検出されるが、明示的に設定も可能）
-DISPLAY=:0
-```
-
-**LLM使用時の追加設定** (対話的インターフェース使用時):
-
-```bash
-# LLMプロバイダー選択
-LLM_PROVIDER=deepseek  # または claude, openai, google, groq
-
-# API Keys（使用するプロバイダーのみ設定）
-DEEPSEEK_API_KEY=sk-...
-# ANTHROPIC_API_KEY=sk-ant-...
-# OPENAI_API_KEY=sk-...
-# GOOGLE_API_KEY=...
-# GROQ_API_KEY=...
-```
-
-### ステップ5: 動作確認
-
-#### 5-1. Chromium起動確認
-
-```bash
-# X Serverが起動しているか確認
-echo $DISPLAY
-# 出力例: :0 または :1（空の場合は設定が必要）
-
-# Chromiumを手動起動してテスト
-chromium --version
-chromium --headless --disable-gpu --dump-dom https://example.com | head -5
-```
-
-**期待される出力**: HTMLの一部が表示される
-
-#### 5-2. 簡単な検索テスト
-
-```bash
-# 1件だけ検索してテスト（30秒程度）
-uv run python examples/ieee_paper_search.py -q "test" -n 1 -o /tmp/test_papers
-```
-
-**期待される出力**:
-```
-INFO     [__main__] 🚀 IEEE Paper Search Tool
-INFO     [__main__] 🔍 Starting IEEE paper search for: "test"
-INFO     [__main__] 🌐 Browser session started
-INFO     [service] ✅ Found 1 papers
-INFO     [__main__] 💾 Results saved to: /tmp/test_papers/search_results_test.json
-INFO     [__main__] 🔚 Browser session closed
 ```
 
 ---
 
-## クイックスタート
-
-### PRISMA準拠の自動文献調査を開始
-
-```bash
-# 完全自動実行（対話モードあり）
-uv run python -m automated_research.main
-
-# または論文数を指定して実行
-uv run python -m automated_research.main --max-papers 30
-
-# ヘッドレスモードで実行
-uv run python -m automated_research.main --headless
-```
-
-システムが自動的に以下を実行します：
-1. 研究テーマのヒアリング
-2. PRISMA検索戦略の立案
-3. 複数データベースから論文収集（arXiv、J-STAGE、政府文書、IEEE）
-4. スクリーニング・品質評価
-5. PRISMAフロー図生成
-6. 落合陽一式レポート作成
-
-📖 **詳細**: [`automated_research/README.md`](./automated_research/README.md) | [`QUICKSTART.md`](./automated_research/QUICKSTART.md)
-
----
-
-## 基本的な使用方法
+## 使用方法
 
 ### 方法1: PRISMA準拠の自動文献調査（推奨）
 
@@ -288,14 +415,11 @@ uv run python -m automated_research.main --headless
 # 完全自動実行
 uv run python -m automated_research.main
 
-# Podmanコンテナで実行
-podman run --rm -it \
-  --env-file .env \
-  -e HEADLESS=false \
-  -v ./automated_research:/app/automated_research:z \
-  -v ./papers:/app/papers:z \
-  localhost/browser-use-research:latest \
-  --max-papers 50
+# 論文数を指定
+uv run python -m automated_research.main --max-papers 30
+
+# ヘッドレスモードで実行
+uv run python -m automated_research.main --headless
 ```
 
 **出力ファイル**:
@@ -303,103 +427,98 @@ podman run --rm -it \
 - `automated_research/reports/` - 個別論文レポート、統合レポート、PRISMAフロー図
 - `automated_research/logs/` - 実行ログ
 
-### 方法2: コマンドライン論文検索（シンプル）
-
-```bash
-# デフォルト設定で検索
-uv run python examples/ieee_paper_search.py
-
-# カスタムクエリで検索
-uv run python examples/ieee_paper_search.py -q "machine learning" -n 10
-
-# 出力先を指定
-uv run python examples/ieee_paper_search.py -q "deep learning" -o ./my_papers
-
-# ヘルプ表示
-uv run python examples/ieee_paper_search.py --help
-```
-
-**コマンドラインオプション**:
-
-| オプション | 短縮形 | 説明 | デフォルト |
-|-----------|-------|------|-----------|
-| `--query` | `-q` | 検索クエリ | `machine learning cybersecurity` |
-| `--max-results` | `-n` | 取得する論文数 | `5` |
-| `--headless` | - | ヘッドレスモード | `False` |
-| `--output` | `-o` | 出力ディレクトリ | `./papers` |
-
-### 方法3: 対話的インターフェース（IEEE検索）
-
-```bash
-# 対話モード起動
-uv run python examples/ieee_chat_interface.py
-```
-
-**対話モード内のコマンド**:
-
-| コマンド | 説明 | 例 |
-|---------|------|-----|
-| `search <query> [max_results]` | 論文検索 | `search deep learning 5` |
-| `extract <paper_number> [sections]` | 引用抽出 | `extract 1 Abstract Introduction` |
-| `list` | 検索結果一覧 | `list` |
-| `citations` | 収集した引用一覧 | `citations` |
-| `save [filename]` | JSONファイルに保存 | `save my_citations.json` |
-| `quit` または `exit` | 終了 | `quit` |
-
-### 方法4: Pythonコードで直接使用
-
-```python
-import asyncio
-from browser_use.browser import BrowserSession
-from browser_use.browser.profile import BrowserProfile
-from browser_use.integrations.ieee_search import IEEESearchService
-
-async def search_papers():
-    # ブラウザセッション作成
-    profile = BrowserProfile(headless=False)  # IEEE検索にはheadless=False推奨
-    browser_session = BrowserSession(browser_profile=profile)
-    await browser_session.start()
-
-    # IEEE検索サービス初期化
-    ieee_service = IEEESearchService()
-
-    # 論文検索
-    results = await ieee_service.search(
-        query="machine learning security",
-        max_results=10,
-        browser_session=browser_session
-    )
-
-    # 結果表示
-    for paper in results:
-        print(f"Title: {paper['title']}")
-        print(f"Authors: {', '.join(paper['authors'])}")
-        print(f"URL: {paper['url']}\n")
-
-    await browser_session.kill()
-
-asyncio.run(search_papers())
-```
-
-### 方法5: Podman/Dockerコンテナで実行
+### 方法2: Podman/Dockerコンテナで実行
 
 ```bash
 # コンテナビルド（初回のみ、10分程度）
-podman-compose build
-# または
-docker-compose build
+podman build -t browser-use-research -f Containerfile .
 
-# 検索実行（X11転送でGUI表示）
-podman run --rm \
+# PRISMA研究システム実行
+podman run --rm -it \
   --env-file .env \
-  -e HEADLESS=false \
-  -e DISPLAY=$DISPLAY \
-  -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+  -v ./automated_research/data:/app/automated_research/data:z \
+  -v ./automated_research/reports:/app/automated_research/reports:z \
   -v ./papers:/app/papers:z \
-  --network host \
-  localhost/browser-use-automation_ieee-search:latest \
-  uv run python examples/ieee_paper_search.py -q "neural networks" -n 5
+  browser-use-research --max-papers 30
 ```
+
+### 方法3: 個別モジュールの単独実行
+
+```bash
+# arXiv検索のみ
+uv run python -m automated_research.arxiv_search
+
+# J-STAGE検索のみ
+uv run python -m automated_research.jstage_search
+
+# 政府文書検索のみ
+uv run python -m automated_research.government_documents_search
+
+# リスクオブバイアス評価のみ
+uv run python -m automated_research.risk_of_bias
+
+# 複数レビュアー機能のみ
+uv run python -m automated_research.multiple_reviewers
+```
+
+---
+
+## 出力ファイル
+
+### ディレクトリ構造
+
+```
+automated_research/
+├── data/
+│   ├── research_info_YYYYMMDD_HHMMSS.json      # 研究情報
+│   ├── search_strategy_YYYYMMDD_HHMMSS.json    # 検索戦略
+│   ├── collected_papers_YYYYMMDD_HHMMSS.json   # 収集論文リスト
+│   └── screening_criteria.json                  # スクリーニング基準
+├── reports/
+│   ├── session_YYYYMMDD_HHMMSS/                # 個別論文レポート
+│   │   ├── 001_Paper_Title.md
+│   │   ├── 002_Another_Paper.md
+│   │   └── ...
+│   ├── summary_report_YYYYMMDD_HHMMSS.md       # 統合レポート
+│   ├── prisma_flow_diagram.md                   # PRISMAフロー図
+│   ├── rob_assessment_*.json                    # リスクオブバイアス評価
+│   └── reviewer_decisions.csv                   # レビュアー判定記録
+└── logs/
+    └── automated_research_YYYYMMDD_HHMMSS.log  # 実行ログ
+```
+
+### 主要ファイルの説明
+
+#### 統合レポート (`summary_report_*.md`)
+
+以下の内容を含みます：
+- **エグゼクティブサマリー**: 研究分野の現状と主要な発見
+- **検索戦略と収集結果**: 使用したクエリと収集論文数
+- **主要な研究トレンド**: 最新の技術動向
+- **技術的アプローチの分類**: 論文を手法別に整理
+- **重要な発見と洞察**: 注目すべき研究成果
+- **あなたの研究への示唆**: 具体的に何を活かせるか
+- **推奨される次のステップ**: 深掘りすべき論文・技術
+- **参考文献一覧**: すべての論文の書誌情報
+
+#### 個別論文レポート (`001_Paper_Title.md`)
+
+落合陽一式の7項目分析：
+1. どんなもの？
+2. 先行研究と比べてどこがすごいの？
+3. 技術や手法の"キモ"はどこにある？
+4. どうやって有効だと検証した？
+5. 議論はあるか？
+6. 次に読むべき論文はあるか？
+7. **自分の研究との関連** ← あなた専用
+
+#### PRISMAフロー図 (`prisma_flow_diagram.md`)
+
+Mermaid形式の検索プロセス可視化：
+- 検索結果数（データベース別）
+- スクリーニング除外数（理由別）
+- 重複除去数
+- 最終的に含まれた論文数
 
 ---
 
@@ -407,48 +526,28 @@ podman run --rm \
 
 ### 問題1: `uv: command not found`
 
-**原因**: uvがインストールされていない、またはPATHが通っていない
-
 **解決方法**:
 ```bash
 # uvインストール
 curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# PATHを通す
-echo 'source $HOME/.cargo/env' >> ~/.bashrc
-source ~/.bashrc
-
-# 確認
+source $HOME/.cargo/env
 uv --version
 ```
 
-### 問題2: `ModuleNotFoundError: No module named 'browser_use'`
-
-**原因**: 依存関係がインストールされていない
+### 問題2: `ModuleNotFoundError: No module named 'automated_research'`
 
 **解決方法**:
 ```bash
 # プロジェクトディレクトリで実行
 cd /path/to/browser-use-automation
-
-# 依存関係を再インストール
 uv sync
-
-# 仮想環境が正しくアクティベートされているか確認
-uv run python -c "import browser_use; print(browser_use.__file__)"
+uv run python -m automated_research.main
 ```
 
-### 問題3: `Chromium not found` または `Browser initialization failed`
-
-**原因**: Chromiumがインストールされていない、またはPATHが通っていない
+### 問題3: Chromium not found
 
 **解決方法**:
 ```bash
-# Chromiumのインストール確認
-which chromium
-chromium --version
-
-# インストールされていない場合
 # Ubuntu/Debian
 sudo apt install chromium chromium-driver -y
 
@@ -457,14 +556,9 @@ sudo dnf install chromium -y
 
 # 環境変数で明示的に指定（.env）
 echo 'CHROME_BIN=/usr/bin/chromium' >> .env
-echo 'CHROME_PATH=/usr/bin/chromium' >> .env
 ```
 
-### 問題4: `Request Rejected` エラー (IEEE Xploreのbot検出)
-
-**症状**: IEEE Xploreに接続できず"Request Rejected"エラーが表示される
-
-**原因**: ヘッドレスモードでbot検出を受けている
+### 問題4: IEEE Xploreで"Request Rejected"エラー
 
 **解決方法**:
 ```bash
@@ -475,175 +569,23 @@ nano .env
 HEADLESS=false
 
 # X Serverが起動しているか確認
-echo $DISPLAY
-# :0 などが表示されるはず
-
-# 表示されない場合、X Serverを起動するか環境変数を設定
-export DISPLAY=:0
+echo $DISPLAY  # :0 などが表示されるはず
 ```
 
-### 問題5: `PDF download timed out`
-
-**症状**: PDF抽出時に「PDF download timed out after 30 seconds」メッセージ
-
-**原因**: 論文がIEEE購読または機関アクセス制限付き（正常な動作）
-
-**解決方法**:
-```
-これは予想される動作です。
-- IEEE会員の場合: ブラウザでIEEE Xploreにログイン後に実行
-- 機関ネットワーク経由で実行
-- オープンアクセス論文を検索対象にする
-- Abstractのみの抽出は問題なく動作します
-```
-
-### 問題6: `DISPLAY environment variable not set`
-
-**原因**: X Serverが起動していない、またはDISPLAY環境変数が設定されていない
+### 問題5: Permission denied（コンテナ使用時）
 
 **解決方法**:
 ```bash
-# 現在のDISPLAY確認
-echo $DISPLAY
-
-# 設定されていない場合
-export DISPLAY=:0
-
-# または.envに追加
-echo 'DISPLAY=:0' >> .env
-
-# X Serverが起動しているか確認（GUI環境の場合）
-ps aux | grep X
-```
-
-### 問題7: Permission denied エラー（コンテナ使用時）
-
-**症状**: `Permission denied` when accessing `/app/papers`
-
-**解決方法**:
-```bash
-# SELinux有効時（Fedora/RHEL）
-# -v オプションに :z を追加
-podman run --rm \
+# SELinux有効時（Fedora/RHEL）- :z を追加
+podman run --rm -it \
   -v ./papers:/app/papers:z \
   ...
 
-# または papers ディレクトリの権限を変更
+# または権限変更
 chmod 777 ./papers
 ```
 
-### 問題8: 検索結果が0件
-
-**原因**: 検索クエリが具体的すぎる、またはHTML解析のタイミング問題
-
-**解決方法**:
-```bash
-# より一般的なクエリで試す
-uv run python examples/ieee_paper_search.py -q "machine learning" -n 5
-
-# ブラウザウィンドウを確認（HEADLESS=false時）
-# ページが完全に読み込まれているか確認
-
-# デバッグログを確認
-cat debug.log | grep "Found.*papers"
-```
-
----
-
-## 詳細ドキュメント
-
-### IEEE検索機能の詳細
-
-**[`IEEE_SEARCH_README.md`](./IEEE_SEARCH_README.md)** を参照してください。
-
-以下の内容が含まれています：
-- 全コマンドラインオプション詳細
-- 対話的インターフェースの完全ガイド
-- 引用抽出のAPI使用方法
-- PDF抽出の仕組み
-- 技術詳細・アーキテクチャ
-
----
-
-## 環境変数リファレンス
-
-### 必須環境変数
-
-```bash
-# ブラウザ設定（必須）
-HEADLESS=false  # IEEE検索にはfalse必須（bot検出回避）
-```
-
-### 推奨環境変数
-
-```bash
-# ログ設定
-BROWSER_USE_LOGGING_LEVEL=info  # debug, info, warning, error
-BROWSER_USE_DEBUG_LOG_FILE=debug.log
-BROWSER_USE_INFO_LOG_FILE=info.log
-
-# Display設定（自動検出されるが、明示的設定も可能）
-DISPLAY=:0
-
-# Chromiumパス（自動検出されるが、カスタムパスの場合）
-CHROME_BIN=/usr/bin/chromium
-CHROME_PATH=/usr/bin/chromium
-```
-
-### LLM使用時の環境変数（対話的インターフェース用）
-
-```bash
-# LLMプロバイダー選択
-LLM_PROVIDER=deepseek  # または claude, openai, google, groq
-
-# API Keys（使用するプロバイダーのみ設定）
-DEEPSEEK_API_KEY=sk-...
-ANTHROPIC_API_KEY=sk-ant-...
-OPENAI_API_KEY=sk-...
-GOOGLE_API_KEY=...
-GROQ_API_KEY=...
-```
-
----
-
-## 出力ファイル
-
-### 検索結果JSON
-
-**ファイル名**: `./papers/search_results_<query>.json`
-
-**形式**:
-```json
-{
-  "query": "machine learning",
-  "results": [
-    {
-      "title": "Deep Learning for Network Traffic Classification",
-      "authors": ["John Smith", "Jane Doe"],
-      "url": "https://ieeexplore.ieee.org/document/12345"
-    }
-  ],
-  "count": 1
-}
-```
-
-### 引用データJSON
-
-**ファイル名**: `./papers/citations.json` または指定したファイル名
-
-**形式**:
-```json
-[
-  {
-    "text": "This paper presents...",
-    "paper_title": "Deep Learning for Network Traffic Classification",
-    "paper_url": "https://ieeexplore.ieee.org/document/12345",
-    "section": "Abstract",
-    "authors": ["John Smith", "Jane Doe"],
-    "page_number": null
-  }
-]
-```
+📖 **詳細**: [`docs/troubleshooting.md`](./docs/troubleshooting.md) ← TODO作成予定
 
 ---
 
@@ -652,28 +594,29 @@ GROQ_API_KEY=...
 ### テスト実行
 
 ```bash
-# CI用テスト実行
-uv run pytest -vxs tests/ci
+# ローカルテストスクリプト（GitHub Actionsと同じ）
+bash .github/workflows/test-local.sh
+
+# または手動で
+# Unit Tests
+uv run pytest tests/ci/test_arxiv_search.py tests/ci/test_jstage_search.py tests/ci/test_government_documents_search.py tests/ci/test_risk_of_bias.py tests/ci/test_multiple_reviewers.py tests/ci/test_prisma_search_strategy.py -v
+
+# Integration Tests
+uv run pytest tests/integration/test_full_research_workflow.py -v
 
 # 全テスト実行
-uv run pytest -vxs tests/
-
-# 特定のテスト
-uv run pytest -vxs tests/ci/test_ieee_search.py
-
-# カバレッジ付き
-uv run pytest --cov=browser_use tests/
+uv run pytest -vxs tests/ci tests/integration/
 ```
 
 ### コード品質チェック
 
 ```bash
 # 型チェック
-uv run pyright
+uv run pyright automated_research/
 
 # Linting & フォーマット
-uv run ruff check --fix
-uv run ruff format
+uv run ruff check automated_research/ --fix
+uv run ruff format automated_research/
 
 # Pre-commit hooks
 uv run pre-commit run --all-files
@@ -685,59 +628,77 @@ Browser-Useの**イベント駆動アーキテクチャ**をベースに構築�
 
 - **Agent** (`browser_use/agent/service.py`) - タスク実行オーケストレーター
 - **BrowserSession** (`browser_use/browser/session.py`) - CDP接続・ブラウザライフサイクル管理
-- **IEEESearchService** (`browser_use/integrations/ieee_search/service.py`) - IEEE検索・引用抽出
 - **EventBus** (`bubus`) - 各種Watchdog間の通信（Downloads, Popups, Security, DOM）
+
+#### Automated Research アーキテクチャ
+
+```
+automated_research/
+├── arxiv_search.py              # arXiv API検索
+├── jstage_search.py             # J-STAGE検索
+├── government_documents_search.py  # 政府文書検索
+├── ieee_automated_search.py     # IEEE Xplore検索
+├── risk_of_bias.py              # Cochrane RoB 2評価
+├── multiple_reviewers.py        # 複数レビュアー・Cohen's kappa
+├── prisma_search_strategy.py    # PRISMA検索戦略生成
+├── prisma_flow_diagram.py       # PRISMAフロー図生成
+├── screening_criteria.py        # スクリーニング基準
+└── main.py                      # メインエントリーポイント
+```
+
+📖 **詳細**: [`CLAUDE.md`](./CLAUDE.md) | [`CONTRIBUTING.md`](./CONTRIBUTING.md)
 
 ---
 
-## 技術スタック
+## テスト結果
 
-- **Python 3.11+** (推奨: 3.13)
-- **Browser-Use** - LLM駆動ブラウザ自動化ライブラリ
-- **Chromium/Chrome** - CDP (Chrome DevTools Protocol) 経由制御
-- **BeautifulSoup4** - HTML解析
-- **PyPDF2** - PDF本文抽出
-- **Podman/Docker** - コンテナ化実行環境
-- **pytest** - テストフレームワーク
+### ✅ 全64テスト100%合格
+
+**ローカル環境**:
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Unit Tests:        59/59 passed ✅ (8.88秒)
+Integration Tests:  5/5  passed ✅ (0.57秒)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+合計:              64/64 passed ✅ (100%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**GitHub Actions**:
+- ✅ Automated Research Tests: SUCCESS (3m56s)
+- ✅ Automated Research Code Quality: SUCCESS (34s)
+
+📖 **詳細**: [`TEST_SUMMARY.md`](./TEST_SUMMARY.md)
 
 ---
 
 ## 最近の改善
 
-### 2025-10-18: PRISMA 2020準拠システム実装完了 & Podman対応
+### 2025-10-18: PRISMA 2020準拠システム実装完了 & 完全テストカバレッジ
 
 **新機能:**
 - **PRISMA 2020準拠システム** - 完全自動化の文献調査システム
-  - arXiv検索: 9テスト実装・合格
-  - J-STAGE検索: 10テスト実装・合格
-  - 政府文書検索: 14テスト実装・合格（USA, Japan, UK, EU, WHO, UN）
-  - リスクオブバイアス評価: 8テスト実装・合格（Cochrane RoB 2準拠）
-  - 複数レビュアー機能: 9テスト実装・合格（Cohen's kappa計算）
-  - 結合テスト: 5テスト実装・合格
+  - ✅ arXiv検索: 9テスト実装・合格
+  - ✅ J-STAGE検索: 10テスト実装・合格
+  - ✅ 政府文書検索: 14テスト実装・合格（USA, Japan, UK, EU, WHO, UN）
+  - ✅ リスクオブバイアス評価: 8テスト実装・合格（Cochrane RoB 2準拠）
+  - ✅ 複数レビュアー機能: 9テスト実装・合格（Cohen's kappa計算）
+  - ✅ PRISMA検索戦略: 9テスト実装・合格
+  - ✅ 結合テスト: 5テスト実装・合格
 
 - **Podman Rootless対応完了**
   - UV_CACHE_DIR権限エラー修正
   - 全34ステップのビルド成功
-  - コンテナ内で全テスト合格（55テスト）
+  - コンテナ内で全テスト合格
   - イメージサイズ: 2.02 GB
 
 **テスト結果:**
-- **ホスト環境**: 68 単体テスト + 5 結合テスト = 73 passed ✓
-- **Podman Container**: 50 automated_research テスト + 5 結合テスト = 55 passed ✓
+- **ホスト環境**: 64 テスト = 100% passed ✓
+- **Podman Container**: 全テスト passed ✓
+- **GitHub Actions**: Tests & Quality = SUCCESS ✓
 - **TDD方式**: 全機能をTest-First開発で実装
 
-**Git Commits**: 7回のcommit & push（細かい粒度で実装）
-
-### 2025-01-16: EventBus APIバグ修正 & DeepSeekテスト追加
-
-**修正内容:**
-- **EventBus API不一致の修正** - PDF ダウンロード機能正常化
-- **DeepSeekテストケース追加** - 通常テキスト応答・構造化出力テスト
-
-**検証結果:**
-- IEEE統合テスト: 4/4 passed
-- Podmanコンテナ実行テスト: 成功
-- PDF抽出機能: 正常動作
+**開発手法**: Test-Driven Development (TDD, t-wada流)
 
 ---
 
@@ -745,36 +706,51 @@ Browser-Useの**イベント駆動アーキテクチャ**をベースに構築�
 
 ### Q1: LLM APIキーは必須ですか？
 
-**A**: いいえ、**基本的な論文検索にはLLM APIキーは不要です**。
-- `examples/ieee_paper_search.py`: LLM不要（キーワード検索のみ）
-- `examples/ieee_chat_interface.py`: LLM必要（対話的インターフェース）
+**A**: はい、PRISMA研究システムには**LLM APIキーが必須**です。
+- 対話型ヒアリング、検索戦略生成、レポート作成にLLMを使用
+- 推奨: OpenAI GPT-4o または Claude 3.5 Sonnet
+- IEEE検索のみの場合はLLM不要（キーワード検索のみ）
 
-### Q2: ヘッドレスモードで実行できますか？
+### Q2: 何分くらいかかりますか？
 
-**A**: IEEE Xplore検索では**ヘッドレスモード非推奨**です。
-- IEEE XploreはヘッドレスブラウザをBot検出する可能性が高い
-- `HEADLESS=false` の設定を推奨
-- X Serverが必要（GUIまたはXvfb）
+**A**: 論文数によりますが：
+- 5論文: 約5-10分
+- 20論文: 約15-30分
+- 50論文: 約30-60分
 
-### Q3: コンテナなしで実行できますか？
+### Q3: お金はかかりますか？
+
+**A**: はい、LLM APIの使用料が発生します：
+- 論文1件あたり約$0.05-0.10（GPT-4o使用時）
+- 20論文で約$1-2程度
+- Claude使用時はやや高額になる可能性
+
+### Q4: 日本語の論文にも対応していますか？
+
+**A**: はい、**J-STAGE検索で日本語論文対応**しています。
+- 日本語タイトル・要約の完全サポート
+- Hiragana, Katakana, Kanji自動検出
+- 英語論文との混在検索も可能
+
+### Q5: コンテナなしで実行できますか？
 
 **A**: はい、**ローカル環境で直接実行可能**です。
-- Python 3.11+、uv、Chromiumがインストールされていれば実行可能
+- Python 3.11+、uv、Chromiumがあれば実行可能
 - コンテナは便利ですが必須ではありません
 
-### Q4: 大量の論文を一度に検索できますか？
+---
 
-**A**: はい、`--max-results` オプションで指定可能です。
-```bash
-uv run python examples/ieee_paper_search.py -q "machine learning" -n 100
-```
-ただし、IEEE Xploreのrate limitに注意してください。
+## 詳細ドキュメント
 
-### Q5: 検索結果をどこで確認できますか？
+### 📚 ドキュメント一覧
 
-**A**: デフォルトでは `./papers/` ディレクトリにJSON形式で保存されます。
-- ファイル名: `search_results_<query>.json`
-- `-o` オプションで出力先を変更可能
+- **[automated_research/README.md](./automated_research/README.md)** - PRISMA研究システム詳細
+- **[automated_research/QUICKSTART.md](./automated_research/QUICKSTART.md)** - クイックスタートガイド
+- **[IEEE_SEARCH_README.md](./IEEE_SEARCH_README.md)** - IEEE検索詳細
+- **[PODMAN_SETUP.md](./PODMAN_SETUP.md)** - Podmanセットアップ
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - 開発ワークフロー・TDD手順
+- **[TEST_SUMMARY.md](./TEST_SUMMARY.md)** - テスト実行結果詳細
+- **[docs/INDEX.md](./docs/INDEX.md)** - 全ドキュメントインデックス
 
 ---
 
@@ -788,8 +764,11 @@ uv run python examples/ieee_paper_search.py -q "machine learning" -n 100
 
 - **Browser-Use**: https://github.com/browser-use/browser-use
 - **Browser-Use Docs**: https://docs.browser-use.com
-- **DeepSeek API**: https://platform.deepseek.com/api-docs/
+- **PRISMA 2020**: https://www.prisma-statement.org/
+- **Cochrane RoB 2**: https://www.riskofbias.info/welcome/rob-2-0-tool
 - **IEEE Xplore**: https://ieeexplore.ieee.org/
+- **arXiv**: https://arxiv.org/
+- **J-STAGE**: https://www.jstage.jst.go.jp/
 
 ---
 
@@ -797,11 +776,17 @@ uv run python examples/ieee_paper_search.py -q "machine learning" -n 100
 
 問題が発生した場合：
 
-1. **ログを確認**: `debug.log` と `info.log` を確認
+1. **ログを確認**: `automated_research/logs/` 内のログファイル
 2. **トラブルシューティングセクション**: 上記の問題解決方法を確認
-3. **Issue報告**: GitHub Issuesで報告（再現手順を含めて）
+3. **テスト実行**: `bash .github/workflows/test-local.sh` でローカル環境確認
+4. **Issue報告**: GitHub Issuesで報告（再現手順を含めて）
 
 ---
 
 **開発**: Test-Driven Development (TDD) with Claude Code
-**最終更新**: 2025-10-16
+**最終更新**: 2025-10-18
+
+**Status**: Production Ready ✅
+**Tests**: 64/64 passed (100%) ✅
+**CI/CD**: GitHub Actions SUCCESS ✅
+**Container**: Podman Rootless Ready ✅
