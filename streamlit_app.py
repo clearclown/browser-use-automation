@@ -213,7 +213,7 @@ def main():
 		st.header('📊 検索設定')
 
 		max_papers = st.slider('最大論文数', min_value=1, max_value=1000, value=10, step=1)
-		headless = st.checkbox('ヘッドレスモード', value=True, help='ブラウザを非表示で実行（推奨）')
+		headless = st.checkbox('ヘッドレスモード', value=False, help='ブラウザを非表示で実行（注意：headless=Trueだとタイムアウトエラーが発生する可能性があります）')
 
 		year_start = st.number_input('開始年', min_value=2000, max_value=2025, value=2022, step=1)
 		year_end = st.number_input('終了年', min_value=2000, max_value=2025, value=2025, step=1)
