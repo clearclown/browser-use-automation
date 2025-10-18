@@ -181,7 +181,7 @@ def main():
 		st.markdown('---')
 		st.header('📊 検索設定')
 
-		max_papers = st.slider('最大論文数', min_value=1, max_value=50, value=10, step=1)
+		max_papers = st.slider('最大論文数', min_value=1, max_value=1000, value=10, step=1)
 		headless = st.checkbox('ヘッドレスモード', value=True, help='ブラウザを非表示で実行（推奨）')
 
 		year_start = st.number_input('開始年', min_value=2000, max_value=2025, value=2022, step=1)

@@ -196,6 +196,12 @@ class AutomatedResearchAssistant:
 			logger.warning('No search queries found')
 			return []
 
+		# ブラウザタイムアウトを延長（環境変数で設定）
+		import os
+
+		os.environ.setdefault('TIMEOUT_NavigateToUrlEvent', '60')  # 60秒
+		os.environ.setdefault('TIMEOUT_BrowserStateRequestEvent', '120')  # 120秒
+
 		# ブラウザセッション作成
 		profile = BrowserProfile(
 			headless=self.headless,
