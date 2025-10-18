@@ -35,16 +35,26 @@ set -a
 source .env
 set +a
 
+# Tailscale IPアドレスを取得
+TAILSCALE_IP=$(ip addr show tailscale0 2>/dev/null | grep -oP 'inet \K[\d.]+' || echo "")
+
 echo -e "${BLUE}🚀 Streamlit Webアプリを起動中...${NC}"
 echo ""
-echo -e "${GREEN}アクセスURL: http://localhost:8501${NC}"
+echo -e "${GREEN}ローカルアクセスURL:    http://localhost:8501${NC}"
+
+if [ -n "$TAILSCALE_IP" ]; then
+	echo -e "${GREEN}TailscaleアクセスURL: http://${TAILSCALE_IP}:8501${NC}"
+	echo ""
+	echo -e "${BLUE}📱 Tailscale経由でリモートアクセス可能です${NC}"
+fi
+
 echo ""
 echo -e "${YELLOW}終了するには Ctrl+C を押してください${NC}"
 echo ""
 
-# Streamlit起動
+# Streamlit起動（全インターフェースでリッスン）
 uv run streamlit run streamlit_app.py \
 	--server.port 8501 \
-	--server.address localhost \
+	--server.address 0.0.0.0 \
 	--browser.gatherUsageStats false \
 	--theme.base light
