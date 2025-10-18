@@ -486,17 +486,48 @@ uv run python -m automated_research.main --provider google --max-papers 50
 
 ### 方法2: Podman/Dockerコンテナで実行
 
+**簡易実行（推奨）**:
 ```bash
-# コンテナビルド（初回のみ、10分程度）
-podman build -t browser-use-research -f Containerfile .
+# デモ実行（DeepSeek使用）
+./podman_demo.sh
 
-# PRISMA研究システム実行
+# Claudeを使用
+./podman_demo.sh claude
+
+# 別のプロバイダーを使用
+LLM_PROVIDER=google ./podman_demo.sh google
+```
+
+**詳細設定で実行**:
+```bash
+# 1. イメージビルド（初回のみ、5-10分）
+podman build -t browser-use-research:latest -f Containerfile .
+
+# 2. デモ実行（対話なし・自動モード）
+USE_DEMO=true LLM_PROVIDER=deepseek ./run_podman.sh
+
+# 3. 手動実行（.env設定を使用）
 podman run --rm -it \
   --env-file .env \
+  -e LLM_PROVIDER=deepseek \
   -v ./automated_research/data:/app/automated_research/data:z \
   -v ./automated_research/reports:/app/automated_research/reports:z \
+  -v ./automated_research/logs:/app/automated_research/logs:z \
   -v ./papers:/app/papers:z \
-  browser-use-research --max-papers 30
+  browser-use-research:latest \
+  python demo_llm_research.py
+```
+
+**LLMプロバイダー切り替え**:
+```bash
+# Claude（高品質）
+LLM_PROVIDER=claude ./podman_demo.sh
+
+# DeepSeek（コスト最安）
+LLM_PROVIDER=deepseek ./podman_demo.sh
+
+# Google Gemini（コスパ良好）
+LLM_PROVIDER=google ./podman_demo.sh
 ```
 
 ### 方法3: 個別モジュールの単独実行
