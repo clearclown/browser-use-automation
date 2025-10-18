@@ -11,7 +11,7 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from browser_use.llm.openai.chat import ChatOpenAI
+from automated_research.llm_provider import get_llm
 
 load_dotenv()
 
@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 class ResearchInterviewer:
 	"""ユーザーの研究内容をヒアリングするインタラクティブシステム"""
 
-	def __init__(self, llm: ChatOpenAI | None = None):
-		self.llm = llm or ChatOpenAI(model='gpt-4o', temperature=0.7)
+	def __init__(self, llm: Any | None = None):
+		self.llm = llm or get_llm(temperature=0.7)
 		self.conversation_history: list[dict[str, str]] = []
 
 	async def conduct_interview(self) -> dict[str, Any]:

@@ -16,7 +16,7 @@ from automated_research.prompts.system_prompts import (
 	OCHIAI_STYLE_ANALYSIS_PROMPT,
 )
 from browser_use.llm.messages import UserMessage
-from browser_use.llm.openai.chat import ChatOpenAI
+from automated_research.llm_provider import get_llm
 
 load_dotenv()
 
@@ -26,8 +26,8 @@ logger = logging.getLogger(__name__)
 class OchiaiReportGenerator:
 	"""落合陽一式の論文分析レポートを生成"""
 
-	def __init__(self, llm: ChatOpenAI | None = None):
-		self.llm = llm or ChatOpenAI(model='gpt-4o', temperature=0.4)
+	def __init__(self, llm: Any | None = None):
+		self.llm = llm or get_llm(temperature=0.4)
 
 	async def generate_paper_report(
 		self, paper_info: dict[str, Any], research_context: dict[str, Any], pdf_content: str | None = None

@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 from browser_use import Agent
 from browser_use.browser import BrowserProfile, BrowserSession
-from browser_use.llm.openai.chat import ChatOpenAI
+from automated_research.llm_provider import get_llm
 
 load_dotenv()
 
@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class IEEEAutomatedSearcher:
 	"""IEEE Xploreでの自動検索とPDF取得"""
 
-	def __init__(self, llm: ChatOpenAI | None = None, headless: bool = False):
-		self.llm = llm or ChatOpenAI(model='gpt-4o', temperature=0.0)
+	def __init__(self, llm: Any | None = None, headless: bool = False):
+		self.llm = llm or get_llm(temperature=0.0)
 		self.headless = headless
 
 	async def search_and_collect(

@@ -27,12 +27,12 @@ from typing import Any
 
 from dotenv import load_dotenv
 
+from automated_research.llm_provider import get_llm, print_provider_info
 from automated_research.ochiai_report_generator import OchiaiReportGenerator
 from automated_research.prisma_search_strategy import PRISMASearchStrategyGenerator
 from automated_research.research_interview import ResearchInterviewer
 from browser_use.browser import BrowserProfile, BrowserSession
 from browser_use.integrations.ieee_search import IEEESearchService
-from browser_use.llm.openai.chat import ChatOpenAI
 
 load_dotenv()
 
@@ -45,16 +45,16 @@ logger = logging.getLogger(__name__)
 class AutomatedResearchAssistant:
 	"""完全自動化研究支援システム"""
 
-	def __init__(self, llm: ChatOpenAI | None = None, headless: bool = False, max_papers: int = 20):
+	def __init__(self, llm: Any | None = None, headless: bool = False, max_papers: int = 20):
 		"""
 		Initialize the automated research assistant
 
 		Args:
-			llm: Language model instance
+			llm: Language model instance (if None, will use get_llm() to auto-select from env)
 			headless: Run browser in headless mode
 			max_papers: Maximum number of papers to collect
 		"""
-		self.llm = llm or ChatOpenAI(model='gpt-4o', temperature=0.4)
+		self.llm = llm or get_llm(temperature=0.4)
 		self.headless = headless
 		self.max_papers = max_papers
 
@@ -338,12 +338,18 @@ async def main():
 	parser = argparse.ArgumentParser(description='完全自動化研究支援システム')
 	parser.add_argument('--headless', action='store_true', help='ヘッドレスモードで実行')
 	parser.add_argument('--max-papers', type=int, default=20, help='収集する最大論文数（デフォルト: 20）')
-	parser.add_argument('--model', type=str, default='gpt-4o', help='使用するLLMモデル（デフォルト: gpt-4o）')
+	parser.add_argument(
+		'--provider', type=str, default=None, help='LLMプロバイダー（openai, claude, deepseek, google, groq）'
+	)
+	parser.add_argument('--model', type=str, default=None, help='使用するLLMモデル（プロバイダーのデフォルトを使用する場合は省略可）')
 
 	args = parser.parse_args()
 
-	# LLM初期化
-	llm = ChatOpenAI(model=args.model, temperature=0.4)
+	# LLMプロバイダー情報を表示
+	print_provider_info()
+
+	# LLM初期化（環境変数またはコマンドライン引数から）
+	llm = get_llm(provider=args.provider, model=args.model, temperature=0.4)
 
 	# システム初期化
 	assistant = AutomatedResearchAssistant(llm=llm, headless=args.headless, max_papers=args.max_papers)

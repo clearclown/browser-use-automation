@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 from automated_research.prompts.system_prompts import PRISMA_SEARCH_STRATEGY_PROMPT
 from browser_use.llm.messages import UserMessage
-from browser_use.llm.openai.chat import ChatOpenAI
+from automated_research.llm_provider import get_llm
 
 load_dotenv()
 
@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class PRISMASearchStrategyGenerator:
 	"""PRISMA方式に基づいた検索戦略を生成"""
 
-	def __init__(self, llm: ChatOpenAI | None = None):
-		self.llm = llm or ChatOpenAI(model='gpt-4o', temperature=0.3)
+	def __init__(self, llm: Any | None = None):
+		self.llm = llm or get_llm(temperature=0.3)
 
 	async def generate_search_strategy(self, research_info: dict[str, Any]) -> dict[str, Any]:
 		"""
