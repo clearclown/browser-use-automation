@@ -13,6 +13,8 @@ from datetime import datetime
 from pathlib import Path
 
 # ブラウザタイムアウトを延長（モジュールロード前に設定）
+os.environ['TIMEOUT_BrowserStartEvent'] = '120'  # 120秒（ブラウザ起動全体）
+os.environ['TIMEOUT_BrowserLaunchEvent'] = '120'  # 120秒（ブラウザプロセス起動）
 os.environ['TIMEOUT_NavigateToUrlEvent'] = '60'  # 60秒
 os.environ['TIMEOUT_BrowserStateRequestEvent'] = '120'  # 120秒
 os.environ['TIMEOUT_ClickElementEvent'] = '30'  # 30秒

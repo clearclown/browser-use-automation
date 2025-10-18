@@ -377,6 +377,8 @@ async def main():
 	import os
 
 	# ブラウザタイムアウトを延長（環境変数で設定）
+	os.environ.setdefault('TIMEOUT_BrowserStartEvent', '120')  # 120秒
+	os.environ.setdefault('TIMEOUT_BrowserLaunchEvent', '120')  # 120秒
 	os.environ.setdefault('TIMEOUT_NavigateToUrlEvent', '60')  # 60秒
 	os.environ.setdefault('TIMEOUT_BrowserStateRequestEvent', '120')  # 120秒
 	os.environ.setdefault('TIMEOUT_ClickElementEvent', '30')  # 30秒
