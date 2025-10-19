@@ -52,6 +52,10 @@ echo ""
 echo -e "${YELLOW}終了するには Ctrl+C を押してください${NC}"
 echo ""
 
+# Chromium KWallet問題を回避するための環境変数
+export CHROMIUM_PASSWORD_STORE="basic"
+export CHROME_PASSWORD_STORE="basic"
+
 # Streamlit起動（全インターフェースでリッスン）
 uv run streamlit run streamlit_app.py \
 	--server.port 8501 \

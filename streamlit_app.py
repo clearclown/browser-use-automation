@@ -60,6 +60,53 @@ def add_log(message: str):
 	st.session_state.logs.append(f'[{timestamp}] {message}')
 
 
+async def run_research_lightweight(
+	provider: str,
+	model: str | None,
+	research_topic: str,
+	research_question: str,
+	keywords: list[str],
+	year_start: int,
+	year_end: int,
+	max_papers: int,
+):
+	"""軽量版研究調査を実行（ブラウザ不使用）"""
+	try:
+		from automated_research_lightweight import HybridResearchSystem
+
+		add_log(f'🚀 軽量版研究調査を開始: {research_topic}')
+		add_log(f'📊 LLMプロバイダー: {provider}')
+		add_log('⚡ ブラウザ不使用モード（httpx + BeautifulSoup + API）')
+
+		# LLM初期化
+		llm = get_llm(provider=provider, model=model, temperature=0.4)
+		add_log(f'✅ {provider.upper()} を初期化完了')
+
+		# 軽量システム初期化
+		system = HybridResearchSystem(llm=llm, max_papers=max_papers)
+		add_log('✅ 軽量版システムを初期化完了')
+
+		# 研究調査実行
+		results = await system.run_research(
+			research_topic=research_topic,
+			research_question=research_question,
+			keywords=keywords,
+			year_start=year_start,
+			year_end=year_end,
+		)
+
+		add_log('🎉 すべての処理が完了しました！')
+
+		return results
+
+	except Exception as e:
+		add_log(f'❌ エラー: {e}')
+		import traceback
+
+		add_log(f'詳細: {traceback.format_exc()}')
+		return {'success': False, 'message': f'エラーが発生しました: {e}', 'papers': []}
+
+
 async def run_research(
 	provider: str,
 	model: str | None,
@@ -175,14 +222,36 @@ def main():
 	このシステムは以下を自動実行します：
 	1. 研究内容のヒアリング
 	2. PRISMA方式の検索戦略立案
-	3. IEEE Xploreでの自動検索
+	3. **IEEE Xplore**での自動検索（最優先）
 	4. 論文の詳細分析（落合陽一式）
 	5. 統合レポートの生成
+
+	**⚠️ 重要**: IEEE Xplore検索には**ブラウザ自動化版**が必須です
 	"""
 	)
 
-	# サイドバー: LLM設定
+	# サイドバー: モード選択とLLM設定
 	with st.sidebar:
+		st.header('🔧 実行モード')
+
+		# 実行モード選択
+		execution_mode = st.radio(
+			'モード選択',
+			options=['ブラウザ自動化版（IEEE専用・推奨）', '軽量版（arXiv/Semantic Scholar）'],
+			help=(
+				'ブラウザ自動化版: IEEE Xplore対応（500-800MB, 50-90% CPU）\n'
+				'軽量版: arXiv + Semantic Scholar のみ（20-30MB, 2-5% CPU）'
+			),
+		)
+
+		use_lightweight = execution_mode == '軽量版（arXiv/Semantic Scholar）'
+
+		if use_lightweight:
+			st.warning('⚠️ 軽量版: IEEE Xplore検索不可（arXiv/Semantic Scholarのみ）')
+		else:
+			st.success('✅ ブラウザ版: IEEE Xplore完全対応')
+
+		st.markdown('---')
 		st.header('⚙️ LLM設定')
 
 		# 利用可能なプロバイダーを取得
@@ -213,7 +282,13 @@ def main():
 		st.header('📊 検索設定')
 
 		max_papers = st.slider('最大論文数', min_value=1, max_value=1000, value=10, step=1)
-		headless = st.checkbox('ヘッドレスモード', value=False, help='ブラウザを非表示で実行（注意：headless=Trueだとタイムアウトエラーが発生する可能性があります）')
+
+		# ヘッドレスモードはブラウザ版のみ表示
+		if not use_lightweight:
+			st.info('💡 IEEE検索の安定性のため、ヘッドレス=Falseを強く推奨')
+			headless = st.checkbox('ヘッドレスモード', value=False, help='⚠️ headless=Trueは不安定です。IEEE検索にはFalseを推奨')
+		else:
+			headless = False  # 軽量版では常にFalse
 
 		year_start = st.number_input('開始年', min_value=2000, max_value=2025, value=2022, step=1)
 		year_end = st.number_input('終了年', min_value=2000, max_value=2025, value=2025, step=1)
@@ -284,23 +359,39 @@ def main():
 			st.session_state.research_running = True
 			st.session_state.results = None
 
-			# 非同期実行
+			# 非同期実行（モードに応じて関数を切り替え）
 			with st.spinner('🔄 研究調査を実行中...'):
-				results = asyncio.run(
-					run_research(
-						provider=provider,
-						model=model if model else None,
-						research_topic=research_topic,
-						research_question=research_question,
-						keywords=keywords,
-						specific_interests=specific_interests,
-						research_background=research_background,
-						year_start=year_start,
-						year_end=year_end,
-						max_papers=max_papers,
-						headless=headless,
+				if use_lightweight:
+					# 軽量版実行
+					results = asyncio.run(
+						run_research_lightweight(
+							provider=provider,
+							model=model if model else None,
+							research_topic=research_topic,
+							research_question=research_question,
+							keywords=keywords,
+							year_start=year_start,
+							year_end=year_end,
+							max_papers=max_papers,
+						)
 					)
-				)
+				else:
+					# ブラウザ自動化版実行
+					results = asyncio.run(
+						run_research(
+							provider=provider,
+							model=model if model else None,
+							research_topic=research_topic,
+							research_question=research_question,
+							keywords=keywords,
+							specific_interests=specific_interests,
+							research_background=research_background,
+							year_start=year_start,
+							year_end=year_end,
+							max_papers=max_papers,
+							headless=headless,
+						)
+					)
 
 				st.session_state.results = results
 				st.session_state.research_running = False

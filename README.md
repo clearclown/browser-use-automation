@@ -4,6 +4,8 @@
 
 LLM駆動のブラウザ自動化により、体系的文献レビュー（Systematic Review）のすべてのプロセスを完全自動化します。
 
+**🎯 IEEE Xplore専用最適化**: 参考文献・参考論文検索において最も重要なIEEE Xploreに完全対応しています。
+
 [![Tests](https://github.com/yourusername/browser-use-automation/workflows/Automated%20Research%20Tests/badge.svg)](https://github.com/yourusername/browser-use-automation/actions)
 [![Code Quality](https://github.com/yourusername/browser-use-automation/workflows/Automated%20Research%20Code%20Quality/badge.svg)](https://github.com/yourusername/browser-use-automation/actions)
 
