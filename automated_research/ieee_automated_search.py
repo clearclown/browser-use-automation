@@ -12,9 +12,9 @@ from typing import Any
 
 from dotenv import load_dotenv
 
+from automated_research.llm_provider import get_llm
 from browser_use import Agent
 from browser_use.browser import BrowserProfile, BrowserSession
-from automated_research.llm_provider import get_llm
 
 load_dotenv()
 

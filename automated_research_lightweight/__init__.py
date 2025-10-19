@@ -14,10 +14,10 @@ httpx + BeautifulSoup + AI自動化による超軽量実装
 - Semantic Scholar API (公式API)
 """
 
-from .ieee_searcher import IEEELightweightSearcher
 from .arxiv_searcher import ArxivSearcher
-from .semantic_scholar_searcher import SemanticScholarSearcher
 from .hybrid_system import HybridResearchSystem
+from .ieee_searcher import IEEELightweightSearcher
+from .semantic_scholar_searcher import SemanticScholarSearcher
 
 __all__ = [
 	'IEEELightweightSearcher',

@@ -46,7 +46,12 @@ class AutomatedResearchAssistant:
 	"""完全自動化研究支援システム"""
 
 	def __init__(
-		self, llm: Any | None = None, headless: bool = False, max_papers: int = 20, non_interactive: bool = False, research_topic: str | None = None
+		self,
+		llm: Any | None = None,
+		headless: bool = False,
+		max_papers: int = 20,
+		non_interactive: bool = False,
+		research_topic: str | None = None,
 	):
 		"""
 		Initialize the automated research assistant
@@ -403,10 +408,10 @@ async def main():
 	parser = argparse.ArgumentParser(description='完全自動化研究支援システム')
 	parser.add_argument('--headless', action='store_true', help='ヘッドレスモードで実行')
 	parser.add_argument('--max-papers', type=int, default=20, help='収集する最大論文数（デフォルト: 20）')
+	parser.add_argument('--provider', type=str, default=None, help='LLMプロバイダー（openai, claude, deepseek, google, groq）')
 	parser.add_argument(
-		'--provider', type=str, default=None, help='LLMプロバイダー（openai, claude, deepseek, google, groq）'
+		'--model', type=str, default=None, help='使用するLLMモデル（プロバイダーのデフォルトを使用する場合は省略可）'
 	)
-	parser.add_argument('--model', type=str, default=None, help='使用するLLMモデル（プロバイダーのデフォルトを使用する場合は省略可）')
 	parser.add_argument('--non-interactive', action='store_true', help='非対話型モード（デモ用の事前定義された研究情報を使用）')
 	parser.add_argument('--research-topic', type=str, default=None, help='研究トピック（--non-interactiveと併用）')
 
@@ -420,7 +425,11 @@ async def main():
 
 	# システム初期化
 	assistant = AutomatedResearchAssistant(
-		llm=llm, headless=args.headless, max_papers=args.max_papers, non_interactive=args.non_interactive, research_topic=args.research_topic
+		llm=llm,
+		headless=args.headless,
+		max_papers=args.max_papers,
+		non_interactive=args.non_interactive,
+		research_topic=args.research_topic,
 	)
 
 	# パイプライン実行

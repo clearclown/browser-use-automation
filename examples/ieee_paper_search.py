@@ -20,9 +20,7 @@ from browser_use.integrations.ieee_search import IEEESearchService
 load_dotenv()
 
 # Setup logging
-logging.basicConfig(
-	level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -45,7 +43,7 @@ async def search_ieee_papers(query: str, max_results: int = 5):
 		disable_security=False,
 		extra_chromium_args=[
 			'--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-		]
+		],
 	)
 	browser_session = BrowserSession(browser_profile=profile)
 
@@ -62,9 +60,9 @@ async def search_ieee_papers(query: str, max_results: int = 5):
 		results = await ieee_service.search(query=query, max_results=max_results, browser_session=browser_session)
 
 		# Display results
-		logger.info(f'\n{"="*80}')
+		logger.info(f'\n{"=" * 80}')
 		logger.info(f'📊 Found {len(results)} papers:')
-		logger.info(f'{"="*80}\n')
+		logger.info(f'{"=" * 80}\n')
 
 		for i, paper in enumerate(results, 1):
 			logger.info(f'{i}. Title: {paper["title"]}')

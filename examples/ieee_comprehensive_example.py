@@ -20,9 +20,7 @@ from browser_use.integrations.ieee_search import IEEESearchService
 load_dotenv()
 
 # Setup logging
-logging.basicConfig(
-	level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -45,7 +43,7 @@ async def comprehensive_demo(query: str = 'machine learning security', max_resul
 		disable_security=False,
 		extra_chromium_args=[
 			'--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-		]
+		],
 	)
 	browser_session = BrowserSession(browser_profile=profile)
 	await browser_session.start()
@@ -71,9 +69,9 @@ async def comprehensive_demo(query: str = 'machine learning security', max_resul
 
 		print(f'\n✅ Found {len(results)} papers:\n')
 		for i, paper in enumerate(results, 1):
-			print(f"{i}. {paper['title']}")
-			print(f"   Authors: {', '.join(paper['authors'])}")
-			print(f"   URL: {paper['url']}\n")
+			print(f'{i}. {paper["title"]}')
+			print(f'   Authors: {", ".join(paper["authors"])}')
+			print(f'   URL: {paper["url"]}\n')
 
 		# ============================================
 		# FEATURE 2: Citation Extraction
@@ -82,7 +80,7 @@ async def comprehensive_demo(query: str = 'machine learning security', max_resul
 			logger.info('\n📄 FEATURE 2: Extracting citations from first paper...\n')
 
 			first_paper = results[0]
-			print(f"Paper: {first_paper['title']}\n")
+			print(f'Paper: {first_paper["title"]}\n')
 
 			# Extract citations from specific sections
 			citations = await ieee_service.extract_citations(
@@ -110,9 +108,7 @@ async def comprehensive_demo(query: str = 'machine learning security', max_resul
 				'search_query': query,
 				'paper_count': len(results),
 				'citation_count': len(citations),
-				'papers': [
-					{'title': paper['title'], 'authors': paper['authors'], 'url': paper['url']} for paper in results
-				],
+				'papers': [{'title': paper['title'], 'authors': paper['authors'], 'url': paper['url']} for paper in results],
 				'citations': [
 					{
 						'text': c.text,

@@ -42,9 +42,7 @@ async def test_build_arxiv_query():
 async def test_search_arxiv_returns_papers(sample_search_strategy):
 	"""Test that searching arXiv returns paper results"""
 	searcher = ArXivSearcher()
-	papers = await searcher.search(
-		search_strategy=sample_search_strategy, max_results=5
-	)
+	papers = await searcher.search(search_strategy=sample_search_strategy, max_results=5)
 
 	assert isinstance(papers, list)
 	# May be empty if no results, but should be a list
@@ -130,9 +128,7 @@ async def test_search_with_multiple_queries(sample_search_strategy):
 	searcher = ArXivSearcher()
 
 	# This should handle multiple queries from the strategy
-	papers = await searcher.search(
-		search_strategy=sample_search_strategy, max_results=3
-	)
+	papers = await searcher.search(search_strategy=sample_search_strategy, max_results=3)
 
 	assert isinstance(papers, list)
 	# Results should be deduplicated

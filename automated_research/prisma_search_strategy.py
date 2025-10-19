@@ -10,10 +10,10 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
-
-from automated_research.prompts.system_prompts import PRISMA_SEARCH_STRATEGY_PROMPT
 from langchain_core.messages import HumanMessage
+
 from automated_research.llm_provider import get_llm
+from automated_research.prompts.system_prompts import PRISMA_SEARCH_STRATEGY_PROMPT
 
 load_dotenv()
 

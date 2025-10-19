@@ -4,7 +4,6 @@ Tests the entire PRISMA-compliant research pipeline end-to-end
 """
 
 import json
-from pathlib import Path
 
 import pytest
 

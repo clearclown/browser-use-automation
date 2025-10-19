@@ -3,15 +3,12 @@ Integration tests for automated research system
 Tests the full PRISMA-based research workflow
 """
 
-import asyncio
 import json
-from pathlib import Path
 
 import pytest
 
 from automated_research.ieee_automated_search import IEEEAutomatedSearcher
 from automated_research.prisma_search_strategy import PRISMASearchStrategyGenerator
-from browser_use.llm.messages import AssistantMessage
 
 
 @pytest.fixture

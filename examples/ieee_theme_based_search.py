@@ -21,9 +21,7 @@ from browser_use.integrations.ieee_search import IEEESearchService
 load_dotenv()
 
 # Setup logging
-logging.basicConfig(
-	level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 # Define research themes
@@ -70,10 +68,10 @@ async def search_theme(
 	query = theme_config['query']
 	description = theme_config['description']
 
-	logger.info(f'\n{"="*80}')
+	logger.info(f'\n{"=" * 80}')
 	logger.info(f'📚 Theme: {description}')
 	logger.info(f'🔍 Query: "{query}"')
-	logger.info(f'{"="*80}')
+	logger.info(f'{"=" * 80}')
 
 	# Create theme-specific directory
 	theme_dir = output_dir / theme_name
@@ -166,9 +164,9 @@ async def run_theme_based_search(themes: list[str] | None = None, max_results: i
 			json.dump({'themes': all_results, 'total_themes': len(all_results)}, f, indent=2, ensure_ascii=False)
 
 		# Print summary
-		logger.info(f'\n{"="*80}')
+		logger.info(f'\n{"=" * 80}')
 		logger.info('📊 Search Summary:')
-		logger.info(f'{"="*80}')
+		logger.info(f'{"=" * 80}')
 
 		total_papers = sum(r['count'] for r in all_results)
 		successful_themes = sum(1 for r in all_results if r['success'])
@@ -179,7 +177,7 @@ async def run_theme_based_search(themes: list[str] | None = None, max_results: i
 
 		for result in all_results:
 			status = '✅' if result['success'] else '❌'
-			logger.info(f"  {status} {result['description']}: {result['count']} papers")
+			logger.info(f'  {status} {result["description"]}: {result["count"]} papers')
 
 	except Exception as e:
 		logger.error(f'❌ Error during theme-based search: {e}', exc_info=True)

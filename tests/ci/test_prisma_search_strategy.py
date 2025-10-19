@@ -3,7 +3,6 @@ Tests for PRISMA search strategy generation
 """
 
 import json
-from pathlib import Path
 
 import pytest
 
@@ -61,6 +60,7 @@ async def test_prisma_generator_initialization():
 
 async def test_generate_search_strategy_with_mock(sample_research_info, mock_llm_response, mock_llm):
 	"""Test search strategy generation with mocked LLM"""
+
 	# Use the mock_llm fixture from conftest.py
 	async def mock_get_response(messages):
 		return mock_llm_response
@@ -150,6 +150,7 @@ async def test_search_strategy_with_minimal_research_info():
 
 async def test_search_queries_use_boolean_operators(sample_research_info, mock_llm_response, mock_llm):
 	"""Test that search queries use proper Boolean operators"""
+
 	async def mock_get_response(messages):
 		return mock_llm_response
 
@@ -165,6 +166,7 @@ async def test_search_queries_use_boolean_operators(sample_research_info, mock_l
 
 async def test_year_range_validation(sample_research_info, mock_llm_response, mock_llm):
 	"""Test that year range is reasonable"""
+
 	async def mock_get_response(messages):
 		return mock_llm_response
 

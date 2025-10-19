@@ -10,7 +10,6 @@ import asyncio
 import json
 import os
 from datetime import datetime
-from pathlib import Path
 
 # ブラウザタイムアウトを延長（モジュールロード前に設定）
 # ブラウザ起動関連（最も重要）
@@ -276,7 +275,9 @@ def main():
 			'groq': 'llama-3.3-70b-versatile',
 		}
 
-		model = st.text_input('モデル名（オプション）', value=default_models.get(provider, ''), help='空欄の場合はデフォルトモデルを使用')
+		model = st.text_input(
+			'モデル名（オプション）', value=default_models.get(provider, ''), help='空欄の場合はデフォルトモデルを使用'
+		)
 
 		st.markdown('---')
 		st.header('📊 検索設定')
@@ -344,7 +345,9 @@ def main():
 	col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 3])
 
 	with col_btn1:
-		run_button = st.button('🚀 研究調査を開始', type='primary', disabled=st.session_state.research_running, use_container_width=True)
+		run_button = st.button(
+			'🚀 研究調査を開始', type='primary', disabled=st.session_state.research_running, use_container_width=True
+		)
 
 	with col_btn2:
 		if st.button('🗑️ ログをクリア', use_container_width=True):

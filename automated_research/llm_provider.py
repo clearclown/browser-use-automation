@@ -174,10 +174,7 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 		return ChatOpenAI(model=model, temperature=temperature, api_key=api_key, base_url=base_url, **kwargs)
 
 	else:
-		raise ValueError(
-			f'Unsupported LLM provider: {provider}. '
-			f'Supported providers: openai, claude, deepseek, google, groq'
-		)
+		raise ValueError(f'Unsupported LLM provider: {provider}. Supported providers: openai, claude, deepseek, google, groq')
 
 
 def get_available_providers() -> list[str]:

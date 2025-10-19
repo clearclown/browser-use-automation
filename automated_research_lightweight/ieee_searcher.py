@@ -108,7 +108,7 @@ class IEEELightweightSearcher:
 
 			# 論文URL
 			link_tag = title_tag.find('a') if title_tag else None
-			paper_url = f"{self.base_url}{link_tag['href']}" if link_tag and 'href' in link_tag.attrs else None
+			paper_url = f'{self.base_url}{link_tag["href"]}' if link_tag and 'href' in link_tag.attrs else None
 
 			# 著者
 			authors_tags = entry.find_all('span', class_='author')
@@ -161,7 +161,9 @@ class IEEELightweightSearcher:
 			soup = BeautifulSoup(response.text, 'html.parser')
 
 			# アブストラクトを抽出（複数パターン対応）
-			abstract_tag = soup.find('div', class_='abstract-text') or soup.find('div', class_='section', string=re.compile(r'Abstract'))
+			abstract_tag = soup.find('div', class_='abstract-text') or soup.find(
+				'div', class_='section', string=re.compile(r'Abstract')
+			)
 
 			if abstract_tag:
 				return abstract_tag.get_text(strip=True)

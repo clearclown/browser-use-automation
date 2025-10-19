@@ -6,7 +6,7 @@ TDD: Write tests first, then implement
 
 import pytest
 
-from automated_research.risk_of_bias import RiskOfBiasAssessment, RiskOfBiasAssessor
+from automated_research.risk_of_bias import RiskOfBiasAssessor
 
 
 @pytest.fixture

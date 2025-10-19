@@ -52,9 +52,7 @@ async def test_search_usa_gov():
 	searcher = GovernmentDocumentsSearcher()
 
 	# Mock search on USA.gov or relevant API
-	documents = await searcher.search_source(
-		source_id='usa_gov', query='artificial intelligence', max_results=5
-	)
+	documents = await searcher.search_source(source_id='usa_gov', query='artificial intelligence', max_results=5)
 
 	assert isinstance(documents, list)
 	if len(documents) > 0:
@@ -69,9 +67,7 @@ async def test_search_japan_gov():
 	"""Test searching Japanese government documents"""
 	searcher = GovernmentDocumentsSearcher()
 
-	documents = await searcher.search_source(
-		source_id='japan_gov', query='人工知能', max_results=5
-	)
+	documents = await searcher.search_source(source_id='japan_gov', query='人工知能', max_results=5)
 
 	assert isinstance(documents, list)
 	if len(documents) > 0:
@@ -85,9 +81,7 @@ async def test_search_who():
 	"""Test searching WHO (World Health Organization) documents"""
 	searcher = GovernmentDocumentsSearcher()
 
-	documents = await searcher.search_source(
-		source_id='who', query='pandemic preparedness', max_results=5
-	)
+	documents = await searcher.search_source(source_id='who', query='pandemic preparedness', max_results=5)
 
 	assert isinstance(documents, list)
 	if len(documents) > 0:
@@ -101,9 +95,7 @@ async def test_search_all_sources(sample_search_strategy):
 	"""Test searching across all available government sources"""
 	searcher = GovernmentDocumentsSearcher()
 
-	documents = await searcher.search_all_sources(
-		search_strategy=sample_search_strategy, max_results_per_source=3
-	)
+	documents = await searcher.search_all_sources(search_strategy=sample_search_strategy, max_results_per_source=3)
 
 	assert isinstance(documents, list)
 	# May be empty, but should be a list

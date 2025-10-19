@@ -86,7 +86,7 @@ class ReviewerManager:
 	def get_conflicts(self) -> list[dict[str, Any]]:
 		"""Get papers with conflicting decisions"""
 		conflicts = []
-		papers = set(d.paper_id for d in self.decisions)
+		papers = {d.paper_id for d in self.decisions}
 
 		for paper_id in papers:
 			decisions = self.get_decisions_for_paper(paper_id)
@@ -94,7 +94,7 @@ class ReviewerManager:
 				continue
 
 			# Check if all decisions agree
-			unique_decisions = set(d.decision for d in decisions)
+			unique_decisions = {d.decision for d in decisions}
 			if len(unique_decisions) > 1:
 				conflicts.append(
 					{'paper_id': paper_id, 'decisions': [d.model_dump() for d in decisions], 'reviewers': len(decisions)}
@@ -127,7 +127,7 @@ class ReviewerManager:
 	def get_consensus_papers(self) -> list[str]:
 		"""Get papers where all reviewers agreed"""
 		consensus_papers = []
-		papers = set(d.paper_id for d in self.decisions)
+		papers = {d.paper_id for d in self.decisions}
 
 		for paper_id in papers:
 			decisions = self.get_decisions_for_paper(paper_id)
@@ -135,7 +135,7 @@ class ReviewerManager:
 				continue
 
 			# Check if all agree
-			unique_decisions = set(d.decision for d in decisions)
+			unique_decisions = {d.decision for d in decisions}
 			if len(unique_decisions) == 1:
 				consensus_papers.append(paper_id)
 

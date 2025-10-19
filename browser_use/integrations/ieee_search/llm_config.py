@@ -62,9 +62,7 @@ def get_llm_from_env() -> Any:
 
 		model = os.getenv('DEEPSEEK_MODEL', 'deepseek-chat')
 		logger.info(f'✅ Using DeepSeek model: {model}')
-		return ChatOpenAI(
-			api_key=api_key, model=model, base_url='https://api.deepseek.com', timeout=25, stop=None
-		)
+		return ChatOpenAI(api_key=api_key, model=model, base_url='https://api.deepseek.com', timeout=25, stop=None)
 
 	elif provider == 'google':
 		api_key = os.getenv('GOOGLE_API_KEY')
@@ -89,7 +87,4 @@ def get_llm_from_env() -> Any:
 		return ChatOpenAI(api_key=api_key, model=model, base_url='https://api.x.ai/v1', timeout=25, stop=None)
 
 	else:
-		raise ValueError(
-			f'Unsupported LLM provider: {provider}. '
-			f'Supported providers: claude, openai, deepseek, google, grok'
-		)
+		raise ValueError(f'Unsupported LLM provider: {provider}. Supported providers: claude, openai, deepseek, google, grok')

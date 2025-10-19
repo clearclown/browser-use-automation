@@ -6,12 +6,11 @@ LLM研究調査デモスクリプト
 
 import asyncio
 import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
-from automated_research.llm_provider import get_llm, print_provider_info
-from automated_research.prisma_search_strategy import PRISMASearchStrategyGenerator
 from automated_research.arxiv_search import ArXivSearcher
+from automated_research.llm_provider import get_llm, print_provider_info
 
 
 async def main():
@@ -127,7 +126,7 @@ async def main():
 	searcher = ArXivSearcher()
 
 	# search_strategyを使用してarXiv検索
-	print(f'\n📝 arXiv検索を実行中...')
+	print('\n📝 arXiv検索を実行中...')
 	try:
 		all_papers = await searcher.search(search_strategy=search_strategy, max_results=5)
 		print(f'  ✅ {len(all_papers)}件の論文を発見')

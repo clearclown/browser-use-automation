@@ -42,9 +42,7 @@ async def test_build_jstage_query():
 async def test_search_jstage_returns_papers(sample_search_strategy):
 	"""Test that searching J-STAGE returns paper results"""
 	searcher = JStageSearcher()
-	papers = await searcher.search(
-		search_strategy=sample_search_strategy, max_results=5
-	)
+	papers = await searcher.search(search_strategy=sample_search_strategy, max_results=5)
 
 	assert isinstance(papers, list)
 	# May be empty if no results, but should be a list

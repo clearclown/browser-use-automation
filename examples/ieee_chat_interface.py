@@ -39,13 +39,14 @@ class IEEEChatInterface:
 			logger.info('🌐 Starting browser session...')
 			# IEEE blocks headless browsers, use headless=False
 			import os
+
 			headless = os.getenv('HEADLESS', 'false').lower() == 'true'
 			profile = BrowserProfile(
 				headless=headless,
 				disable_security=False,
 				extra_chromium_args=[
 					'--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-				]
+				],
 			)
 			self.browser_session = BrowserSession(browser_profile=profile)
 			await self.browser_session.start()
@@ -80,9 +81,9 @@ class IEEEChatInterface:
 
 		print(f'\n📚 Found {len(self.current_results)} papers:\n')
 		for i, paper in enumerate(self.current_results, 1):
-			print(f"{i}. {paper['title']}")
-			print(f"   Authors: {', '.join(paper['authors'])}")
-			print(f"   URL: {paper['url']}\n")
+			print(f'{i}. {paper["title"]}')
+			print(f'   Authors: {", ".join(paper["authors"])}')
+			print(f'   URL: {paper["url"]}\n')
 
 		return self.current_results
 
@@ -188,7 +189,7 @@ class IEEEChatInterface:
 
 					print(f'\n📚 Current search results ({len(self.current_results)} papers):\n')
 					for i, paper in enumerate(self.current_results, 1):
-						print(f"{i}. {paper['title']}")
+						print(f'{i}. {paper["title"]}')
 
 				elif command == 'citations':
 					print(f'\n📝 Collected citations: {len(self.citations_db)}\n')

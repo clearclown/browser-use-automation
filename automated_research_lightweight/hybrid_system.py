@@ -27,9 +27,8 @@ except ImportError:
 		LangChainSystemMessage = None
 
 # browser-useのメッセージ型をインポート
-from browser_use.llm.messages import SystemMessage, UserMessage
-
 from automated_research.llm_provider import get_llm
+from browser_use.llm.messages import UserMessage
 
 from .arxiv_searcher import ArxivSearcher
 from .ieee_searcher import IEEELightweightSearcher
@@ -91,7 +90,7 @@ class HybridResearchSystem:
 		# ステップ1: LLMによる検索戦略決定
 		search_strategy = await self._determine_search_strategy(research_topic, research_question, keywords)
 
-		print(f'📊 検索戦略を決定:')
+		print('📊 検索戦略を決定:')
 		print(f'   arXiv割合: {search_strategy["arxiv_ratio"]}%')
 		print(f'   Semantic Scholar割合: {search_strategy["semantic_scholar_ratio"]}%')
 		print(f'   IEEE割合: {search_strategy["ieee_ratio"]}%')
@@ -235,7 +234,12 @@ class HybridResearchSystem:
 		except Exception as e:
 			print(f'⚠️ LLM応答のパースに失敗: {e}')
 			print(f'応答タイプ: {type(response)}')
-			return {'arxiv_ratio': 50, 'semantic_scholar_ratio': 30, 'ieee_ratio': 20, 'reasoning': 'デフォルト戦略（パースエラー）'}
+			return {
+				'arxiv_ratio': 50,
+				'semantic_scholar_ratio': 30,
+				'ieee_ratio': 20,
+				'reasoning': 'デフォルト戦略（パースエラー）',
+			}
 
 	async def _parallel_search(
 		self,
@@ -400,7 +404,6 @@ class HybridResearchSystem:
 # テスト実行用
 async def _test():
 	"""動作確認テスト"""
-	from automated_research.llm_provider import get_llm
 
 	llm = get_llm(provider='deepseek', temperature=0.4)
 
@@ -415,9 +418,9 @@ async def _test():
 	)
 
 	print('🎉 研究調査完了！')
-	print(f"セッションID: {results['session_id']}")
-	print(f"論文数: {len(results['papers'])}")
-	print(f"レポートパス: {results['result_path']}")
+	print(f'セッションID: {results["session_id"]}')
+	print(f'論文数: {len(results["papers"])}')
+	print(f'レポートパス: {results["result_path"]}')
 
 
 if __name__ == '__main__':

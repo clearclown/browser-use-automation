@@ -42,9 +42,7 @@ async def test_record_screening_decision():
 	manager = ReviewerManager()
 	manager.add_reviewer('reviewer_1', 'Alice')
 
-	decision = ScreeningDecision(
-		paper_id='paper_001', reviewer_id='reviewer_1', decision='Include', reason='Meets criteria'
-	)
+	decision = ScreeningDecision(paper_id='paper_001', reviewer_id='reviewer_1', decision='Include', reason='Meets criteria')
 
 	manager.record_decision(decision)
 
@@ -66,9 +64,7 @@ async def test_multiple_reviewers_same_paper():
 
 	# Bob excludes
 	manager.record_decision(
-		ScreeningDecision(
-			paper_id='paper_001', reviewer_id='reviewer_2', decision='Exclude', reason='Poor methodology'
-		)
+		ScreeningDecision(paper_id='paper_001', reviewer_id='reviewer_2', decision='Exclude', reason='Poor methodology')
 	)
 
 	decisions = manager.get_decisions_for_paper('paper_001')

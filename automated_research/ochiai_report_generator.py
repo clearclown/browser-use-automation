@@ -10,13 +10,13 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
+from langchain_core.messages import HumanMessage
 
+from automated_research.llm_provider import get_llm
 from automated_research.prompts.system_prompts import (
 	FINAL_SUMMARY_PROMPT,
 	OCHIAI_STYLE_ANALYSIS_PROMPT,
 )
-from langchain_core.messages import HumanMessage
-from automated_research.llm_provider import get_llm
 
 load_dotenv()
 

@@ -5,11 +5,10 @@ Handles paper search, metadata extraction, and citation tracking.
 
 import logging
 import re
-import tempfile
 from pathlib import Path
-from typing import Any, Callable, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
+from collections.abc import Callable
 
-import requests
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
 
@@ -79,6 +78,7 @@ class IEEESearchService:
 
 		# Wait for JavaScript to load content (IEEE is a SPA)
 		import asyncio
+
 		await asyncio.sleep(5)
 
 		# Get page HTML using CDP
@@ -169,6 +169,7 @@ class IEEESearchService:
 
 		# Wait for JavaScript to load content (IEEE is a SPA)
 		import asyncio
+
 		await asyncio.sleep(5)
 
 		# Get page HTML using CDP
@@ -300,9 +301,7 @@ class IEEESearchService:
 				logger.info(f'📄 Found PDF link: {pdf_url}')
 
 				# Download and extract from PDF
-				pdf_citations = await self.download_and_extract_pdf(
-					pdf_url, paper_title, authors, sections, browser_session
-				)
+				pdf_citations = await self.download_and_extract_pdf(pdf_url, paper_title, authors, sections, browser_session)
 
 				# Merge PDF citations with HTML citations
 				# Prefer PDF sections over HTML abstract if available
@@ -343,7 +342,8 @@ class IEEESearchService:
 
 		try:
 			import asyncio
-			from browser_use.browser.events import NavigateToUrlEvent, FileDownloadedEvent
+
+			from browser_use.browser.events import FileDownloadedEvent, NavigateToUrlEvent
 
 			# Create a future to wait for download completion
 			download_future: asyncio.Future[str] = asyncio.Future()
@@ -370,7 +370,7 @@ class IEEESearchService:
 					pdf_path_str = await asyncio.wait_for(download_future, timeout=30.0)
 					pdf_path = Path(pdf_path_str)
 					logger.info(f'✅ PDF downloaded successfully: {pdf_path.name} ({pdf_path.stat().st_size} bytes)')
-				except asyncio.TimeoutError:
+				except TimeoutError:
 					logger.warning('⚠️ PDF download timed out after 30 seconds')
 					logger.info('💡 This paper may require IEEE subscription or institutional access')
 					return []
