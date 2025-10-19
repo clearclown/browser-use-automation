@@ -159,6 +159,58 @@ LLM駆動のブラウザ自動化により、体系的文献レビュー（Syste
 
 ---
 
+### ✅ Claude Agent SDK統合
+
+**高度なエージェントオーケストレーション機能**
+
+browser-useは[Claude Agent SDK](https://docs.claude.com/ja/api/agent-sdk/)と統合され、以下の機能を提供します：
+
+#### 主な機能
+
+- **🤖 専門サブエージェント**: タスクに応じた専門エージェントの自動起動
+  - `ieee-researcher`: IEEE Xplore論文検索の専門家
+  - `web-researcher`: 一般的なWeb調査
+  - `data-extractor`: 構造化データ抽出
+
+- **🔧 ブラウザツール**: Claude Agent SDKからbrowser-useの全機能を利用
+  - `browser_navigate`, `browser_click`, `browser_type`
+  - `browser_extract`, `browser_scroll`, `browser_go_back`
+
+- **⚡ スラッシュコマンド**: 複雑なタスクを簡単に実行
+  - `/research-ieee` - IEEE Xplore論文検索コマンド
+
+- **🪝 フックシステム**: ツール実行前後のカスタム処理
+
+#### クイックスタート
+
+```python
+from claude_agent_sdk import query, ClaudeAgentOptions
+from browser_use.claude_sdk_integration import create_browser_mcp_server
+
+# エージェント設定
+options = ClaudeAgentOptions(
+    mcp_servers=create_browser_mcp_server('browser-use'),
+    permission_mode='bypassPermissions',
+    setting_sources=['project'],  # .claude/設定を読み込み
+)
+
+# IEEE論文検索
+async for msg in query("Search IEEE for machine learning papers", options):
+    print(msg)
+```
+
+#### 実例
+
+- **simple_demo.py**: 基本的なブラウザ自動化
+- **ieee_research.py**: IEEE Xplore研究アシスタント
+  ```bash
+  uv run python examples/claude_sdk_research/ieee_research.py "deep learning"
+  ```
+
+📖 **詳細**: [`examples/claude_sdk_research/README.md`](./examples/claude_sdk_research/README.md)
+
+---
+
 ### ✅ マルチLLM対応
 
 **5つの主要LLMプロバイダーに対応** - 環境変数またはコマンドライン引数で簡単に切り替え可能

@@ -147,6 +147,85 @@ The library supports both modes:
 
 Connection management lives in `browser_use/mcp/client.py`.
 
+## Claude Agent SDK Integration
+
+Browser-use integrates with Claude Agent SDK to provide advanced agent orchestration capabilities:
+
+### Integration Architecture
+
+**Location:** `browser_use/claude_sdk_integration/`
+
+The integration exposes browser-use actions as Claude Agent SDK tools, allowing Claude agents to:
+- Control browsers through SDK's MCP protocol
+- Use specialized subagents for different tasks (IEEE research, web scraping, data extraction)
+- Leverage SDK features: hooks, slash commands, context management
+
+### Available Browser Tools
+
+Browser-use actions exposed as SDK tools:
+- `browser_navigate`: Navigate to URLs
+- `browser_click`: Click elements (CSS selectors)
+- `browser_type`: Type text into inputs
+- `browser_extract`: Extract page content
+- `browser_get_state`: Get current page state
+- `browser_scroll`: Scroll pages
+- `browser_go_back`: Browser history navigation
+
+### Specialized Subagents
+
+**Location:** `.claude/agents/`
+
+- **ieee-researcher.md**: IEEE Xplore specialist for academic paper search and extraction
+- **web-researcher.md**: General web research and data collection
+- **data-extractor.md**: Structured data extraction from web pages
+
+### Slash Commands
+
+**Location:** `.claude/commands/`
+
+- **research-ieee.md**: Quick IEEE Xplore search command
+
+### Configuration
+
+**Settings:** `.claude/settings.json`
+- Hook configuration (PreToolUse, PostToolUse)
+- Permission modes
+- Browser settings (headless, keepOpen)
+
+### Usage Example
+
+```python
+from claude_agent_sdk import query, ClaudeAgentOptions
+from browser_use.claude_sdk_integration import create_browser_mcp_server
+
+# Configure agent with browser tools
+options = ClaudeAgentOptions(
+	mcp_servers=create_browser_mcp_server('browser-use'),
+	permission_mode='bypassPermissions',
+	setting_sources=['project'],  # Load .claude/ config
+)
+
+# Execute query
+async for msg in query("Search IEEE for machine learning papers", options):
+	print(msg)
+```
+
+### Examples
+
+**Location:** `examples/claude_sdk_research/`
+
+- **simple_demo.py**: Basic browser automation demo
+- **ieee_research.py**: Full research assistant for IEEE Xplore
+- **README.md**: Detailed usage documentation
+
+### Testing
+
+Tests for SDK integration: `tests/ci/test_claude_sdk_tools.py`
+
+```bash
+uv run pytest tests/ci/test_claude_sdk_tools.py -v
+```
+
 ## Important Development Constraints
 
 - **Always use `uv` instead of `pip`** for dependency management
