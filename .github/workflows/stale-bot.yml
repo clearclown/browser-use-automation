@@ -1,7 +1,7 @@
 name: 'Manage stale issues and PRs'
 on:
-  schedule:
-    - cron: '0 2 * * *'  # Run daily at 2:00 AM UTC
+  # schedule:
+  #   - cron: '0 2 * * *'  # Run daily at 2:00 AM UTC (DISABLED)
   workflow_dispatch:  # Allow manual triggering
 
 permissions:
