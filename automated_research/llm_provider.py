@@ -96,30 +96,14 @@ def get_llm(provider: str | None = None, model: str | None = None, temperature: 
 		return ChatOpenAI(model=model, temperature=temperature, **kwargs)
 
 	elif provider == 'claude' or provider == 'anthropic':
-		# Browser-UseのClaude統合を使用
-		try:
-			from browser_use.llm.claude.chat import ChatClaude
+		# Browser-UseのAnthropic統合を使用
+		from browser_use.llm.anthropic.chat import ChatAnthropic
 
-			api_key = os.getenv('ANTHROPIC_API_KEY')
-			if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
-				raise ValueError('ANTHROPIC_API_KEY environment variable is not set')
+		api_key = os.getenv('ANTHROPIC_API_KEY')
+		if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
+			raise ValueError('ANTHROPIC_API_KEY environment variable is not set')
 
-			return ChatClaude(model=model, temperature=temperature, api_key=api_key, **kwargs)
-		except ImportError:
-			# Fallback: langchain-anthropicを使用
-			try:
-				from langchain_anthropic import ChatAnthropic
-
-				api_key = os.getenv('ANTHROPIC_API_KEY')
-				if not api_key and not os.getenv('SKIP_LLM_API_KEY_VERIFICATION'):
-					raise ValueError('ANTHROPIC_API_KEY environment variable is not set')
-
-				return ChatAnthropic(model=model, temperature=temperature, anthropic_api_key=api_key, **kwargs)
-			except ImportError:
-				raise ImportError(
-					'Claude support requires either browser_use.llm.claude or langchain-anthropic. '
-					'Install with: pip install langchain-anthropic'
-				)
+		return ChatAnthropic(model=model, temperature=temperature, api_key=api_key, **kwargs)
 
 	elif provider == 'deepseek':
 		# DeepSeekはOpenAI互換APIを使用
