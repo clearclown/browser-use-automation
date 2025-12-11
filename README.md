@@ -1,994 +1,424 @@
-# Browser-Use Automation with PRISMA-Compliant Research System
+# Browser-Use Automation Research System
 
-**PRISMA 2020準拠の完全自動化文献調査システム + IEEE Xplore論文検索**
-
-LLM駆動のブラウザ自動化により、体系的文献レビュー（Systematic Review）のすべてのプロセスを完全自動化します。
-
-**🎯 IEEE Xplore専用最適化**: 参考文献・参考論文検索において最も重要なIEEE Xploreに完全対応しています。
-
-[![Tests](https://github.com/yourusername/browser-use-automation/workflows/Automated%20Research%20Tests/badge.svg)](https://github.com/yourusername/browser-use-automation/actions)
-[![Code Quality](https://github.com/yourusername/browser-use-automation/workflows/Automated%20Research%20Code%20Quality/badge.svg)](https://github.com/yourusername/browser-use-automation/actions)
-
----
-
-## 📋 目次
-
-- [概要](#概要)
-- [主な機能](#主な機能)
-  - [PRISMA準拠研究システム](#prisma準拠研究システム)
-  - [マルチデータベース対応](#マルチデータベース対応)
-  - [IEEE Xplore統合](#ieee-xplore統合)
-- [システムの仕組み](#システムの仕組み)
-- [クイックスタート](#クイックスタート)
-- [システム要件](#システム要件)
-- [詳細セットアップ手順](#詳細セットアップ手順)
-- [使用方法](#使用方法)
-- [出力ファイル](#出力ファイル)
-- [トラブルシューティング](#トラブルシューティング)
-- [開発者向け情報](#開発者向け情報)
-- [テスト結果](#テスト結果)
-
----
+PRISMA 2020準拠の自動化文献調査システム + マルチソース検索
 
 ## 概要
 
-このシステムは、**PRISMA 2020** (Preferred Reporting Items for Systematic Reviews and Meta-Analyses) ガイドラインに完全準拠した、学術文献調査の自動化システムです。
+LLM駆動のブラウザ自動化とAPI検索を組み合わせた研究支援システム。
 
-### 🎯 できること
-
-1. **対話型研究ヒアリング** - LLMが研究テーマを深掘りインタビュー
-2. **PRISMA検索戦略生成** - Boolean演算子を使った体系的検索計画
-3. **複数データベース自動検索** - arXiv、J-STAGE、政府文書、IEEE Xploreから論文収集
-4. **スクリーニング・品質評価** - 包含/除外基準に基づく自動選別
-5. **複数レビュアー対応** - 独立スクリーニング、Cohen's kappa計算
-6. **リスクオブバイアス評価** - Cochrane RoB 2準拠の5ドメイン評価
-7. **PRISMAフロー図生成** - Mermaid形式での検索プロセス可視化
-8. **落合陽一式レポート** - 各論文の7つの観点からの詳細分析
-9. **統合レポート生成** - 全論文を統合した総合レビュー
-
-### 📊 実装状況
-
-| 機能 | 状態 | テスト数 |
-|-----|------|---------|
-| **arXiv検索** | ✅ 完了 | 9 |
-| **J-STAGE検索** | ✅ 完了 | 10 |
-| **政府文書検索** | ✅ 完了 | 14 |
-| **IEEE Xplore検索** | ✅ 完了 | - |
-| **リスクオブバイアス評価** | ✅ 完了 | 8 |
-| **複数レビュアー機能** | ✅ 完了 | 9 |
-| **PRISMA検索戦略** | ✅ 完了 | 9 |
-| **結合テスト** | ✅ 完了 | 5 |
-| **合計** | **64テスト** | **100%合格** |
-
----
-
-## 主な機能
-
-### ✅ PRISMA準拠研究システム
-
-**完全自動化されたPRISMA 2020準拠の文献調査システム**
-
-#### 実装済みPRISMA要素
-
-| PRISMA項目 | 実装状況 | 実装ファイル |
-|-----------|---------|------------|
-| **Eligibility criteria** | ✅ | `screening_criteria.py` |
-| **Information sources** | ✅ | 複数データベース対応 |
-| **Search strategy** | ✅ | `prisma_search_strategy.py` |
-| **Selection process** | ✅ | `screening_criteria.py` |
-| **Data collection** | ✅ | 各データベースサーチャー |
-| **Risk of bias assessment** | ✅ | `risk_of_bias.py` (Cochrane RoB 2) |
-| **Study selection flow** | ✅ | `prisma_flow_diagram.py` |
-| **Synthesis methods** | ✅ | `ochiai_report_generator.py` |
-| **Multiple reviewers** | ✅ | `multiple_reviewers.py` (Cohen's kappa) |
-
-#### 主要機能
-
-- **対話型ヒアリング** - LLMによる研究内容の深堀りインタビュー
-- **PRISMA検索戦略** - Boolean演算子（AND/OR/NOT）を使った体系的検索計画
-- **スクリーニング基準** - 包含/除外基準の自動生成と適用
-- **複数レビュアー対応** - 独立スクリーニング、Cohen's kappa計算、コンフリクト解決
-- **リスクオブバイアス評価** - Cochrane RoB 2準拠の5ドメイン評価
-  - Randomization process
-  - Deviations from intended interventions
-  - Missing outcome data
-  - Measurement of the outcome
-  - Selection of reported result
-- **PRISMAフロー図** - Mermaid形式での検索プロセス可視化
-- **落合陽一式レポート** - 各論文の7つの観点からの詳細分析
-- **統合レポート生成** - 全論文を統合した総合レビュー
-
-📖 **詳細**: [`automated_research/README.md`](./automated_research/README.md)
-
----
-
-### ✅ マルチデータベース対応
-
-**複数の学術データベースに対応した統合検索**
-
-| データベース | 対応状況 | 対象 | テスト数 | 実装ファイル |
-|------------|---------|------|---------|------------|
-| **arXiv** | ✅ 完了 | プレプリント論文（物理・数学・CS等） | 9 | `arxiv_search.py` |
-| **J-STAGE** | ✅ 完了 | 日本学術誌（日本語・英語論文） | 10 | `jstage_search.py` |
-| **政府文書** | ✅ 完了 | 6ヶ国・機関の政府公式文書 | 14 | `government_documents_search.py` |
-| **IEEE Xplore** | ✅ 完了 | 工学系論文（電気・情報工学等） | - | `ieee_automated_search.py` |
-
-#### 政府文書データベース対応国・機関
-
-- 🇺🇸 **USA** (USA.gov) - 米国政府文書
-- 🇯🇵 **Japan** (e-Gov) - 日本政府公式文書
-- 🇬🇧 **United Kingdom** (GOV.UK) - 英国政府文書
-- 🇪🇺 **European Union** (EUR-Lex) - EU法規・文書
-- 🌐 **World Health Organization** (WHO) - WHO公式文書
-- 🌐 **United Nations** (UN) - 国連公式文書
-
-#### arXiv検索の特徴
-
-- **XML API対応**: arXiv公式APIを使用
-- **高速検索**: 非同期HTTPリクエストで並列処理
-- **メタデータ完全抽出**: タイトル、著者、要約、カテゴリ、出版年、arXiv ID、PDF URL
-- **重複除去**: タイトルベースの自動重複削除
-- **年フィルタ**: 出版年範囲での絞り込み
-
-#### J-STAGE検索の特徴
-
-- **日本語対応**: 日本語論文の完全サポート
-- **Unicode範囲検出**: Hiragana, Katakana, Kanji自動検出
-- **メタデータ抽出**: タイトル、著者、要約、出版物名、DOI、URL
-- **日本語コンテンツフィルタ**: 日本語論文の優先検索
-
-#### 政府文書検索の特徴
-
-- **6ソース対応**: USA, Japan, UK, EU, WHO, UN
-- **文書タイプ検出**: Executive Order, Regulation, Report, Guidance, Legislation等
-- **機関情報抽出**: URLから発行機関を自動抽出
-- **日付範囲フィルタ**: 発行日での絞り込み
-
----
-
-### ✅ IEEE Xplore統合
-
-- **自動論文検索** - キーワードベースの論文検索
-- **メタデータ抽出** - タイトル、著者、DOI、URLの自動取得
-- **引用・抜粋記録** - 論文からの引用をセクション別に抽出
-- **PDF本文解析** - PDFから各セクション（Abstract, Introduction等）を自動抽出
-- **進捗表示** - リアルタイム検索進捗の可視化
-- **対話的インターフェース** - チャット形式での検索・引用抽出操作
-
-📖 **詳細**: [`IEEE_SEARCH_README.md`](./IEEE_SEARCH_README.md)
-
----
-
-### ✅ マルチLLM対応
-
-**5つの主要LLMプロバイダーに対応** - 環境変数またはコマンドライン引数で簡単に切り替え可能
-
-| プロバイダー | デフォルトモデル | API互換性 | 必要な環境変数 |
-|------------|----------------|----------|---------------|
-| **OpenAI** | `gpt-4o` | ネイティブ | `OPENAI_API_KEY` |
-| **Claude** (Anthropic) | `claude-3-5-sonnet-20241022` | ネイティブ | `ANTHROPIC_API_KEY` |
-| **DeepSeek** | `deepseek-chat` | OpenAI互換 | `DEEPSEEK_API_KEY` |
-| **Google Gemini** | `gemini-2.0-flash-exp` | ネイティブ | `GOOGLE_API_KEY` |
-| **Groq** | `llama-3.3-70b-versatile` | OpenAI互換 | `GROQ_API_KEY` |
-
-#### 使い方
-
-**環境変数で設定** (`.env`):
-```bash
-# プロバイダー選択
-LLM_PROVIDER=claude  # openai, claude, deepseek, google, groq
-
-# APIキー設定（使用するプロバイダーのもの）
-ANTHROPIC_API_KEY=sk-ant-...
-
-# モデル指定（オプション、省略時はデフォルト使用）
-CLAUDE_MODEL=claude-3-5-sonnet-20241022
-```
-
-**コマンドライン引数で指定**:
-```bash
-# Claudeを使用
-uv run python -m automated_research.main --provider claude
-
-# DeepSeekの特定モデルを使用
-uv run python -m automated_research.main --provider deepseek --model deepseek-chat
-
-# 環境変数LLM_PROVIDERを無視してOpenAIを使用
-uv run python -m automated_research.main --provider openai --model gpt-4o-mini
-```
-
-**利用可能プロバイダーの確認**:
-```bash
-# 設定済みAPIキーを確認
-uv run python -m automated_research.llm_provider
-```
-
-実行時に自動的に設定状況が表示されます：
-```
-============================================================
-LLM Provider Configuration
-============================================================
-Selected Provider: claude
-
-Available Providers: openai, claude, deepseek
-
-API Key Status:
-  OpenAI:    ✓ Set
-  Claude:    ✓ Set
-  DeepSeek:  ✓ Set
-  Google:    ✗ Not set
-  Groq:      ✗ Not set
-============================================================
-```
-
----
-
-### ✅ コンテナ対応
-
-- **Podman/Docker** フルサポート
-- **Rootlessモード** 完全対応
-- **ヘッドレス/GUI** 両モード対応
-- **X11転送** によるGUIアプリケーション実行
-- **イメージサイズ**: 2.02 GB
-
----
-
-## システムの仕組み
-
-### アーキテクチャ概要
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                  PRISMA 2020準拠研究システム                  │
-└─────────────────────────────────────────────────────────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-        ▼                     ▼                     ▼
-┌──────────────┐      ┌──────────────┐      ┌──────────────┐
-│ Step 1       │      │ Step 2       │      │ Step 3       │
-│ 研究ヒアリング │ ───▶ │ 検索戦略生成  │ ───▶ │ 文献検索     │
-│ (Interview)  │      │ (Strategy)   │      │ (Search)     │
-└──────────────┘      └──────────────┘      └──────────────┘
-                                                    │
-                                     ┌──────────────┼──────────────┐
-                                     │              │              │
-                                     ▼              ▼              ▼
-                              ┌──────────┐  ┌──────────┐  ┌──────────┐
-                              │  arXiv   │  │ J-STAGE  │  │  IEEE    │
-                              │  Search  │  │  Search  │  │ Xplore   │
-                              └──────────┘  └──────────┘  └──────────┘
-                                     │              │              │
-                                     └──────────────┼──────────────┘
-                                                    │
-                                                    ▼
-                              ┌─────────────────────────────────┐
-                              │ Step 4: スクリーニング・品質評価  │
-                              │ - 包含/除外基準適用              │
-                              │ - 複数レビュアー独立スクリーニング │
-                              │ - Cohen's kappa計算             │
-                              │ - リスクオブバイアス評価          │
-                              └─────────────────────────────────┘
-                                                    │
-                      ┌─────────────────────────────┼─────────────────────────────┐
-                      │                             │                             │
-                      ▼                             ▼                             ▼
-              ┌──────────────┐            ┌──────────────┐            ┌──────────────┐
-              │ Step 5       │            │ Step 6       │            │ Step 7       │
-              │ PRISMAフロー │            │ 個別論文分析  │            │ 統合レポート  │
-              │ 図生成       │            │ (落合式)     │            │ 生成         │
-              └──────────────┘            └──────────────┘            └──────────────┘
-```
-
-### 技術スタック
-
-#### コア技術
-
-- **Python 3.11+** (推奨: 3.13)
-- **Browser-Use** - LLM駆動ブラウザ自動化ライブラリ
-- **Chromium/Chrome** - CDP (Chrome DevTools Protocol) 経由制御
-- **asyncio/aiohttp** - 非同期処理・HTTP通信
-
-#### データ処理
-
-- **Pydantic v2** - データバリデーション・構造化
-- **BeautifulSoup4** - HTML解析
-- **PyPDF2** - PDF本文抽出
-- **lxml** - XML解析（arXiv API）
-
-#### 統計・分析
-
-- **Cohen's kappa** - レビュアー間一致度計算
-- **Cochrane RoB 2** - リスクオブバイアス評価フレームワーク
-
-#### 開発・テスト
-
-- **pytest** - テストフレームワーク
-- **pytest-asyncio** - 非同期テストサポート
-- **ruff** - Linter & Formatter
-- **pyright** - 型チェッカー
-
-#### コンテナ
-
-- **Podman** - Rootlessコンテナランタイム
-- **Docker** - コンテナ化実行環境
+**主な機能:**
+- PRISMA準拠の体系的文献レビュー
+- マルチデータベース検索（arXiv, IEEE, J-STAGE, 政府文書）
+- プラグイン型情報源システム（国際機関、シンクタンク、人権団体）
+- 落合陽一式レポート生成
+- Claude Agent SDK統合
 
 ---
 
 ## クイックスタート
 
-### 最速で動かす（5分）
+### 1. 環境構築
 
 ```bash
-# 1. リポジトリクローン
+# クローン
 git clone <repository-url>
 cd browser-use-automation
 
-# 2. 依存関係インストール
+# 依存関係インストール
 uv sync
 
-# 3. 環境変数設定
+# 環境変数設定
 cp .env.example .env
-nano .env  # OPENAI_API_KEYを設定
-
-# 4. 実行
-uv run python -m automated_research.main
 ```
 
-システムが自動的に以下を実行します：
-1. 研究テーマのヒアリング
-2. PRISMA検索戦略の立案
-3. 複数データベースから論文収集
-4. スクリーニング・品質評価
-5. PRISMAフロー図生成
-6. 落合陽一式レポート作成
-
-📖 **詳細**: [`automated_research/QUICKSTART.md`](./automated_research/QUICKSTART.md)
-
----
-
-## システム要件
-
-### 必須要件
-
-| 項目 | 最小バージョン | 推奨バージョン | 確認コマンド |
-|------|--------------|--------------|------------|
-| **OS** | Linux (Ubuntu 20.04+, Fedora 35+) | Ubuntu 22.04+ | `lsb_release -a` |
-| **Python** | 3.11 | 3.13 | `python3 --version` |
-| **uv** | 0.4.0+ | 最新版 | `uv --version` |
-| **Chromium** | 90+ | 最新版 | `chromium --version` |
-| **X Server** | 任意 | Xorg | `echo $DISPLAY` |
-
-### オプション要件（コンテナ使用時）
-
-| 項目 | バージョン | 確認コマンド |
-|------|-----------|------------|
-| **Podman** | 3.0+ | `podman --version` |
-| **Docker** | 20.10+ | `docker --version` |
-
----
-
-## 詳細セットアップ手順
-
-### ステップ1: システム依存関係のインストール
-
-#### Ubuntu/Debian系
+### 2. 必須設定 (.env)
 
 ```bash
-# システムパッケージ更新
-sudo apt update && sudo apt upgrade -y
+# ===== LLM設定（必須）=====
+LLM_PROVIDER=openai  # openai, claude, deepseek, google, groq から選択
 
-# Python 3.13インストール（必要な場合）
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install python3.13 python3.13-venv python3.13-dev -y
-
-# Chromiumインストール
-sudo apt install chromium chromium-driver -y
-
-# 追加ツール
-sudo apt install git curl -y
-```
-
-#### Fedora/RHEL系
-
-```bash
-# システムパッケージ更新
-sudo dnf update -y
-
-# Python 3.13インストール
-sudo dnf install python3.13 python3.13-devel -y
-
-# Chromiumインストール
-sudo dnf install chromium -y
-
-# 追加ツール
-sudo dnf install git curl -y
-```
-
-### ステップ2: uv (パッケージマネージャー) インストール
-
-```bash
-# uvインストール
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# シェル設定を再読み込み
-source $HOME/.cargo/env
-
-# インストール確認
-uv --version
-```
-
-### ステップ3: プロジェクトのクローンとセットアップ
-
-```bash
-# プロジェクトのクローン
-git clone <repository-url>
-cd browser-use-automation
-
-# 依存関係のインストール（初回は数分かかります）
-uv sync
-
-# インストール確認
-uv run python -c "from automated_research import arxiv_search; print('✓ Setup successful')"
-```
-
-### ステップ4: 環境変数の設定
-
-```bash
-# .envファイル作成
-cp .env.example .env
-nano .env
-```
-
-**最小限の設定例** (`.env`):
-
-```bash
-# LLMプロバイダー選択
-LLM_PROVIDER=openai  # または claude, deepseek, google, groq
-
-# API Keys（使用するプロバイダーのみ設定）
+# 使用するプロバイダーのAPIキーを設定
 OPENAI_API_KEY=sk-...
 # ANTHROPIC_API_KEY=sk-ant-...
 # DEEPSEEK_API_KEY=sk-...
+# GOOGLE_API_KEY=...
+# GROQ_API_KEY=...
 
-# ブラウザ設定
-HEADLESS=false  # IEEE検索には必須: falseに設定
+# ===== Perplexity API（マルチソース検索用）=====
+# UNHCR, Amnesty, シンクタンク等の検索に必要
+PERPLEXITY_API_KEY=pplx-...
+```
 
-# ログ設定
-BROWSER_USE_LOGGING_LEVEL=info
+### 3. 実行
+
+```bash
+# PRISMA研究システム（フル版）
+uv run python -m automated_research.main
+
+# 軽量版（ブラウザ不使用）
+uv run python -c "
+from automated_research_lightweight import HybridResearchSystem
+# ... (使用例は下記参照)
+"
+```
+
+---
+
+## プロジェクト構造
+
+```
+browser-use-automation/
+├── automated_research/              # PRISMA準拠フル研究システム
+│   ├── main.py                      # メインエントリーポイント
+│   ├── arxiv_search.py              # arXiv API検索
+│   ├── jstage_search.py             # J-STAGE検索
+│   ├── ieee_automated_search.py     # IEEE Xplore検索
+│   ├── government_documents_search.py
+│   ├── prisma_search_strategy.py    # PRISMA検索戦略
+│   ├── prisma_flow_diagram.py       # PRISMAフロー図生成
+│   ├── ochiai_report_generator.py   # 落合式レポート
+│   ├── screening_criteria.py        # スクリーニング基準
+│   ├── risk_of_bias.py              # Cochrane RoB 2評価
+│   ├── multiple_reviewers.py        # 複数レビュアー対応
+│   └── llm_provider.py              # マルチLLMプロバイダー
+│
+├── automated_research_lightweight/  # 軽量版（API専用）
+│   ├── hybrid_system.py             # 統合検索システム
+│   ├── arxiv_searcher.py
+│   ├── ieee_searcher.py
+│   ├── semantic_scholar_searcher.py
+│   └── sources/                     # プラグイン型情報源
+│       ├── base.py                  # BaseSource, SearchResult
+│       ├── registry.py              # SourceRegistry
+│       ├── perplexity.py            # Perplexity API
+│       └── organizations.py         # 国際機関・シンクタンク等
+│
+├── browser_use/                     # Browser-Use コアライブラリ
+├── result/                          # 実行結果出力先（.gitignore）
+└── .env.example                     # 環境変数テンプレート
+```
+
+---
+
+## 出力先
+
+すべての実行結果は `result/` ディレクトリに保存されます（`.gitignore`で除外）:
+
+```
+result/
+├── automated_research/              # フル版の出力
+│   ├── data/                        # 研究情報、検索戦略
+│   ├── reports/                     # 個別・統合レポート
+│   └── logs/
+└── automated_research_lightweight/  # 軽量版の出力
+    ├── result_*.json
+    └── summary_*.md
 ```
 
 ---
 
 ## 使用方法
 
-### 方法1: Streamlit Web UI（推奨・最も簡単）🌟
-
-**GUIで簡単操作！複数行入力、リアルタイム進捗表示、結果ダウンロード**
+### 方法1: PRISMA研究システム（フル版）
 
 ```bash
-# Web UIを起動
-./run_streamlit.sh
-
-# または直接実行
-uv run streamlit run streamlit_app.py
-```
-
-**アクセス**:
-- ローカル: http://localhost:8501
-- Tailscale経由（リモートアクセス）: http://[Tailscale-IP]:8501
-  - 起動時に自動表示されます
-  - 例: `http://100.104.61.108:8501`
-
-**特徴**:
-- ✅ **複数行入力** - 研究背景やキーワードを複数行で入力可能
-- ✅ **マルチLLMプロバイダー選択** - OpenAI, Claude, DeepSeek, Google, Groqから選択
-- ✅ **リアルタイム進捗表示** - 実行ログをリアルタイムで確認
-- ✅ **インタラクティブな結果表示** - 論文一覧、統合レポート、ファイルダウンロード
-- ✅ **設定カスタマイズ** - 論文数、年範囲、ヘッドレスモードを簡単設定
-- ✅ **Tailscale対応** - リモートからセキュアにアクセス可能
-
-### 方法2: コマンドライン（非対話型モード）
-
-```bash
-# 非対話型モードで実行（バックグラウンド実行可能）
-uv run python -m automated_research.main --provider claude --non-interactive --max-papers 10
-
-# カスタムトピックを指定
-uv run python -m automated_research.main --provider deepseek --non-interactive \
-  --research-topic "Quantum Computing" --max-papers 20 --headless
-
-# 対話型モードで実行（質問に答えながら進む）
-uv run python -m automated_research.main --provider claude
-```
-
-### 方法3: コマンドライン（従来の対話型）
-
-```bash
-# 完全自動実行（.envのLLM_PROVIDERを使用）
+# 対話型（デフォルト）
 uv run python -m automated_research.main
 
-# 論文数を指定
-uv run python -m automated_research.main --max-papers 30
+# 非対話型
+uv run python -m automated_research.main --non-interactive \
+  --research-topic "Machine Learning" --max-papers 20
 
-# ヘッドレスモードで実行
-uv run python -m automated_research.main --headless
-
-# LLMプロバイダーを指定して実行
+# LLMプロバイダー指定
 uv run python -m automated_research.main --provider claude
 uv run python -m automated_research.main --provider deepseek --model deepseek-chat
-uv run python -m automated_research.main --provider google --max-papers 50
+
+# ヘッドレスモード
+uv run python -m automated_research.main --headless
 ```
 
-**出力ファイル**:
-- `automated_research/data/` - 研究情報、検索戦略、論文リスト
-- `automated_research/reports/` - 個別論文レポート、統合レポート、PRISMAフロー図
-- `automated_research/logs/` - 実行ログ
+### 方法2: Streamlit Web UI
 
-### 方法4: Podman/Dockerコンテナで実行
-
-**簡易実行（推奨）**:
 ```bash
-# デモ実行（DeepSeek使用）
-./podman_demo.sh
-
-# Claudeを使用
-./podman_demo.sh claude
-
-# 別のプロバイダーを使用
-LLM_PROVIDER=google ./podman_demo.sh google
+./run_streamlit.sh
+# http://localhost:8501
 ```
 
-**詳細設定で実行**:
-```bash
-# 1. イメージビルド（初回のみ、5-10分）
-podman build -t browser-use-research:latest -f Containerfile .
+### 方法3: 軽量版（API専用、ブラウザ不使用）
 
-# 2. デモ実行（対話なし・自動モード）
-USE_DEMO=true LLM_PROVIDER=deepseek ./run_podman.sh
+```python
+import asyncio
+from langchain_openai import ChatOpenAI
+from automated_research_lightweight import HybridResearchSystem
 
-# 3. 手動実行（.env設定を使用）
-podman run --rm -it \
-  --env-file .env \
-  -e LLM_PROVIDER=deepseek \
-  -v ./automated_research/data:/app/automated_research/data:z \
-  -v ./automated_research/reports:/app/automated_research/reports:z \
-  -v ./automated_research/logs:/app/automated_research/logs:z \
-  -v ./papers:/app/papers:z \
-  browser-use-research:latest \
-  python demo_llm_research.py
+async def main():
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    system = HybridResearchSystem(llm=llm, max_papers=10)
+
+    results = await system.search("machine learning healthcare")
+    summary = await system.generate_summary(results)
+    print(summary)
+
+asyncio.run(main())
 ```
 
-**LLMプロバイダー切り替え**:
-```bash
-# Claude（高品質）
-LLM_PROVIDER=claude ./podman_demo.sh
+### 方法4: プラグイン型ソース検索
 
-# DeepSeek（コスト最安）
-LLM_PROVIDER=deepseek ./podman_demo.sh
+```python
+import asyncio
+from automated_research_lightweight.sources import (
+    SourceRegistry, PerplexitySource, UNHCRSource, AmnestySource,
+    get_all_sources, SourceCategory
+)
 
-# Google Gemini（コスパ良好）
-LLM_PROVIDER=google ./podman_demo.sh
+async def main():
+    registry = SourceRegistry()
+
+    # 個別登録
+    registry.register(PerplexitySource(api_key="pplx-..."))
+    registry.register(UNHCRSource(perplexity_api_key="pplx-..."))
+    registry.register(AmnestySource(perplexity_api_key="pplx-..."))
+
+    # または全ソース一括登録
+    # for source in get_all_sources(api_key="pplx-..."):
+    #     registry.register(source)
+
+    # 検索
+    results = await registry.search("refugee crisis")
+
+    # 特定ソースのみ
+    results = await registry.search("human rights", source_ids=["amnesty", "hrw"])
+
+    # カテゴリで検索
+    results = await registry.search_by_category(
+        "climate migration",
+        SourceCategory.INTERNATIONAL_ORG
+    )
+
+asyncio.run(main())
 ```
 
-### 方法3: 個別モジュールの単独実行
+#### 利用可能ソース（19種）
+
+| カテゴリ | ソース |
+|---------|--------|
+| **国際機関** | UNHCR, IOM, WHO, World Bank, OECD, UN |
+| **人権団体** | Amnesty International, HRW, ICRC |
+| **シンクタンク** | Brookings, RAND, CFR, Chatham House, Carnegie |
+| **政府** | US Gov, EU, UK Gov, 日本政府 |
+
+---
+
+## Claude Agent SDK 統合
+
+Claude Agent SDK を使って、このプロジェクトをプログラマティックに操作できます。
+
+### インストール
 
 ```bash
-# arXiv検索のみ
-uv run python -m automated_research.arxiv_search
+pip install claude-agent-sdk
+```
 
-# J-STAGE検索のみ
-uv run python -m automated_research.jstage_search
+### 基本的な使い方
 
-# 政府文書検索のみ
-uv run python -m automated_research.government_documents_search
+```python
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions
 
-# リスクオブバイアス評価のみ
-uv run python -m automated_research.risk_of_bias
+async def main():
+    options = ClaudeAgentOptions(
+        allowed_tools=["Read", "Write", "Bash", "Glob", "Grep"],
+        permission_mode='acceptEdits',
+        cwd="/path/to/browser-use-automation"
+    )
 
-# 複数レビュアー機能のみ
-uv run python -m automated_research.multiple_reviewers
+    # ワンショットクエリ
+    async for message in query(
+        prompt="arXiv で machine learning の論文を10件検索して",
+        options=options
+    ):
+        print(message)
+
+asyncio.run(main())
+```
+
+### 連続会話（セッション保持）
+
+```python
+import asyncio
+from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, AssistantMessage, TextBlock
+
+async def main():
+    options = ClaudeAgentOptions(
+        allowed_tools=["Read", "Write", "Bash", "Glob", "Grep", "WebSearch"],
+        permission_mode='acceptEdits',
+        cwd="/path/to/browser-use-automation"
+    )
+
+    async with ClaudeSDKClient(options=options) as client:
+        # 最初のクエリ
+        await client.query("PRISMA研究システムで 'deep learning' を調査して")
+        async for message in client.receive_response():
+            if isinstance(message, AssistantMessage):
+                for block in message.content:
+                    if isinstance(block, TextBlock):
+                        print(block.text)
+
+        # フォローアップ（コンテキスト保持）
+        await client.query("結果をMarkdownでまとめて")
+        async for message in client.receive_response():
+            # ...
+
+asyncio.run(main())
+```
+
+### カスタムツール定義
+
+```python
+from claude_agent_sdk import tool, create_sdk_mcp_server
+
+@tool("search_papers", "Search academic papers", {"query": str, "max_results": int})
+async def search_papers(args):
+    from automated_research_lightweight import HybridResearchSystem
+    from langchain_openai import ChatOpenAI
+
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    system = HybridResearchSystem(llm=llm, max_papers=args.get("max_results", 10))
+    results = await system.search(args["query"])
+
+    return {
+        "content": [{
+            "type": "text",
+            "text": f"Found {len(results)} papers"
+        }]
+    }
+
+# MCP サーバーとして公開
+server = create_sdk_mcp_server(
+    name="research-tools",
+    version="1.0.0",
+    tools=[search_papers]
+)
+```
+
+### 権限モード
+
+| モード | 説明 |
+|--------|------|
+| `default` | 標準（確認あり） |
+| `acceptEdits` | ファイル編集を自動承認 |
+| `plan` | プランニングのみ（実行しない） |
+| `bypassPermissions` | すべて自動承認（注意） |
+
+---
+
+## 環境変数一覧
+
+| 変数名 | 必須 | 説明 |
+|--------|------|------|
+| `LLM_PROVIDER` | ○ | `openai`, `claude`, `deepseek`, `google`, `groq` |
+| `OPENAI_API_KEY` | △ | OpenAI APIキー |
+| `ANTHROPIC_API_KEY` | △ | Claude APIキー |
+| `DEEPSEEK_API_KEY` | △ | DeepSeek APIキー |
+| `GOOGLE_API_KEY` | △ | Google Gemini APIキー |
+| `GROQ_API_KEY` | △ | Groq APIキー |
+| `PERPLEXITY_API_KEY` | △ | マルチソース検索用 |
+| `BROWSER_USE_LOGGING_LEVEL` | - | `debug`, `info`, `warning`, `error` |
+| `HEADLESS` | - | `true`/`false` (IEEE検索は`false`推奨) |
+
+△ = 使用するプロバイダーに応じて設定
+
+---
+
+## 開発
+
+### テスト
+
+```bash
+# CIテスト
+uv run pytest -vxs tests/ci
+
+# 全テスト
+uv run pytest -vxs tests/
+```
+
+### コード品質
+
+```bash
+# 型チェック
+uv run pyright
+
+# Lint & Format
+uv run ruff check --fix
+uv run ruff format
+
+# Pre-commit
+uv run pre-commit run --all-files
+```
+
+### 新規ソースの追加
+
+`DomainFilteredSource` を継承して簡単に追加:
+
+```python
+from automated_research_lightweight.sources import DomainFilteredSource, SourceCategory
+
+class MyOrgSource(DomainFilteredSource):
+    SOURCE_ID = "my_org"
+    SOURCE_NAME = "My Organization"
+    CATEGORY = SourceCategory.THINK_TANK
+    DESCRIPTION = "Description of the organization"
+    DOMAINS = ["myorg.org", "myorg.com"]
 ```
 
 ---
 
-## 出力ファイル
+## システム要件
 
-### ディレクトリ構造
-
-```
-automated_research/
-├── data/
-│   ├── research_info_YYYYMMDD_HHMMSS.json      # 研究情報
-│   ├── search_strategy_YYYYMMDD_HHMMSS.json    # 検索戦略
-│   ├── collected_papers_YYYYMMDD_HHMMSS.json   # 収集論文リスト
-│   └── screening_criteria.json                  # スクリーニング基準
-├── reports/
-│   ├── session_YYYYMMDD_HHMMSS/                # 個別論文レポート
-│   │   ├── 001_Paper_Title.md
-│   │   ├── 002_Another_Paper.md
-│   │   └── ...
-│   ├── summary_report_YYYYMMDD_HHMMSS.md       # 統合レポート
-│   ├── prisma_flow_diagram.md                   # PRISMAフロー図
-│   ├── rob_assessment_*.json                    # リスクオブバイアス評価
-│   └── reviewer_decisions.csv                   # レビュアー判定記録
-└── logs/
-    └── automated_research_YYYYMMDD_HHMMSS.log  # 実行ログ
-```
-
-### 主要ファイルの説明
-
-#### 統合レポート (`summary_report_*.md`)
-
-以下の内容を含みます：
-- **エグゼクティブサマリー**: 研究分野の現状と主要な発見
-- **検索戦略と収集結果**: 使用したクエリと収集論文数
-- **主要な研究トレンド**: 最新の技術動向
-- **技術的アプローチの分類**: 論文を手法別に整理
-- **重要な発見と洞察**: 注目すべき研究成果
-- **あなたの研究への示唆**: 具体的に何を活かせるか
-- **推奨される次のステップ**: 深掘りすべき論文・技術
-- **参考文献一覧**: すべての論文の書誌情報
-
-#### 個別論文レポート (`001_Paper_Title.md`)
-
-落合陽一式の7項目分析：
-1. どんなもの？
-2. 先行研究と比べてどこがすごいの？
-3. 技術や手法の"キモ"はどこにある？
-4. どうやって有効だと検証した？
-5. 議論はあるか？
-6. 次に読むべき論文はあるか？
-7. **自分の研究との関連** ← あなた専用
-
-#### PRISMAフロー図 (`prisma_flow_diagram.md`)
-
-Mermaid形式の検索プロセス可視化：
-- 検索結果数（データベース別）
-- スクリーニング除外数（理由別）
-- 重複除去数
-- 最終的に含まれた論文数
+| 項目 | 最小 | 推奨 |
+|------|------|------|
+| OS | Linux (Ubuntu 20.04+) | Ubuntu 22.04+ |
+| Python | 3.11 | 3.13 |
+| uv | 0.4.0+ | 最新 |
+| Chromium | 90+ | 最新 |
 
 ---
 
 ## トラブルシューティング
 
-### 問題1: `uv: command not found`
+### ブラウザが起動しない
 
-**解決方法**:
 ```bash
-# uvインストール
-curl -LsSf https://astral.sh/uv/install.sh | sh
-source $HOME/.cargo/env
-uv --version
+# ゾンビプロセスをクリーンアップ
+./cleanup_browsers.sh
 ```
 
-### 問題2: `ModuleNotFoundError: No module named 'automated_research'`
+### IEEE Xplore で "Request Rejected"
 
-**解決方法**:
 ```bash
-# プロジェクトディレクトリで実行
+# .env で HEADLESS=false に設定
+HEADLESS=false
+```
+
+### ModuleNotFoundError
+
+```bash
 cd /path/to/browser-use-automation
 uv sync
 uv run python -m automated_research.main
 ```
 
-### 問題3: Chromium not found
-
-**解決方法**:
-```bash
-# Ubuntu/Debian
-sudo apt install chromium chromium-driver -y
-
-# Fedora/RHEL
-sudo dnf install chromium -y
-
-# 環境変数で明示的に指定（.env）
-echo 'CHROME_BIN=/usr/bin/chromium' >> .env
-```
-
-### 問題4: IEEE Xploreで"Request Rejected"エラー
-
-**解決方法**:
-```bash
-# .envファイルを編集
-nano .env
-
-# HEADLESS=false に設定（必須）
-HEADLESS=false
-
-# X Serverが起動しているか確認
-echo $DISPLAY  # :0 などが表示されるはず
-```
-
-### 問題5: Permission denied（コンテナ使用時）
-
-**解決方法**:
-```bash
-# SELinux有効時（Fedora/RHEL）- :z を追加
-podman run --rm -it \
-  -v ./papers:/app/papers:z \
-  ...
-
-# または権限変更
-chmod 777 ./papers
-```
-
-### 問題6: ブラウザが起動しない / タイムアウトエラー
-
-**症状**:
-```
-TimeoutError: Browser did not start within 180 seconds
-```
-
-**原因**: ゾンビChromiumプロセスが大量のCPU/メモリを消費している
-
-**解決方法**:
-```bash
-# クリーンアップスクリプトを実行
-./cleanup_browsers.sh
-
-# または手動でクリーンアップ
-pkill -9 chromium
-rm -rf /tmp/browser-use-user-data-dir-*
-
-# システムリソースを確認
-ps aux | grep chromium
-top  # CPU/メモリ使用率を確認
-```
-
-**予防策**:
-- 研究調査の実行前に `./cleanup_browsers.sh` を実行
-- エラー発生時は必ずクリーンアップを実行
-- システムのリソース（CPU/メモリ）が十分か確認
-
-📖 **詳細**: [`docs/troubleshooting.md`](./docs/troubleshooting.md) ← TODO作成予定
-
----
-
-## 開発者向け情報
-
-### テスト実行
-
-```bash
-# ローカルテストスクリプト（GitHub Actionsと同じ）
-bash .github/workflows/test-local.sh
-
-# または手動で
-# Unit Tests
-uv run pytest tests/ci/test_arxiv_search.py tests/ci/test_jstage_search.py tests/ci/test_government_documents_search.py tests/ci/test_risk_of_bias.py tests/ci/test_multiple_reviewers.py tests/ci/test_prisma_search_strategy.py -v
-
-# Integration Tests
-uv run pytest tests/integration/test_full_research_workflow.py -v
-
-# 全テスト実行
-uv run pytest -vxs tests/ci tests/integration/
-```
-
-### コード品質チェック
-
-```bash
-# 型チェック
-uv run pyright automated_research/
-
-# Linting & フォーマット
-uv run ruff check automated_research/ --fix
-uv run ruff format automated_research/
-
-# Pre-commit hooks
-uv run pre-commit run --all-files
-```
-
-### アーキテクチャ
-
-Browser-Useの**イベント駆動アーキテクチャ**をベースに構築：
-
-- **Agent** (`browser_use/agent/service.py`) - タスク実行オーケストレーター
-- **BrowserSession** (`browser_use/browser/session.py`) - CDP接続・ブラウザライフサイクル管理
-- **EventBus** (`bubus`) - 各種Watchdog間の通信（Downloads, Popups, Security, DOM）
-
-#### Automated Research アーキテクチャ
-
-```
-automated_research/
-├── arxiv_search.py              # arXiv API検索
-├── jstage_search.py             # J-STAGE検索
-├── government_documents_search.py  # 政府文書検索
-├── ieee_automated_search.py     # IEEE Xplore検索
-├── risk_of_bias.py              # Cochrane RoB 2評価
-├── multiple_reviewers.py        # 複数レビュアー・Cohen's kappa
-├── prisma_search_strategy.py    # PRISMA検索戦略生成
-├── prisma_flow_diagram.py       # PRISMAフロー図生成
-├── screening_criteria.py        # スクリーニング基準
-└── main.py                      # メインエントリーポイント
-```
-
-📖 **詳細**: [`CLAUDE.md`](./CLAUDE.md) | [`CONTRIBUTING.md`](./CONTRIBUTING.md)
-
----
-
-## テスト結果
-
-### ✅ 全64テスト100%合格
-
-**ローカル環境**:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Unit Tests:        59/59 passed ✅ (8.88秒)
-Integration Tests:  5/5  passed ✅ (0.57秒)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-合計:              64/64 passed ✅ (100%)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
-
-**GitHub Actions**:
-- ✅ Automated Research Tests: SUCCESS (3m56s)
-- ✅ Automated Research Code Quality: SUCCESS (34s)
-
-📖 **詳細**: [`TEST_SUMMARY.md`](./TEST_SUMMARY.md)
-
----
-
-## 最近の改善
-
-### 2025-10-18 (最新): マルチLLMプロバイダー対応完了
-
-**新機能:**
-- **5つのLLMプロバイダーに対応** 🎉
-  - ✅ OpenAI (GPT-4o, GPT-4o-mini)
-  - ✅ Claude (claude-3-5-sonnet-20241022)
-  - ✅ DeepSeek (deepseek-chat) - コスト最安
-  - ✅ Google Gemini (gemini-2.0-flash-exp)
-  - ✅ Groq (llama-3.3-70b-versatile) - 高速処理
-
-- **柔軟な選択方式**
-  - 環境変数 `LLM_PROVIDER` で自動選択
-  - コマンドライン引数 `--provider` で動的切り替え
-  - モデル名も `--model` でカスタマイズ可能
-  - `uv run python -m automated_research.llm_provider` で設定確認
-
-- **実装ファイル**
-  - `automated_research/llm_provider.py`: 統一インターフェース
-  - 全モジュールを更新（main.py, research_interview.py 他5ファイル）
-  - `.env.example`: 詳細な設定例を追加
-
-**使い方**:
-```bash
-# Claudeを使用
-uv run python -m automated_research.main --provider claude
-
-# DeepSeekでコスト削減
-uv run python -m automated_research.main --provider deepseek
-
-# Google Geminiの最新モデル
-uv run python -m automated_research.main --provider google
-```
-
----
-
-### 2025-10-18: PRISMA 2020準拠システム実装完了 & 完全テストカバレッジ
-
-**新機能:**
-- **PRISMA 2020準拠システム** - 完全自動化の文献調査システム
-  - ✅ arXiv検索: 9テスト実装・合格
-  - ✅ J-STAGE検索: 10テスト実装・合格
-  - ✅ 政府文書検索: 14テスト実装・合格（USA, Japan, UK, EU, WHO, UN）
-  - ✅ リスクオブバイアス評価: 8テスト実装・合格（Cochrane RoB 2準拠）
-  - ✅ 複数レビュアー機能: 9テスト実装・合格（Cohen's kappa計算）
-  - ✅ PRISMA検索戦略: 9テスト実装・合格
-  - ✅ 結合テスト: 5テスト実装・合格
-
-- **Podman Rootless対応完了**
-  - UV_CACHE_DIR権限エラー修正
-  - 全34ステップのビルド成功
-  - コンテナ内で全テスト合格
-  - イメージサイズ: 2.02 GB
-
-**テスト結果:**
-- **ホスト環境**: 64 テスト = 100% passed ✓
-- **Podman Container**: 全テスト passed ✓
-- **GitHub Actions**: Tests & Quality = SUCCESS ✓
-- **TDD方式**: 全機能をTest-First開発で実装
-
-**開発手法**: Test-Driven Development (TDD, t-wada流)
-
----
-
-## FAQ（よくある質問）
-
-### Q1: LLM APIキーは必須ですか？
-
-**A**: はい、PRISMA研究システムには**LLM APIキーが必須**です。
-- 対話型ヒアリング、検索戦略生成、レポート作成にLLMを使用
-- **5つのプロバイダーから選択可能**: OpenAI, Claude (Anthropic), DeepSeek, Google Gemini, Groq
-- 推奨: OpenAI GPT-4o または Claude 3.5 Sonnet（高品質）、DeepSeek（コスト重視）
-- 環境変数 `LLM_PROVIDER` で簡単に切り替え
-- IEEE検索のみの場合はLLM不要（キーワード検索のみ）
-
-### Q2: 何分くらいかかりますか？
-
-**A**: 論文数によりますが：
-- 5論文: 約5-10分
-- 20論文: 約15-30分
-- 50論文: 約30-60分
-
-### Q3: お金はかかりますか？
-
-**A**: はい、LLM APIの使用料が発生します（プロバイダーにより異なります）：
-
-| プロバイダー | 論文1件あたり | 20論文で | コメント |
-|------------|-------------|---------|---------|
-| **OpenAI** (GPT-4o) | $0.05-0.10 | $1-2 | バランス型 |
-| **Claude** (3.5 Sonnet) | $0.10-0.20 | $2-4 | 高品質 |
-| **DeepSeek** | $0.01-0.02 | $0.20-0.40 | **コスト最安** |
-| **Google Gemini** | $0.03-0.07 | $0.60-1.40 | コスパ良好 |
-| **Groq** | $0.02-0.05 | $0.40-1.00 | 高速処理 |
-
-コスト重視なら **DeepSeek**、品質重視なら **Claude** または **GPT-4o** がおすすめです。
-
-### Q4: 日本語の論文にも対応していますか？
-
-**A**: はい、**J-STAGE検索で日本語論文対応**しています。
-- 日本語タイトル・要約の完全サポート
-- Hiragana, Katakana, Kanji自動検出
-- 英語論文との混在検索も可能
-
-### Q5: コンテナなしで実行できますか？
-
-**A**: はい、**ローカル環境で直接実行可能**です。
-- Python 3.11+、uv、Chromiumがあれば実行可能
-- コンテナは便利ですが必須ではありません
-
----
-
-## 詳細ドキュメント
-
-### 📚 ドキュメント一覧
-
-- **[automated_research/README.md](./automated_research/README.md)** - PRISMA研究システム詳細
-- **[automated_research/QUICKSTART.md](./automated_research/QUICKSTART.md)** - クイックスタートガイド
-- **[IEEE_SEARCH_README.md](./IEEE_SEARCH_README.md)** - IEEE検索詳細
-- **[PODMAN_SETUP.md](./PODMAN_SETUP.md)** - Podmanセットアップ
-- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - 開発ワークフロー・TDD手順
-- **[TEST_SUMMARY.md](./TEST_SUMMARY.md)** - テスト実行結果詳細
-- **[docs/INDEX.md](./docs/INDEX.md)** - 全ドキュメントインデックス
-
 ---
 
 ## ライセンス
 
-本プロジェクトは [Browser-Use](https://github.com/browser-use/browser-use) をベースに構築されています。
+[Browser-Use](https://github.com/browser-use/browser-use) をベースに構築
 
 ---
 
 ## リンク
 
-- **Browser-Use**: https://github.com/browser-use/browser-use
-- **Browser-Use Docs**: https://docs.browser-use.com
-- **PRISMA 2020**: https://www.prisma-statement.org/
-- **Cochrane RoB 2**: https://www.riskofbias.info/welcome/rob-2-0-tool
-- **IEEE Xplore**: https://ieeexplore.ieee.org/
-- **arXiv**: https://arxiv.org/
-- **J-STAGE**: https://www.jstage.jst.go.jp/
-
----
-
-## サポート
-
-問題が発生した場合：
-
-1. **ログを確認**: `automated_research/logs/` 内のログファイル
-2. **トラブルシューティングセクション**: 上記の問題解決方法を確認
-3. **テスト実行**: `bash .github/workflows/test-local.sh` でローカル環境確認
-4. **Issue報告**: GitHub Issuesで報告（再現手順を含めて）
-
----
-
-**開発**: Test-Driven Development (TDD) with Claude Code
-**最終更新**: 2025-10-18
-
-**Status**: Production Ready ✅
-**Tests**: 64/64 passed (100%) ✅
-**CI/CD**: GitHub Actions SUCCESS ✅
-**Container**: Podman Rootless Ready ✅
+- [Browser-Use](https://github.com/browser-use/browser-use)
+- [Claude Agent SDK](https://docs.anthropic.com/en/docs/agents-and-tools/claude-agent-sdk)
+- [Perplexity API](https://docs.perplexity.ai/)
+- [PRISMA 2020](https://www.prisma-statement.org/)
