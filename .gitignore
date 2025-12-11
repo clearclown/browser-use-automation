@@ -1,3 +1,6 @@
+.serena/
+
+
 # Cache files
 .DS_Store
 __pycache__/
