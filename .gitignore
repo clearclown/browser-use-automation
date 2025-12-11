@@ -13,7 +13,7 @@ __pycache__/
 ~/
 
 # Result output directory (実行結果はここに出力される)
-result/
+!result/
 !result/.gitkeep
 
 # Virtual Environments
