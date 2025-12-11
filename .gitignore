@@ -9,6 +9,10 @@ __pycache__/
 .ipynb_checkpoints
 ~/
 
+# Result output directory (実行結果はここに出力される)
+result/
+!result/.gitkeep
+
 # Virtual Environments
 .venv*
 venv/

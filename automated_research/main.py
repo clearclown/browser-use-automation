@@ -69,8 +69,8 @@ class AutomatedResearchAssistant:
 		self.non_interactive = non_interactive
 		self.research_topic = research_topic
 
-		# データ保存ディレクトリ
-		self.base_dir = Path('automated_research')
+		# データ保存ディレクトリ (result/に統一)
+		self.base_dir = Path('result/automated_research')
 		self.data_dir = self.base_dir / 'data'
 		self.reports_dir = self.base_dir / 'reports'
 		self.logs_dir = self.base_dir / 'logs'

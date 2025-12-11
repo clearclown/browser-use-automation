@@ -42,7 +42,7 @@ class HybridResearchSystem:
 		self,
 		llm: Any,
 		max_papers: int = 10,
-		output_dir: str | Path = 'automated_research_lightweight/output',
+		output_dir: str | Path = 'result/automated_research_lightweight',
 	):
 		"""
 		Args:

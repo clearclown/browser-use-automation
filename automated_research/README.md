@@ -91,24 +91,27 @@ python -m automated_research.main --model gpt-4o-mini
 
 ## 出力ファイル
 
-実行すると以下のファイルが生成されます：
+実行すると以下のファイルが `result/` ディレクトリに生成されます：
 
 ```
-automated_research/
-├── data/
-│   ├── research_info_YYYYMMDD_HHMMSS.json      # 研究情報
-│   ├── search_strategy_YYYYMMDD_HHMMSS.json    # 検索戦略
-│   └── collected_papers_YYYYMMDD_HHMMSS.json   # 収集論文リスト
-├── reports/
-│   ├── session_YYYYMMDD_HHMMSS/                # 個別論文レポート
-│   │   ├── 001_Paper_Title.md
-│   │   ├── 002_Another_Paper.md
-│   │   └── ...
-│   ├── summary_report_YYYYMMDD_HHMMSS.md       # 統合レポート
-│   └── papers_list_YYYYMMDD_HHMMSS.json        # 論文リスト
-└── logs/
-    └── (ログファイル)
+result/
+└── automated_research/
+    ├── data/
+    │   ├── research_info_YYYYMMDD_HHMMSS.json      # 研究情報
+    │   ├── search_strategy_YYYYMMDD_HHMMSS.json    # 検索戦略
+    │   └── collected_papers_YYYYMMDD_HHMMSS.json   # 収集論文リスト
+    ├── reports/
+    │   ├── session_YYYYMMDD_HHMMSS/                # 個別論文レポート
+    │   │   ├── 001_Paper_Title.md
+    │   │   ├── 002_Another_Paper.md
+    │   │   └── ...
+    │   ├── summary_report_YYYYMMDD_HHMMSS.md       # 統合レポート
+    │   └── papers_list_YYYYMMDD_HHMMSS.json        # 論文リスト
+    └── logs/
+        └── (ログファイル)
 ```
+
+> **Note**: `result/` ディレクトリは `.gitignore` で除外されています。
 
 ## 個別モジュールの単独実行
 
